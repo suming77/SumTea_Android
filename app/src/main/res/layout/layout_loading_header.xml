@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+              android:id="@+id/ll_root"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/ivLoad"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:src="@drawable/animation_loading_header" />
+
+</LinearLayout>

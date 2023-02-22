@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.tea.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnRefreshListener {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -38,5 +40,11 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onRefresh(refreshLayout: RefreshLayout) {
+        binding.refreshLayout.postDelayed({
+            binding.refreshLayout.finishRefresh()
+        }, 1000)
     }
 }

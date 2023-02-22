@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#XLog
+-keep class com.tencent.mars.** {
+  public protected private *;
+}
