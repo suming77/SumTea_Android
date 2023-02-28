@@ -7,6 +7,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.scwang.smart.refresh.footer.ClassicsFooter
+import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.sum.tea.databinding.ActivityMainBinding
 import com.sum.tea.stater.dispatcher.DelayInitDispatcher
@@ -14,7 +15,6 @@ import com.sum.tea.stater.inittasks.InitTaskA
 import com.sum.tea.stater.inittasks.InitTaskB
 import com.sum.tea.utils.AppExit
 import com.sum.tea.utils.TipsToast
-import com.sum.tea.weights.CustomRefreshHeader
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,8 +23,9 @@ class MainActivity : AppCompatActivity() {
     init {
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
-            layout.setPrimaryColorsId(R.color.purple_200, android.R.color.white)
-            CustomRefreshHeader(context)
+            layout.setPrimaryColorsId(android.R.color.white)
+//            CustomRefreshHeader(context)
+            ClassicsHeader(context)
         }
         //设置全局的Footer构建器
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout ->

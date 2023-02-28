@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.multidex.MultiDex
 import com.sum.tea.listener.AppFrontBack
 import com.sum.tea.listener.AppFrontBackListener
@@ -38,6 +39,7 @@ class TeaMacApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        instance = this
         //注册APP前后台切换监听
         appFrontBackRegister()
         // App启动立即注册监听
@@ -72,11 +74,13 @@ class TeaMacApplication : Application() {
         AppFrontBack.register(this, object : AppFrontBackListener {
             override fun onBack(activity: Activity?) {
                 LogUtil.d("onBack")
+                Log.d("LogUtil", "onBack")
 
             }
 
             override fun onFront(activity: Activity?) {
                 LogUtil.d("onFront")
+                Log.d("LogUtil", "onFront")
             }
         })
     }

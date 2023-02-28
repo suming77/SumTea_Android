@@ -21,6 +21,6 @@
 #-renamesourcefileattribute SourceFile
 
 #XLog
--keep class com.tencent.mars.** {
-  public protected private *;
-}
+#-keep class com.tencent.mars.** {
+#  public protected private *;
+#}

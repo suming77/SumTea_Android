@@ -1,7 +1,6 @@
 package com.sum.tea.base
 
 import android.os.Bundle
-import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.sum.tea.R
@@ -22,8 +21,16 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getContentView())
+        setContentLayout()
         initView(savedInstanceState)
+        initData()
+    }
+
+    /**
+     * 设置布局
+     */
+    open fun setContentLayout() {
+        setContentView(getLayoutResId())
     }
 
     /**
@@ -33,11 +40,17 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun initView(savedInstanceState: Bundle?)
 
     /**
+     * 初始化数据
+     */
+    open fun initData() {
+
+    }
+
+    /**
      * 初始化视图
      * @return Int 布局id
      */
-    abstract fun getContentView(): Int
-
+    abstract fun getLayoutResId(): Int
 
     /**
      * 加载中……弹框

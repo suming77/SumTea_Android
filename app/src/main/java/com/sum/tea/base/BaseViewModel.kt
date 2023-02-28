@@ -6,8 +6,8 @@ import com.sum.tea.network.LoadState
 import com.sum.tea.network.ResultNet
 import com.sum.tea.network.StateActionEvent
 import com.sum.tea.network.SuccessState
-import com.sum.tea.network.error.ExceptionHandle
-import com.sum.tea.network.error.ResponseThrowable
+import com.sum.tea.network.error.ExceptionHandler
+import com.sum.tea.network.error.ApiException
 import kotlinx.coroutines.*
 import java.util.concurrent.CancellationException
 
@@ -34,7 +34,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
     fun <T : Any> launchOnUIStateResult(
         block: suspend CoroutineScope.() -> ResultNet<T>,
         success: (T?) -> Unit,
-        error: (ResponseThrowable) -> Unit = {
+        error: (ApiException) -> Unit = {
             emitUiState(ErrorState(it.errMsg))
         },
         complete: () -> Unit = {},
@@ -52,7 +52,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
                             } else {
                                 // 执行失败
                                 it as ResultNet.Error
-                                throw ResponseThrowable(it.errCode, it.errMsg)
+                                throw ApiException(it.errCode, it.errMsg)
                             }
                         }
                     }.also { success(it) }
@@ -135,7 +135,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
             emit(block())
             emitUiState(SuccessState)
         } catch (e: Exception) {
-            var erro = ExceptionHandle.handleException(e)
+            var erro = ExceptionHandler.handleException(e)
             var erroMsg = erro.message
             emitUiState(ErrorState(erroMsg))
         }
@@ -146,14 +146,14 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
      */
     private suspend fun handleException(
         block: suspend CoroutineScope.() -> Unit,
-        error: suspend CoroutineScope.(ResponseThrowable) -> Unit,
+        error: suspend CoroutineScope.(ApiException) -> Unit,
         complete: suspend CoroutineScope.() -> Unit
     ) {
         coroutineScope {
             try {
                 block()
             } catch (e: Throwable) {
-                error(ExceptionHandle.handleException(e))
+                error(ExceptionHandler.handleException(e))
             } finally {
                 complete()
             }

@@ -9,18 +9,19 @@ import android.widget.LinearLayout;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.scwang.smart.refresh.layout.api.RefreshHeader;
-import com.scwang.smart.refresh.layout.api.RefreshKernel;
-import com.scwang.smart.refresh.layout.api.RefreshLayout;
-import com.scwang.smart.refresh.layout.constant.RefreshState;
-import com.scwang.smart.refresh.layout.constant.SpinnerStyle;
+//import com.scwang.smart.refresh.layout.api.RefreshHeader;
+//import com.scwang.smart.refresh.layout.api.RefreshKernel;
+//import com.scwang.smart.refresh.layout.api.RefreshLayout;
+//import com.scwang.smart.refresh.layout.constant.RefreshState;
+//import com.scwang.smart.refresh.layout.constant.SpinnerStyle;
 import com.sum.tea.R;
 
 /**
  * SmartRefreshLayout 的自定义下拉刷新 Header
  */
 
-public class CustomRefreshHeader extends LinearLayout implements RefreshHeader {
+public class CustomRefreshHeader /*extends LinearLayout implements RefreshHeader */{
+/*
 
     private ImageView mImage;
     private LinearLayout mLl_root;
@@ -61,13 +62,15 @@ public class CustomRefreshHeader extends LinearLayout implements RefreshHeader {
 
     }
 
-    /**
+    */
+/**
      * 状态改变时调用。在这里切换第三阶段的动画卖萌小人
      *
      * @param refreshLayout
      * @param oldState
      * @param newState
-     */
+     *//*
+
     @Override
     public void onStateChanged(RefreshLayout refreshLayout, RefreshState oldState, RefreshState newState) {
         switch (newState) {
@@ -87,9 +90,11 @@ public class CustomRefreshHeader extends LinearLayout implements RefreshHeader {
         }
     }
 
-    /**
+    */
+/**
      * 动画结束后调用
-     */
+     *//*
+
     @Override
     public int onFinish(RefreshLayout layout, boolean success) {
         // 结束动画
@@ -159,4 +164,5 @@ public class CustomRefreshHeader extends LinearLayout implements RefreshHeader {
     public void setRefreshHeadBackgroundColor(@ColorInt int color) {
         mLl_root.setBackgroundColor(color);
     }
+*/
 }

@@ -38,14 +38,14 @@ object TipsToast {
         )
     }
 
-    fun showTips(msg: String) {
+    fun showTips(msg: String?) {
         showTipsImpl(
             msg,
             Toast.LENGTH_SHORT
         )
     }
 
-    fun showTips(msg: String, duration: Int) {
+    fun showTips(msg: String?, duration: Int) {
         showTipsImpl(msg, duration)
     }
 
@@ -54,7 +54,7 @@ object TipsToast {
         showTipsImpl(msg, duration)
     }
 
-    fun showSuccessTips(msg: String) {
+    fun showSuccessTips(msg: String?) {
         showTipsImpl(
             msg,
             Toast.LENGTH_SHORT,
@@ -71,7 +71,7 @@ object TipsToast {
         )
     }
 
-    fun showWarningTips(msg: String) {
+    fun showWarningTips(msg: String?) {
         showTipsImpl(
             msg,
             Toast.LENGTH_SHORT,
@@ -89,10 +89,13 @@ object TipsToast {
     }
 
     private fun showTipsImpl(
-        msg: String,
+        msg: String?,
         duration: Int,
         @DrawableRes drawableId: Int = 0,
     ) {
+        if (msg.isNullOrEmpty()) {
+            return
+        }
         toast?.let {
             cancel()
             toast = null

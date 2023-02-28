@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.tea.databinding.FragmentHomeBinding
+import com.sum.tea.utils.log.LogUtil
 
 class HomeFragment : Fragment(), OnRefreshListener {
 
@@ -19,22 +19,25 @@ class HomeFragment : Fragment(), OnRefreshListener {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    val homeViewModel by lazy {
+        ViewModelProvider(this).get(HomeViewModel::class.java)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        homeViewModel.getBannerList().observe(viewLifecycleOwner) {
+            LogUtil.e("result:${it.size}")
+        }
     }
 
     override fun onDestroyView() {
@@ -43,8 +46,8 @@ class HomeFragment : Fragment(), OnRefreshListener {
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
-        binding.refreshLayout.postDelayed({
-            binding.refreshLayout.finishRefresh()
-        }, 1000)
+//        homeViewModel.getBannerList().observe(viewLifecycleOwner) {
+//            binding.refreshLayout.finishRefresh()
+//        }
     }
 }
