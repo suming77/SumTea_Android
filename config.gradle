@@ -1,0 +1,66 @@
+ext {
+    signingConfig = [
+            storePassword: 'xxx',
+            keyAlias     : 'xxx',
+            keyPassword  : 'xxx'
+    ]
+
+    android = [
+            applicationId    : "com.sum.tea",
+
+            compileSdk       : 32,
+            buildToolsVersion: '32.0.0',
+            minSdk           : 21,
+            targetSdk        : 32,
+
+            versionCode: 1,
+            versionName: "1.0.0",
+    ]
+
+    dependVersion = [
+            multidexVersion    : '2.0.1',
+            retrofitVersion    : '2.9.0',
+            retrofitGsonVersion: '2.4.0',
+            okhttp3LogVersion  : '3.11.0',
+            gsonVersion        : '2.10.1',
+            mmkvVersion        : '1.2.15',
+            refreshVersion     : '2.0.5'
+    ]
+
+    depsLibs = [
+            coreKtx           : 'androidx.core:core-ktx:1.7.0',
+            appcompat         : 'androidx.appcompat:appcompat:1.3.0',
+            material          : 'com.google.android.material:material:1.4.0',
+            constraintlayout  : 'androidx.constraintlayout:constraintlayout:2.0.4',
+            liveDataKtx       : 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1',
+            viewModelKtx      : 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1',
+            navigationFragment: 'androidx.navigation:navigation-fragment-ktx:2.3.5',
+            navigationUI      : 'androidx.navigation:navigation-ui-ktx:2.3.5',
+
+            junit             : 'junit:junit:4.13.2',
+            extJunit          : 'androidx.test.ext:junit:1.1.3',
+            espressoCore      : 'androidx.test.espresso:espresso-core:3.4.0',
+
+            multidex          : "androidx.multidex:multidex:${dependVersion["multidexVersion"]}",
+            retrofit2         : "com.squareup.retrofit2:retrofit:${dependVersion["retrofitVersion"]}",
+            retrofit2Gson     : "com.squareup.retrofit2:converter-gson:${dependVersion["retrofitGsonVersion"]}",
+            loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${dependVersion["okhttp3LogVersion"]}",
+
+            gson              : "com.google.code.gson:gson:${dependVersion["gsonVersion"]}",
+//            xlog              : "com.tencent.mars:mars-xlog:1.2.5",
+            mmkv              : "com.tencent:mmkv:${dependVersion["mmkvVersion"]}",
+
+            //下拉刷新
+            refreshLayout     : "io.github.scwang90:refresh-layout-kernel:${dependVersion["refreshVersion"]}",
+            refreshHeader     : "io.github.scwang90:refresh-header-classics:${dependVersion["refreshVersion"]}",
+            refreshFooter     : "io.github.scwang90:refresh-footer-classics:${dependVersion["refreshVersion"]}",
+
+//            rxjava            : "io.reactivex.rxjava3:rxjava:3.0.6",
+//            rxandroid         : "io.reactivex.rxjava2:rxandroid:2.0.2",
+//
+//            aroutreApi        : "",
+//            arouterCompiler   : "",
+//            viewPager2        : "androidx.viewpager2:viewpager2:${depsVersion.viewPager2Veriosn]}",
+    ]
+
+}

@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk rootProject.android.compileSdk
 
     defaultConfig {
-        applicationId "com.sum.tea"
-        minSdk 21
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        applicationId rootProject.android.applicationId
+        minSdk rootProject.android.minSdk
+        targetSdk rootProject.android.targetSdk
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //        ndk {
@@ -46,33 +46,39 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.depsLibs.coreKtx
+    implementation rootProject.depsLibs.appcompat
+    implementation rootProject.depsLibs.material
+    implementation rootProject.depsLibs.constraintlayout
+    implementation rootProject.depsLibs.liveDataKtx
+    implementation rootProject.depsLibs.viewModelKtx
+    implementation rootProject.depsLibs.navigationFragment
+    implementation rootProject.depsLibs.navigationUI
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation rootProject.depsLibs.junit
+    androidTestImplementation rootProject.depsLibs.extJunit
+    androidTestImplementation rootProject.depsLibs.espressoCore
 
-    implementation "androidx.multidex:multidex:2.0.1"
+    implementation rootProject.depsLibs.multidex
 
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.4.0"
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'  //拦截日志
+    implementation rootProject.depsLibs.retrofit2
+    implementation rootProject.depsLibs.retrofit2Gson
+    implementation rootProject.depsLibs.loggingInterceptor
 
-    implementation "com.google.code.gson:gson:2.10.1"
+    implementation rootProject.depsLibs.gson
 
-//    implementation 'com.tencent.mars:mars-xlog:1.2.5'
+//    implementation rootProject.depsLibs.xlog
 
-    implementation 'com.tencent:mmkv:1.2.15'
+    implementation rootProject.depsLibs.mmkv
 
-    implementation  'io.github.scwang90:refresh-layout-kernel:2.0.5'      //核心必须依赖
-    implementation  'io.github.scwang90:refresh-footer-classics:2.0.5'    //经典加载
-    implementation  'io.github.scwang90:refresh-header-classics:2.0.5'    //经典加载
+    implementation rootProject.depsLibs.refreshLayout
+    implementation rootProject.depsLibs.refreshHeader
+    implementation rootProject.depsLibs.refreshFooter
 
+    implementation project(path: ':mod_main')
+    implementation project(path: ':lib_framework')
+    implementation project(path: ':lib_network')
+    implementation project(path: ':lib_common')
+    implementation project(path: ':lib_stater')
 }

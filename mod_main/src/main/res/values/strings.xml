@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ST</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="base_app_exit_one_more_press">再按一次退出程序</string>
+</resources>

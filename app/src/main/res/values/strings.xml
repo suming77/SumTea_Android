@@ -1,9 +1,3 @@
 <resources>
-    <string name="app_name">TeaMac</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-
-    <string name="default_load_ing">加载中...</string>
-    <string name="base_app_exit_one_more_press">再按一次退出程序</string>
+    <string name="app_name">ST</string>
 </resources>

@@ -12,6 +12,10 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "TeaMac"
+rootProject.name = "SumTea"
 include ':app'
-include ':Framework'
+include ':lib_framework'
+include ':lib_common'
+include ':lib_network'
+include ':mod_main'
+include ':lib_stater'
