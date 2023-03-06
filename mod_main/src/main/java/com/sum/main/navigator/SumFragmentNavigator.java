@@ -44,23 +44,17 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Navigator that navigates through {@link FragmentTransaction fragment transactions}. Every
- * destination using this Navigator must set a valid Fragment class name with
- * <code>android:name</code> or {@link Destination#setClassName(String)}.
- * <p>
- * The current Fragment from FragmentNavigator's perspective can be retrieved by calling
- * {@link FragmentManager#getPrimaryNavigationFragment()} with the FragmentManager
- * passed to this FragmentNavigator.
- * <p>
- * Note that the default implementation does Fragment transactions
- * asynchronously, so the current Fragment will not be available immediately
- * (i.e., in callbacks to {@link NavController.OnDestinationChangedListener}).
+ * 问题：FragmentNavigator是通过 ft.replace(mContainerId, frag);添加Fragment的，replace方式的会导致生命周期重走。
+ * 又因为里面需要使用到mBackStack后退栈，但是可见性是private，所以子类中是无法使用的，
+ * 解决方案：拷贝一份FragmentNavigator，修改navigate()方法，或者继续FragmentNavigator，通过反射获取mBackStack后退栈
  *
- * ft.replace(mContainerId, frag);添加Fragment是replace方式的会导致生命周期重走，可以重写navigate()改成hide()和show()方法
+ * 可以重写navigate()方法{@link Destination#navigate(Destination, Bundle, NavOptions, Navigator.Extras)}
+ * 将显示Fragment#replace()改成hide()和show()方法
+ *
+ * 需要在类头添加Navigator.Name注解，添加一个名称
  */
-//需要在类头添加Navigator.Name注解，添加一个名称
-@Navigator.Name("myfragment")
-public class MyFragmentNavigator extends Navigator<MyFragmentNavigator.Destination> {
+@Navigator.Name("sumFragment")
+public class SumFragmentNavigator extends Navigator<SumFragmentNavigator.Destination> {
 
     private static final String TAG = "FragmentNavigator";
     private static final String KEY_BACK_STACK_IDS = "androidx-nav-fragment:navigator:backStackIds";
@@ -68,10 +62,12 @@ public class MyFragmentNavigator extends Navigator<MyFragmentNavigator.Destinati
     private final Context mContext;
     private final FragmentManager mFragmentManager;
     private final int mContainerId;
-    // 后退栈可见性是private，所以子类里面是没办法使用mBackStack
+    /**
+     * 后退栈可见性是private，所以子类里面是没办法使用mBackStack
+     */
     private ArrayDeque<Integer> mBackStack = new ArrayDeque<>();
 
-    public MyFragmentNavigator(@NonNull Context context, @NonNull FragmentManager manager,
+    public SumFragmentNavigator(@NonNull Context context, @NonNull FragmentManager manager,
             int containerId) {
         mContext = context;
         mFragmentManager = manager;
@@ -166,9 +162,10 @@ public class MyFragmentNavigator extends Navigator<MyFragmentNavigator.Destinati
             className = mContext.getPackageName() + className;
         }
 
-        //每次都会实例化一个对象，现在需要判断是否已经实例化过了，如果没有添加则在调用instantiateFragment()去实例化对象
-        //android.fragment.app.homefragment tag=homefragment
+        //1.每次都会实例化一个对象，现在需要判断是否已经实例化过了，如果没有添加则在调用instantiateFragment()去实例化对象
+        //androidx.fragment.app.homefragment tag=homefragment
         String tag = className.substring(className.lastIndexOf(".") + 1);
+        Log.e("smy", "tag:"+tag);
         Fragment frag = mFragmentManager.findFragmentByTag(tag);
         if (frag == null) {
             frag = instantiateFragment(mContext, mFragmentManager,
@@ -190,12 +187,13 @@ public class MyFragmentNavigator extends Navigator<MyFragmentNavigator.Destinati
             ft.setCustomAnimations(enterAnim, exitAnim, popEnterAnim, popExitAnim);
         }
 
-        //需要将之前的Fragment隐藏掉，否则会出现页面重叠的效果
+        //2.需要将之前的Fragment隐藏掉，否则会出现页面重叠的效果
         List<Fragment> fragments = mFragmentManager.getFragments();
         for (Fragment fragment : fragments) {
             ft.hide(fragment);
         }
 
+        //3.通过show()展示
 //        ft.replace(mContainerId, frag);
         if (!frag.isAdded()) {
             ft.add(mContainerId, frag, tag);
@@ -279,7 +277,7 @@ public class MyFragmentNavigator extends Navigator<MyFragmentNavigator.Destinati
     }
 
     /**
-     * NavDestination specific to {@link MyFragmentNavigator}
+     * NavDestination specific to {@link SumFragmentNavigator}
      */
     @NavDestination.ClassType(Fragment.class)
     public static class Destination extends NavDestination {
@@ -294,14 +292,14 @@ public class MyFragmentNavigator extends Navigator<MyFragmentNavigator.Destinati
          *         will be associated with.
          */
         public Destination(@NonNull NavigatorProvider navigatorProvider) {
-            this(navigatorProvider.getNavigator(MyFragmentNavigator.class));
+            this(navigatorProvider.getNavigator(SumFragmentNavigator.class));
         }
 
         /**
          * Construct a new fragment destination. This destination is not valid until you set the
          * Fragment via {@link #setClassName(String)}.
          *
-         * @param fragmentNavigator The {@link MyFragmentNavigator} which this destination
+         * @param fragmentNavigator The {@link SumFragmentNavigator} which this destination
          *         will be associated with. Generally retrieved via a
          *         {@link NavController}'s
          *         {@link NavigatorProvider#getNavigator(Class)} method.

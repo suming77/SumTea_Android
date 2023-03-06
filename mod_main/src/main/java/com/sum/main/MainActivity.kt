@@ -1,39 +1,43 @@
 package com.sum.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.sum.framework.base.BaseDataBindActivity
+import com.sum.framework.log.LogUtil
 import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.AppExit
 import com.sum.main.databinding.ActivityMainBinding
+import com.sum.main.navigator.SumFragmentNavigator
 import com.sum.stater.dispatcher.DelayInitDispatcher
 import com.sum.stater.inittasks.InitTaskA
 import com.sum.stater.inittasks.InitTaskB
 
-class MainActivity : AppCompatActivity() {
+/**
+ * @author mingyan.su
+ * @time   2023/3/3 8:41
+ * @desc   主页
+ */
+class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
 
-    private lateinit var binding: ActivityMainBinding
+    override fun getLayoutResId(): Int = R.layout.activity_main
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val navView: BottomNavigationView = binding.navView
-
+    override fun initView(savedInstanceState: Bundle?) {
+        LogUtil.e("initView")
+        val navView: BottomNavigationView = mBinding.navView
+        //1.寻找出路由控制器对象，它是路由跳转的唯一入口，找到宿主NavHostFragment
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
-        )
-//        setupActionBarWithNavController(navController, appBarConfiguration)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        //2.自定义FragmentNavigator，mobile_navigation.xml文件中的fragment标识改为SumFragmentNavigator的sumFragment
+        val fragmentNavigator = SumFragmentNavigator(this, navHostFragment.childFragmentManager, navHostFragment.id)
+        //3.注册到Navigator里面，这样才找得到
+        navController.navigatorProvider.addNavigator(fragmentNavigator)
+        //4.设置Graph，需要将activity_main.xml文件中的app:navGraph="@navigation/mobile_navigation"移除
+        navController.setGraph(R.navigation.mobile_navigation)
+
+        //5.将NavController和BottomNavigationView绑定，形成联动效果
         navView.setupWithNavController(navController)
     }
 

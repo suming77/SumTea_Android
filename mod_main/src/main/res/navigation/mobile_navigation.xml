@@ -3,23 +3,29 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/mobile_navigation"
-        app:startDestination="@+id/navigation_home">
+        app:startDestination="@+id/navi_home">
 
-    <fragment
-            android:id="@+id/navigation_home"
+    <sumFragment
+            android:id="@+id/navi_home"
             android:name="com.sum.main.ui.home.HomeFragment"
-            android:label="@string/title_home"
+            android:label="@string/tab_home"
             tools:layout="@layout/fragment_home" />
 
-    <fragment
-            android:id="@+id/navigation_dashboard"
-            android:name="com.sum.main.ui.dashboard.DashboardFragment"
-            android:label="@string/title_dashboard"
-            tools:layout="@layout/fragment_dashboard" />
+    <sumFragment
+            android:id="@+id/navi_category"
+            android:name="com.sum.main.ui.category.CategoryFragment"
+            android:label="@string/tab_categories"
+            tools:layout="@layout/fragment_category" />
 
-    <fragment
-            android:id="@+id/navigation_notifications"
-            android:name="com.sum.main.ui.notifications.NotificationsFragment"
-            android:label="@string/title_notifications"
-            tools:layout="@layout/fragment_notifications" />
+    <sumFragment
+            android:id="@+id/navi_system"
+            android:name="com.sum.main.ui.system.SystemFragment"
+            android:label="@string/tab_system"
+            tools:layout="@layout/fragment_system" />
+
+    <sumFragment
+            android:id="@+id/navi_mine"
+            android:name="com.sum.main.ui.mine.MineFragment"
+            android:label="@string/tab_mine"
+            tools:layout="@layout/fragment_mine" />
 </navigation>

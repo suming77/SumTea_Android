@@ -11,6 +11,11 @@ import com.sum.network.manager.ApiManager
 import com.sum.network.model.ProjectTabItem
 import com.sum.network.viewmodel.BaseViewModel
 
+/**
+ * @author mingyan.su
+ * @date   2023/3/3 8:15
+ * @desc   首页ViewModel
+ */
 class HomeViewModel : BaseViewModel() {
     val tabItem = MutableLiveData<MutableList<ProjectTabItem>>()
 

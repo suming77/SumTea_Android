@@ -4,50 +4,48 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
+import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.log.LogUtil
+import com.sum.main.R
 import com.sum.main.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment(), OnRefreshListener {
+/**
+ * @author mingyan.su
+ * @date   2023/3/3 8:16
+ * @desc   首页
+ */
+class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnRefreshListener {
 
-    private var _binding: FragmentHomeBinding? = null
+    override fun getLayoutResId(): Int = R.layout.fragment_home
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    val homeViewModel by lazy {
-        ViewModelProvider(this).get(HomeViewModel::class.java)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        return root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        homeViewModel.getBannerList().observe(viewLifecycleOwner) {
-            LogUtil.e("result:${it.size}")
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun initView(view: View, savedInstanceState: Bundle?) {
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
 //        homeViewModel.getBannerList().observe(viewLifecycleOwner) {
 //            binding.refreshLayout.finishRefresh()
 //        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        LogUtil.e("onViewCreated")
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        LogUtil.e("onCreateView")
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        LogUtil.e("onResume")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LogUtil.e("onDestroy")
     }
 }

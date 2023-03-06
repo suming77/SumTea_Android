@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">ST</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="tab_home">首页</string>
+    <string name="tab_categories">分类</string>
+    <string name="tab_system">体系</string>
+    <string name="tab_mine">我的</string>
 
     <string name="base_app_exit_one_more_press">再按一次退出程序</string>
 </resources>

@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.multidex.MultiDex
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
@@ -26,7 +25,7 @@ import com.tencent.mmkv.MMKV
 /**
  * @author mingyan.su
  * @date   2023/2/9 23:19
- * @desc
+ * @desc   应用类
  */
 class SumApplication : Application() {
 
@@ -97,13 +96,10 @@ class SumApplication : Application() {
         AppFrontBack.register(this, object : AppFrontBackListener {
             override fun onBack(activity: Activity?) {
                 LogUtil.d("onBack")
-                Log.d("LogUtil", "onBack")
-
             }
 
             override fun onFront(activity: Activity?) {
                 LogUtil.d("onFront")
-                Log.d("LogUtil", "onFront")
             }
         })
     }
