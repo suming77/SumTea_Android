@@ -45,6 +45,12 @@ abstract class BaseFragment : Fragment() {
     }
 
     /**
+     * 初始化视图
+     * @return Int 布局id
+     */
+    abstract fun getLayoutResId(): Int
+
+    /**
      * 初始化布局
      * @param savedInstanceState Bundle?
      */
@@ -54,13 +60,6 @@ abstract class BaseFragment : Fragment() {
      * 初始化数据
      */
     open fun initData() {}
-
-    /**
-     * 初始化视图
-     * @return Int 布局id
-     */
-    abstract fun getLayoutResId(): Int
-
 
     /**
      * 加载中……弹框

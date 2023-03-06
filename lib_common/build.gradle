@@ -36,5 +36,10 @@ dependencies {
     compileOnly rootProject.depsLibs.material
     compileOnly rootProject.depsLibs.constraintlayout
 
+    compileOnly rootProject.depsLibs.refreshLayout
+    compileOnly rootProject.depsLibs.refreshHeader
+    compileOnly rootProject.depsLibs.refreshFooter
+
     compileOnly project(path: ':lib_framework')
+    compileOnly project(path: ':lib_banner')
 }

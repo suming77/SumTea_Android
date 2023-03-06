@@ -1,6 +1,7 @@
 package com.sum.network.manager
 
 import android.util.Log
+import com.sum.common.constant.BASE_URL
 import com.sum.framework.helper.SumAppHelper
 import com.sum.framework.utils.NetworkUtil
 import com.sum.network.NoNetWorkException
@@ -24,7 +25,7 @@ object HttpManager {
     init {
         mRetrofit = Retrofit.Builder()
                 .client(initOkHttpClient())
-                .baseUrl("https://www.wanandroid.com")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }
@@ -50,11 +51,11 @@ object HttpManager {
         val logInterceptor = HttpLoggingInterceptor { message: String ->
             Log.e("okhttp", "data:$message")
         }
-//        if (BuildConfig.DEBUG) {
+        if (SumAppHelper.isDebug()) {
             logInterceptor.level = HttpLoggingInterceptor.Level.BODY
-//        } else {
-//            logInterceptor.level = HttpLoggingInterceptor.Level.BASIC
-//        }
+        } else {
+            logInterceptor.level = HttpLoggingInterceptor.Level.BASIC
+        }
         build.addInterceptor(logInterceptor)
         //网络状态拦截
         build.addInterceptor(object : Interceptor {

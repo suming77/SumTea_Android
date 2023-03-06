@@ -40,7 +40,7 @@ fun TextView.cancelStrikeThroughText() {
 }
 
 /**
- * 显示会员码的通用格式文本 ivan.cai 2022.3.18
+ * 显示会员码的通用格式文本
  */
 fun TextView.showMemCodeText(memCoed: String?) {
     text = memCoed?.let {

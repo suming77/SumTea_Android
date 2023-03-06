@@ -1,9 +1,10 @@
-package com.sum.framework.base
+package com.sum.framework.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.sum.framework.base.BaseViewHolder
 import com.sum.tea.listener.OnItemClickListener
 import java.util.*
 

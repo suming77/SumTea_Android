@@ -7,7 +7,7 @@ import retrofit2.http.GET
 /**
  * @author mingyan.su
  * @date   2023/2/27 19:07
- * @desc
+ * @desc   API接口类
  */
 interface ApiInterface {
     @GET("/project/tree/json")

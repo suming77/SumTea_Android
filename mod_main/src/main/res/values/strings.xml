@@ -5,5 +5,8 @@
     <string name="tab_system">体系</string>
     <string name="tab_mine">我的</string>
 
+    <string name="home_tab_video_title">精品推荐</string>
+
+
     <string name="base_app_exit_one_more_press">再按一次退出程序</string>
 </resources>

@@ -165,7 +165,6 @@ public class SumFragmentNavigator extends Navigator<SumFragmentNavigator.Destina
         //1.每次都会实例化一个对象，现在需要判断是否已经实例化过了，如果没有添加则在调用instantiateFragment()去实例化对象
         //androidx.fragment.app.homefragment tag=homefragment
         String tag = className.substring(className.lastIndexOf(".") + 1);
-        Log.e("smy", "tag:"+tag);
         Fragment frag = mFragmentManager.findFragmentByTag(tag);
         if (frag == null) {
             frag = instantiateFragment(mContext, mFragmentManager,

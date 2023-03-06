@@ -61,5 +61,6 @@ dependencies {
     compileOnly project(path: ':lib_common')
     compileOnly project(path: ':lib_network')
     compileOnly project(path: ':lib_stater')
+    compileOnly project(path: ':lib_banner')
 
 }

@@ -81,4 +81,5 @@ dependencies {
     implementation project(path: ':lib_network')
     implementation project(path: ':lib_common')
     implementation project(path: ':lib_stater')
+    implementation project(path: ':lib_banner')
 }

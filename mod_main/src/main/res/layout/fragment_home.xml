@@ -7,31 +7,73 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="com.sum.main.ui.home.HomeFragment">
+            android:background="@color/transparent"
+            android:layout_height="match_parent">
 
-        <com.scwang.smart.refresh.layout.SmartRefreshLayout
-                android:id="@+id/refresh_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <TextView
-                    android:id="@+id/text_home"
+            <com.sum.main.banner.HomeBannerView
+                    android:id="@+id/banner_home"
                     android:layout_width="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_height="150dp" />
+
+            <LinearLayout
+                    android:id="@+id/ll_tab_layout"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:textAlignment="center"
-                    android:text="@string/tab_home"
-                    android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/banner_home">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tab_home"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/dp_4"
+                        app:tabBackground="@color/transparent"
+                        app:tabIndicatorColor="@color/color_0159A5"
+                        app:tabTextAppearance="@style/tabLayoutStyle"
+                        app:tabIndicatorFullWidth="false"
+                        app:tabIndicatorHeight="@dimen/dp_4"
+                        app:tabIndicator="@drawable/shape_tab_indicator"
+                        app:tabMode="scrollable"
+                        app:tabRippleColor="@android:color/transparent"
+                        app:tabTextColor="@color/color_8F8E94" />
+
+                <View
+                        android:layout_width="@dimen/dp_1"
+                        android:layout_height="@dimen/dp_16"
+                        android:layout_marginEnd="@dimen/dp_4"
+                        android:background="@color/color_979797" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp_6"
+                        android:padding="@dimen/dp_6"
+                        android:src="@mipmap/ic_search" />
+
+            </LinearLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/color_F3F7F8"
+                    app:layout_constraintTop_toBottomOf="@+id/ll_tab_layout"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
 </layout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 若不设置 gravity，则 Indicator 宽度会填满整个 item
+    这里设置的背景颜色不会生效-->
+    <item android:gravity="center_horizontal">
+        <shape>
+            <corners android:radius="@dimen/dp_4" />
+            <size
+                    android:width="@dimen/dp_26"
+                    android:height="@dimen/dp_4" />
+        </shape>
+    </item>
+</layer-list>

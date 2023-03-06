@@ -35,6 +35,12 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     /**
+     * 初始化视图
+     * @return Int 布局id
+     */
+    abstract fun getLayoutResId(): Int
+
+    /**
      * 初始化布局
      * @param savedInstanceState Bundle?
      */
@@ -46,12 +52,6 @@ abstract class BaseActivity : AppCompatActivity() {
     open fun initData() {
 
     }
-
-    /**
-     * 初始化视图
-     * @return Int 布局id
-     */
-    abstract fun getLayoutResId(): Int
 
     /**
      * 加载中……弹框
