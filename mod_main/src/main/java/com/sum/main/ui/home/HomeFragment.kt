@@ -17,6 +17,8 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.framework.adapter.ViewPage2FragmentAdapter
 import com.sum.framework.base.BaseMvvmFragment
+import com.sum.framework.ext.gone
+import com.sum.framework.ext.visible
 import com.sum.framework.log.LogUtil
 import com.sum.main.R
 import com.sum.main.databinding.FragmentHomeBinding
@@ -37,15 +39,14 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
     }
 
     private fun initBanner() {
-        val bannerList = mutableListOf<String>()
-        bannerList.add("")
-        bannerList.add("")
-        bannerList.add("")
-        bannerList.add("")
-        bannerList.add("")
-        bannerList.add("")
-        bannerList.add("")
-        mBinding?.bannerHome?.setData(bannerList)
+        mViewModel.getBannerList().observe(this) { banners ->
+            banners?.let {
+                mBinding?.bannerHome?.visible()
+                mBinding?.bannerHome?.setData(it)
+            } ?: kotlin.run {
+                mBinding?.bannerHome?.gone()
+            }
+        }
     }
 
     private fun initTab() {

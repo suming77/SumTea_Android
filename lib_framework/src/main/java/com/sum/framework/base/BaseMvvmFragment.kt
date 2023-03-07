@@ -16,8 +16,8 @@ abstract class BaseMvvmFragment<DB : ViewDataBinding, VM : ViewModel> : BaseData
     lateinit var mViewModel: VM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         initViewModel()
+        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun initViewModel() {

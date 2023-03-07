@@ -3,6 +3,7 @@ package com.sum.main.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import com.sum.common.model.Banner
 import com.sum.framework.log.LogUtil
 import com.sum.framework.toast.TipsToast
 import com.sum.main.repository.HomeRepository
@@ -18,20 +19,22 @@ import com.sum.network.viewmodel.BaseViewModel
  */
 class HomeViewModel : BaseViewModel() {
     val tabItem = MutableLiveData<MutableList<ProjectTabItem>>()
+    val bannersLiveData = MutableLiveData<MutableList<Banner>?>()
 
     val homeRepository by lazy { HomeRepository() }
 
-    fun getBannerList(): LiveData<MutableList<ProjectTabItem>> {
+    /**
+     * 首页banner
+     */
+    fun getBannerList(): LiveData<MutableList<Banner>?> {
         launchUI(errorBlock = { code, errorMsg ->
             TipsToast.showTips(errorMsg)
         }) {
-            val data = homeRepository.getHomeBannerData()
-            data?.let {
-                tabItem.value = it
-            }
+            val data = homeRepository.getHomeBanner()
+            bannersLiveData.value = data
             LogUtil.e("data:$data")
         }
-        return tabItem
+        return bannersLiveData
     }
 
     fun getBannerList2(): LiveData<MutableList<ProjectTabItem>> {

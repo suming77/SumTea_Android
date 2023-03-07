@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.util.AttributeSet
 import com.sum.banner.BannerViewPager
 import com.sum.common.holder.BannerImageHolder
+import com.sum.common.model.Banner
 import com.sum.framework.utils.dpToPx
 
 /**
@@ -17,7 +18,7 @@ class HomeBannerView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) :
-    BannerViewPager<String, BannerImageHolder>(context, attrs) {
+    BannerViewPager<Banner, BannerImageHolder>(context, attrs) {
     /**
      * BannerAdapter
      */
@@ -41,11 +42,15 @@ class HomeBannerView @JvmOverloads constructor(
                 .setCanLoop(true) // 可循环滑动
                 .setInterval(2000L) // 循环时间间隔(下一页时间)
                 .setIndicatorSliderWidth(dpToPx(6))
-                .setIndicatorSliderColor(Color.parseColor("#8F8E94"), Color.parseColor("#ffffff"))
+                .setIndicatorSliderColor(Color.parseColor("#8F8E94"), Color.parseColor("#0165b8"))
                 .create() // 创建
     }
 
-    fun setData(list: MutableList<String>) {
+    /**
+     * 设置数据
+     * @param list
+     */
+    fun setData(list: MutableList<Banner>) {
         refreshData(list)
     }
 }

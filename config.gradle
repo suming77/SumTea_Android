@@ -13,8 +13,8 @@ ext {
             minSdk           : 21,
             targetSdk        : 32,
 
-            versionCode: 1,
-            versionName: "1.0.0",
+            versionCode      : 1,
+            versionName      : "1.0.0",
     ]
 
     dependVersion = [
@@ -24,7 +24,8 @@ ext {
             okhttp3LogVersion  : '3.11.0',
             gsonVersion        : '2.10.1',
             mmkvVersion        : '1.2.15',
-            refreshVersion     : '2.0.5'
+            refreshVersion     : '2.0.5',
+            glideVersion       : '4.15.0'
     ]
 
     depsLibs = [
@@ -55,12 +56,15 @@ ext {
             refreshHeader     : "io.github.scwang90:refresh-header-classics:${dependVersion["refreshVersion"]}",
             refreshFooter     : "io.github.scwang90:refresh-footer-classics:${dependVersion["refreshVersion"]}",
 
+            glide             : "com.github.bumptech.glide:glide:${dependVersion["glideVersion"]}",
+            glideCompiler     : "com.github.bumptech.glide:compiler:${dependVersion["glideVersion"]}",
+
 //            rxjava            : "io.reactivex.rxjava3:rxjava:3.0.6",
 //            rxandroid         : "io.reactivex.rxjava2:rxandroid:2.0.2",
 //
 //            aroutreApi        : "",
 //            arouterCompiler   : "",
-//            viewPager2        : "androidx.viewpager2:viewpager2:${depsVersion.viewPager2Veriosn]}",
+
     ]
 
 }
