@@ -4,9 +4,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.util.SparseArray
 import android.util.TypedValue
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -19,10 +17,10 @@ import com.sum.framework.adapter.ViewPage2FragmentAdapter
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.ext.gone
 import com.sum.framework.ext.visible
-import com.sum.framework.log.LogUtil
 import com.sum.main.R
 import com.sum.main.databinding.FragmentHomeBinding
-
+import com.sum.main.ui.home.viewmodel.HomeViewModel
+import com.sum.common.model.ProjectTabItem
 
 /**
  * @author mingyan.su
@@ -30,15 +28,31 @@ import com.sum.main.databinding.FragmentHomeBinding
  * @desc   首页
  */
 class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnRefreshListener {
-    private var tabLayoutMediator: TabLayoutMediator? = null
+
+    private val mArrayTabFragments = SparseArray<Fragment>()
+
+    private var mTabLayoutMediator: TabLayoutMediator? = null
+    private var mFragmentAdapter: ViewPage2FragmentAdapter? = null
+    private var mProjectTabs: MutableList<ProjectTabItem>? = null
+
     override fun getLayoutResId(): Int = R.layout.fragment_home
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
-        initBanner()
+        mBinding?.refreshLayout?.apply {
+            autoRefresh()
+            setEnableRefresh(true)
+            setEnableLoadMore(false)
+            setOnRefreshListener(this@HomeFragment)
+        }
+
         initTab()
     }
 
-    private fun initBanner() {
+    override fun onRefresh(refreshLayout: RefreshLayout) {
+        refresh()
+    }
+
+    private fun refresh() {
         mViewModel.getBannerList().observe(this) { banners ->
             banners?.let {
                 mBinding?.bannerHome?.visible()
@@ -46,34 +60,39 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
             } ?: kotlin.run {
                 mBinding?.bannerHome?.gone()
             }
+            mBinding?.refreshLayout?.finishRefresh()
+        }
+
+        mViewModel.getProjectTab().observe(this) { tabs ->
+            mProjectTabs = tabs
+            tabs?.forEachIndexed { index, _ ->
+                mArrayTabFragments.append(index, HomeTabFragment.newInstance(tabs[index].id))
+            }
+            mFragmentAdapter?.setData(mArrayTabFragments)
+            mFragmentAdapter?.notifyItemRangeChanged(1, mArrayTabFragments.size())
         }
     }
 
     private fun initTab() {
-        val arrayFragments = SparseArray<Fragment>()
-        arrayFragments.append(0, HomeVideoFragment())
-        for (i in 1..6) {
-            arrayFragments.append(i, HomeTabFragment())
-        }
-        val adapter = ViewPage2FragmentAdapter(this, arrayFragments)
+        mArrayTabFragments.append(0, HomeVideoFragment())
 
+        mFragmentAdapter = ViewPage2FragmentAdapter(this, mArrayTabFragments)
         mBinding?.let {
-            it.viewPager.adapter = adapter
+            it.viewPager.adapter = mFragmentAdapter
             //可左右滑动
             it.viewPager.isUserInputEnabled = true
             //禁用预加载
             it.viewPager.offscreenPageLimit = ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
 
-            tabLayoutMediator = TabLayoutMediator(it.tabHome, it.viewPager) { tab: TabLayout.Tab, position: Int ->
-                //                tab.text = titles[position]
+            mTabLayoutMediator = TabLayoutMediator(it.tabHome, it.viewPager) { tab: TabLayout.Tab, position: Int ->
                 if (position == 0) {
                     tab.setText(R.string.home_tab_video_title)
-                } else {
-                    tab.text = "资讯快读"
+                } else if (!mProjectTabs.isNullOrEmpty() && (position < mProjectTabs!!.size)) {
+                    tab.text = mProjectTabs!![position].name
                 }
             }
             //tabLayout和viewPager2关联起来
-            tabLayoutMediator?.attach()
+            mTabLayoutMediator?.attach()
 
             //增加tab选择监听
             it.tabHome.addOnTabSelectedListener(tabSelectedCall)
@@ -81,6 +100,23 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
             //设置第一个tab效果
             val tabFirst = it.tabHome.getTabAt(0)
             setTabTextSize(tabFirst)
+        }
+    }
+
+    /**
+     * tab选择回调
+     */
+    private val tabSelectedCall = object : TabLayout.OnTabSelectedListener {
+        override fun onTabSelected(tab: TabLayout.Tab?) {
+            setTabTextSize(tab)
+        }
+
+        override fun onTabUnselected(tab: TabLayout.Tab?) {
+            //非选中效果在xml中设置
+            tab?.customView = null
+        }
+
+        override fun onTabReselected(tab: TabLayout.Tab?) {
         }
     }
 
@@ -98,44 +134,8 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
         }
     }
 
-    private val tabSelectedCall = object : TabLayout.OnTabSelectedListener {
-        override fun onTabSelected(tab: TabLayout.Tab?) {
-            setTabTextSize(tab)
-        }
-
-        override fun onTabUnselected(tab: TabLayout.Tab?) {
-            //非选中效果在xml中设置
-            tab?.customView = null
-        }
-
-        override fun onTabReselected(tab: TabLayout.Tab?) {
-        }
-    }
-
-    override fun onRefresh(refreshLayout: RefreshLayout) {
-//        homeViewModel.getBannerList().observe(viewLifecycleOwner) {
-//            binding.refreshLayout.finishRefresh()
-//        }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        LogUtil.e("onViewCreated")
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        LogUtil.e("onCreateView")
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        LogUtil.e("onResume")
-    }
-
     override fun onDestroy() {
         super.onDestroy()
-        tabLayoutMediator?.detach()
-        LogUtil.e("onDestroy")
+        mTabLayoutMediator?.detach()
     }
 }

@@ -1,8 +1,10 @@
 package com.sum.main.repository
 
 import com.sum.common.model.Banner
+import com.sum.common.model.HomeInfoList
+import com.sum.common.model.ProjectSubList
 import com.sum.network.manager.ApiManager
-import com.sum.network.model.ProjectTabItem
+import com.sum.common.model.ProjectTabItem
 import com.sum.network.repository.BaseRepository
 
 /**
@@ -20,9 +22,34 @@ class HomeRepository : BaseRepository() {
         }
     }
 
-    suspend fun getHomeBannerData(): MutableList<ProjectTabItem>? {
+    /**
+     * 首页列表
+     * @param count 页码
+     * @param pageSize 每页数量
+     */
+    suspend fun getHomeInfoList(count: Int): HomeInfoList? {
         return requestResponse {
-            ApiManager.api.getTabData()
+            ApiManager.api.getHomeList(count, 20)
+        }
+    }
+
+    /**
+     * 项目tab
+     */
+    suspend fun getProjectTab(): MutableList<ProjectTabItem>? {
+        return requestResponse {
+            ApiManager.api.getProjectTab()
+        }
+    }
+
+    /**
+     * 项目列表
+     * @param count
+     * @param cid
+     */
+    suspend fun getProjectList(count: Int, cid: Int): ProjectSubList? {
+        return requestResponse {
+            ApiManager.api.getProjectList(count, cid)
         }
     }
 }

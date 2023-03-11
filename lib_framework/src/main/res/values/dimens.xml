@@ -1002,6 +1002,32 @@
     <dimen name="dp_499">499dp</dimen>
     <dimen name="dp_499.5">499.5dp</dimen>
 
+    <!--字体暂时使用dp-->
+    <dimen name="text_size_0">0dp</dimen>
+    <dimen name="text_size_1">1dp</dimen>
+    <dimen name="text_size_2">2dp</dimen>
+    <dimen name="text_size_3">3dp</dimen>
+    <dimen name="text_size_4">4dp</dimen>
+    <dimen name="text_size_5">5dp</dimen>
+    <dimen name="text_size_6">6dp</dimen>
+    <dimen name="text_size_7">7dp</dimen>
+    <dimen name="text_size_8">8dp</dimen>
+    <dimen name="text_size_9">9dp</dimen>
+    <dimen name="text_size_10">10dp</dimen>
+    <dimen name="text_size_11">11dp</dimen>
+    <dimen name="text_size_12">12dp</dimen>
+    <dimen name="text_size_13">13dp</dimen>
+    <dimen name="text_size_14">14dp</dimen>
+    <dimen name="text_size_15">15dp</dimen>
+    <dimen name="text_size_16">16dp</dimen>
+    <dimen name="text_size_17">17dp</dimen>
+    <dimen name="text_size_18">18dp</dimen>
+    <dimen name="text_size_19">19dp</dimen>
+    <dimen name="text_size_20">20dp</dimen>
+    <dimen name="text_size_21">21dp</dimen>
+    <dimen name="text_size_22">22dp</dimen>
+    <dimen name="text_size_23">23dp</dimen>
+    <dimen name="text_size_24">24dp</dimen>
 
     <dimen name="sp_0">0sp</dimen>
     <dimen name="sp_1">1sp</dimen>

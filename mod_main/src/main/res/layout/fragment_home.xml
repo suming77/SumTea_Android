@@ -13,67 +13,73 @@
             android:background="@color/transparent"
             android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/coordinator"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <com.sum.main.banner.HomeBannerView
-                    android:id="@+id/banner_home"
+            <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appbar_layout"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_height="150dp" />
+                    android:layout_height="wrap_content">
 
-            <LinearLayout
-                    android:id="@+id/ll_tab_layout"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/banner_home">
+                <com.sum.main.banner.HomeBannerView
+                        android:id="@+id/banner_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tab_home"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/dp_4"
-                        app:tabBackground="@color/transparent"
-                        app:tabIndicatorColor="@color/color_0159A5"
-                        app:tabTextAppearance="@style/tabLayoutStyle"
-                        app:tabIndicatorFullWidth="false"
-                        app:tabIndicatorHeight="@dimen/dp_4"
-                        app:tabIndicator="@drawable/shape_tab_indicator"
-                        app:tabMode="scrollable"
-                        app:tabRippleColor="@android:color/transparent"
-                        app:tabTextColor="@color/color_8F8E94" />
+                <LinearLayout
+                        android:id="@+id/ll_tab_layout"
+                        android:layout_width="match_parent"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content">
 
-                <View
-                        android:layout_width="@dimen/dp_1"
-                        android:layout_height="@dimen/dp_16"
-                        android:layout_marginEnd="@dimen/dp_4"
-                        android:background="@color/color_979797" />
+                    <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tab_home"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/dp_36"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="@dimen/dp_4"
+                            app:tabBackground="@color/transparent"
+                            app:tabIndicatorColor="@color/color_0159A5"
+                            app:tabTextAppearance="@style/tabLayoutStyle"
+                            app:tabIndicatorFullWidth="false"
+                            app:tabIndicatorHeight="@dimen/dp_4"
+                            app:tabIndicator="@drawable/shape_tab_indicator"
+                            app:tabMode="scrollable"
+                            app:tabRippleColor="@android:color/transparent"
+                            app:tabTextColor="@color/color_8F8E94" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_search"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/dp_6"
-                        android:padding="@dimen/dp_6"
-                        android:src="@mipmap/ic_search" />
+                    <View
+                            android:layout_width="@dimen/dp_1"
+                            android:layout_height="@dimen/dp_16"
+                            android:layout_marginEnd="@dimen/dp_4"
+                            android:background="@color/color_979797" />
 
-            </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/dp_6"
+                            android:padding="@dimen/dp_6"
+                            android:src="@mipmap/ic_search" />
+
+                </LinearLayout>
+            </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="match_parent"
                     android:background="@color/color_F3F7F8"
-                    app:layout_constraintTop_toBottomOf="@+id/ll_tab_layout"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
 </layout>
