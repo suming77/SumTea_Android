@@ -16,12 +16,11 @@ import java.util.*
  * @创建时间 2023/2/19 16:12
  * @类描述 封装adapter
  */
-abstract class BaseListAdapter<T, DB:ViewDataBinding>(protected var mContext: Context?) :
+abstract class BaseListAdapter<T>(protected var mContext: Context?) :
     RecyclerView.Adapter<BaseViewHolder>() {
 
     protected var mInflater: LayoutInflater? = null
     protected var mLastPosition = -1
-    private var mBinding:DB?=null
     /**
      * 开启动画
      */
