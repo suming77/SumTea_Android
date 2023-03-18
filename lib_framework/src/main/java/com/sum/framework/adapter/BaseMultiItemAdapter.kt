@@ -10,8 +10,7 @@ import com.sum.framework.listener.MultiItemEntity
  * @date   2023/3/13 18:33
  * @desc   多种类目Adapter
  */
-abstract class BaseMultiItemAdapter<T : MultiItemEntity> :
-    BaseRecyclerViewAdapter<T, ViewBinding>() {
+abstract class BaseMultiItemAdapter<T : MultiItemEntity> : BaseRecyclerViewAdapter<T, ViewBinding>() {
 
     /**
      * model需要实现MultiItemEntity接口
@@ -21,13 +20,13 @@ abstract class BaseMultiItemAdapter<T : MultiItemEntity> :
     }
 
     /**
-     * 如果需要实现不同传递不同类型子类ViewHolder，可以重写该方法
+     * 如果需要实现多种类型子类ViewHolder，可以重写该方法
      */
     override fun onCreateDefViewHolder(
         layoutInflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): BaseViewHolder<ViewBinding> {
+    ): BaseViewHolder {
         return BaseBindViewHolder(getViewBinding(layoutInflater, parent, viewType))
     }
 }

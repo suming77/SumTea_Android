@@ -1,6 +1,5 @@
 package com.sum.main.ui.home.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
@@ -36,7 +35,6 @@ class HomeViewModel : BaseViewModel() {
         }) {
             val data = homeRepository.getHomeBanner()
             bannersLiveData.value = data
-            LogUtil.e("data:$data")
         }
         return bannersLiveData
     }
@@ -54,7 +52,6 @@ class HomeViewModel : BaseViewModel() {
             }
             response?.let {
                 emit(it)
-                Log.e("smy", "homelist:$it")
             }
         }
     }
@@ -70,7 +67,6 @@ class HomeViewModel : BaseViewModel() {
                 homeRepository.getProjectTab()
             }
             emit(response)
-            Log.e("smy", "homelist:$response")
         }
     }
 

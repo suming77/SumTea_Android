@@ -9,6 +9,6 @@ import androidx.viewbinding.ViewBinding
  * @date   2023/3/9 08:11
  * @desc   基本ViewHolder
  */
-open class BaseViewHolder<B : ViewBinding>(rootView: View) : RecyclerView.ViewHolder(rootView)
+open class BaseViewHolder(rootView: View) : RecyclerView.ViewHolder(rootView)
 
-open class BaseBindViewHolder<B : ViewBinding>(val binding: B) : BaseViewHolder<B>(binding.root)
+open class BaseBindViewHolder<B : ViewBinding>(val binding: B) : BaseViewHolder(binding.root)
