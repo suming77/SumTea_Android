@@ -1,4 +1,4 @@
-package com.sum.common.decoration
+package com.sum.framework.decoration
 
 import android.graphics.Rect
 import android.view.View
