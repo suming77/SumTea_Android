@@ -56,14 +56,14 @@
                             android:layout_weight="1"
                             android:layout_marginEnd="@dimen/dp_4"
                             app:tabBackground="@color/transparent"
-                            app:tabIndicatorColor="@color/color_0159A5"
+                            app:tabIndicatorColor="@color/color_0159a5"
                             app:tabTextAppearance="@style/tabLayoutStyle"
                             app:tabIndicatorFullWidth="false"
                             app:tabIndicatorHeight="@dimen/dp_4"
                             app:tabIndicator="@drawable/shape_tab_indicator"
                             app:tabMode="scrollable"
                             app:tabRippleColor="@android:color/transparent"
-                            app:tabTextColor="@color/color_8F8E94" />
+                            app:tabTextColor="@color/color_8f8e94" />
 
                     <View
                             android:layout_width="@dimen/dp_1"
@@ -86,7 +86,7 @@
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/color_F3F7F8"
+                    android:background="@color/color_f3f7f8"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

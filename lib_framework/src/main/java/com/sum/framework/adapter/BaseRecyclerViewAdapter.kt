@@ -34,12 +34,12 @@ abstract class BaseRecyclerViewAdapter<T, B : ViewBinding> : RecyclerView.Adapte
     /**
      * Item点击事件监听
      */
-    val onItemClickListener: ((view: View, position: Int) -> Unit?)? = null
+    var onItemClickListener: ((view: View, position: Int) -> Unit?)? = null
 
     /**
      * Item长按事件监听
      */
-    val onItemLongClickListener: ((view: View, position: Int) -> Boolean) = { view, position -> false }
+    var onItemLongClickListener: ((view: View, position: Int) -> Boolean) = { view, position -> false }
 
     /**
      * 子类不可重载，如果有需要请重写[onCreateDefViewHolder]实现自定义ViewHolder

@@ -74,15 +74,6 @@ class HomeViewModel : BaseViewModel() {
      * 获取项目列表数据
      */
     fun getProjectList(count: Int, cid: Int): LiveData<ProjectSubList?> {
-//        return liveData {
-//            val response = safeApiCall(errorBlock = { code, errorMsg ->
-//                TipsToast.showTips(errorMsg)
-//            }) {
-//                homeRepository.getProjectList(count, cid)
-//            }
-//            emit(response)
-//        }
-
         launchUI(errorBlock = { code, errorMsg ->
             TipsToast.showTips(errorMsg)
             projectItemLiveData.value = null

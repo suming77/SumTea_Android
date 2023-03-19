@@ -1,6 +1,7 @@
 package com.sum.network.api
 
 import com.sum.common.model.Banner
+import com.sum.common.model.CategoryItem
 import com.sum.common.model.HomeInfoList
 import com.sum.common.model.ProjectSubList
 import com.sum.network.response.BaseResponse
@@ -48,6 +49,12 @@ interface ApiInterface {
         @Path("count") count: Int,
         @Query("cid") cid: Int
     ): BaseResponse<ProjectSubList>?
+
+    /**
+     * 分类列表
+     */
+    @GET("/navi/json")
+    suspend fun getCategoryData(): BaseResponse<MutableList<CategoryItem>>?
 
 //    @GET("/project/tree/json")
 //    suspend fun getTabData(): BaseResponse<MutableList<ProjectTabItem>>?

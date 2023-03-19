@@ -2,7 +2,7 @@
 
     <style name="tabLayoutStyle" parent="TextAppearance.AppCompat.Button">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/color_8F8E94</item>
+        <item name="android:textColor">@color/color_8f8e94</item>
         <!--字体大小写-->
 <!--        <item name="android:textAllCaps">false</item>-->
     </style>

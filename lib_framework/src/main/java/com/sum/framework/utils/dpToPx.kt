@@ -3,7 +3,9 @@
 
 package com.sum.framework.utils
 
+import android.content.Context
 import android.util.TypedValue
+import androidx.annotation.Dimension
 import com.sum.framework.helper.SumAppHelper
 
 fun dpToPx(dpValue: Float): Float {
@@ -18,6 +20,11 @@ fun dpToPx(dpValue: Int): Int {
         TypedValue.COMPLEX_UNIT_DIP, dpValue.toFloat(),
         SumAppHelper.getApplication().resources.displayMetrics
     ).toInt()
+}
+
+fun dpToPx(context: Context, @Dimension(unit = Dimension.DP) dp: Int): Float {
+    val r = context.resources
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), r.displayMetrics)
 }
 
 /**
