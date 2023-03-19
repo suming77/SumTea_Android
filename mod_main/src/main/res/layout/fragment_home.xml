@@ -21,15 +21,25 @@
             <com.google.android.material.appbar.AppBarLayout
                     android:id="@+id/appbar_layout"
                     android:orientation="vertical"
+                    android:background="@color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                <com.sum.main.banner.HomeBannerView
-                        android:id="@+id/banner_home"
+                <com.google.android.material.appbar.CollapsingToolbarLayout
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_height="wrap_content"
+                        android:elevation="0dp"
+                        app:contentScrim="@android:color/white"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                    <!--app:layout_collapseMode="parallax"电影开屏效果-->
+                    <com.sum.main.banner.HomeBannerView
+                            android:id="@+id/banner_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            app:layout_collapseMode="parallax"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
 
                 <LinearLayout
                         android:id="@+id/ll_tab_layout"

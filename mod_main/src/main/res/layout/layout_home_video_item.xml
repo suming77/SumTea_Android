@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?android:attr/selectableItemBackground"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="@dimen/dp_10"
         app:cardElevation="0dp"
         app:cardUseCompatPadding="false">
 
@@ -14,14 +14,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.sum.common.view.VideoImageView
                 android:id="@+id/iv_video_cover"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/dp_200"
                 android:scaleType="centerCrop"
+                app:vimg_ratio="0.75"
                 android:src="@mipmap/default_img" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/shadow_video_top"
+                app:layout_constraintTop_toTopOf="parent"
+                android:scaleType="fitEnd" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/shadow_video_bottom"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:scaleType="fitEnd" />
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_collect_count"
@@ -46,7 +62,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:lineSpacingExtra="2dp"
+                android:lineSpacingExtra="@dimen/dp_2"
                 android:padding="@dimen/dp_8"
                 android:maxLines="1"
                 android:includeFontPadding="false"

@@ -1,4 +1,4 @@
-package com.sum.framework.listener
+package com.sum.framework.interfaces
 
 /**
  * 多布局类型

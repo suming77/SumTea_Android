@@ -38,6 +38,7 @@ dependencies {
     compileOnly rootProject.depsLibs.coreKtx
     compileOnly rootProject.depsLibs.appcompat
     compileOnly rootProject.depsLibs.material
+    compileOnly rootProject.depsLibs.gson
 
     compileOnly rootProject.depsLibs.refreshLayout
 }

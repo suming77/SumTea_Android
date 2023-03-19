@@ -3,7 +3,7 @@ package com.sum.framework.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.sum.framework.listener.MultiItemEntity
+import com.sum.framework.interfaces.MultiItemEntity
 
 /**
  * @author mingyan.su

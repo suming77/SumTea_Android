@@ -6,4 +6,12 @@
         <!--字体大小写-->
 <!--        <item name="android:textAllCaps">false</item>-->
     </style>
+
+    <!-- 视频封面 -->
+    <declare-styleable name="VideoImageView">
+        <!-- 比例 -->
+        <attr name="vimg_ratio" format="float" />
+        <!-- 宽度偏差 -->
+        <attr name="vimg_woffset" format="integer" />
+    </declare-styleable>
 </resources>

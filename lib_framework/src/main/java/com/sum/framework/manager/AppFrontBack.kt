@@ -1,4 +1,4 @@
-package com.sum.framework.listener
+package com.sum.framework.manager
 
 import android.app.Activity
 import android.app.Application

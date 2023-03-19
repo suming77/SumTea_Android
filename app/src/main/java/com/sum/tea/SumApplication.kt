@@ -9,8 +9,8 @@ import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.sum.framework.helper.SumAppHelper
-import com.sum.framework.listener.AppFrontBack
-import com.sum.framework.listener.AppFrontBackListener
+import com.sum.framework.manager.AppFrontBack
+import com.sum.framework.manager.AppFrontBackListener
 import com.sum.framework.log.LogUtil
 import com.sum.framework.manager.ActivityManager
 import com.sum.framework.toast.TipsToast

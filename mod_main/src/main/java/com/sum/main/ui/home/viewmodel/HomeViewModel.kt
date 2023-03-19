@@ -20,7 +20,7 @@ import com.sum.network.viewmodel.BaseViewModel
  * @desc   首页ViewModel
  */
 class HomeViewModel : BaseViewModel() {
-    val projectTabLiveData = MutableLiveData<MutableList<ProjectTabItem>?>()
+    val projectItemLiveData = MutableLiveData<ProjectSubList?>()
     val bannersLiveData = MutableLiveData<MutableList<Banner>?>()
 
     val homeRepository by lazy { HomeRepository() }
@@ -74,14 +74,23 @@ class HomeViewModel : BaseViewModel() {
      * 获取项目列表数据
      */
     fun getProjectList(count: Int, cid: Int): LiveData<ProjectSubList?> {
-        return liveData {
-            val response = safeApiCall(errorBlock = { code, errorMsg ->
-                TipsToast.showTips(errorMsg)
-            }) {
-                homeRepository.getProjectList(count, cid)
-            }
-            emit(response)
+//        return liveData {
+//            val response = safeApiCall(errorBlock = { code, errorMsg ->
+//                TipsToast.showTips(errorMsg)
+//            }) {
+//                homeRepository.getProjectList(count, cid)
+//            }
+//            emit(response)
+//        }
+
+        launchUI(errorBlock = { code, errorMsg ->
+            TipsToast.showTips(errorMsg)
+            projectItemLiveData.value = null
+        }) {
+            val data = homeRepository.getProjectList(count, cid)
+            projectItemLiveData.value = data
         }
+        return projectItemLiveData
     }
 
     /**

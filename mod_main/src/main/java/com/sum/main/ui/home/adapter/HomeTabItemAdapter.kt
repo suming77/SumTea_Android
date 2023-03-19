@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import com.sum.common.model.ProjectSubInfo
 import com.sum.framework.adapter.BaseBindViewHolder
 import com.sum.framework.adapter.BaseRecyclerViewAdapter
+import com.sum.framework.utils.ViewUtils
+import com.sum.framework.utils.dpToPx
+import com.sum.glide.setUrl
 import com.sum.main.databinding.LayoutHomeTabItemBinding
 
 /**
@@ -12,7 +15,7 @@ import com.sum.main.databinding.LayoutHomeTabItemBinding
  * @date   2023/3/13 17:53
  * @desc   首页列表信息
  */
-class HomeTabAdapter : BaseRecyclerViewAdapter<ProjectSubInfo, LayoutHomeTabItemBinding>() {
+class HomeTabItemAdapter : BaseRecyclerViewAdapter<ProjectSubInfo, LayoutHomeTabItemBinding>() {
 
     override fun getViewBinding(
         layoutInflater: LayoutInflater,
@@ -27,6 +30,14 @@ class HomeTabAdapter : BaseRecyclerViewAdapter<ProjectSubInfo, LayoutHomeTabItem
         item: ProjectSubInfo?,
         position: Int
     ) {
-        holder.binding.tvTitle.text = item?.title
+        if (item == null) return
+        holder.binding.apply {
+            ivMainIcon.setUrl(item.envelopePic)
+            tvTitle.text = item.title
+            tvSubTitle.text = item.desc
+            tvAuthorName.text = item.author
+            tvTime.text = item.niceDate
+            ViewUtils.setClipViewCornerRadius(holder.itemView, dpToPx(8))
+        }
     }
 }

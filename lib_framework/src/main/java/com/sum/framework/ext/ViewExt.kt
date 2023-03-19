@@ -21,9 +21,10 @@ import com.sum.framework.R
  *
  * description:
  * <pre>
- *      View点击事件扩展
+ *      View扩展
  * </pre>
  **/
+
 /***
  * 点击事件的View扩展
  * @param block: (T) -> Unit 函数
@@ -40,6 +41,14 @@ fun View.longClick(action: (view: View) -> Boolean) {
     setOnLongClickListener {
         action(it)
     }
+}
+
+fun View.onClick(wait: Long = 200, block: ((View) -> Unit)) {
+    setOnClickListener(throttleClick(wait, block))
+}
+
+fun View.onDebounceClick(wait: Long = 200, block: ((View) -> Unit)) {
+    setOnClickListener(debounceClick(wait, block))
 }
 
 fun throttleClick(wait: Long = 200, block: ((View) -> Unit)): View.OnClickListener {
@@ -75,15 +84,6 @@ class DebounceAction(val view: View,  var block: ((View) -> Unit)): Runnable {
         }
     }
 }
-
-fun View.onClick(wait: Long = 200, block: ((View) -> Unit)) {
-    setOnClickListener(throttleClick(wait, block))
-}
-
-fun View.onDebounceClick(wait: Long = 200, block: ((View) -> Unit)) {
-    setOnClickListener(debounceClick(wait, block))
-}
-
 
 /**
  * 设置View的margin

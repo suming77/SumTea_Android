@@ -10,6 +10,6 @@ data class VideoInfo(
     val desc: String,
     val authorName: String,
     val playUrl: String,
-    val image: String,
+    val imageUrl: String,
     val collectionCount: String
 )
