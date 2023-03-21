@@ -6,6 +6,8 @@ import com.sum.common.model.HomeInfoList
 import com.sum.common.model.ProjectSubList
 import com.sum.network.response.BaseResponse
 import com.sum.common.model.ProjectTabItem
+import com.sum.common.model.SystemList
+import com.sum.common.model.SystemSecondList
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -56,6 +58,20 @@ interface ApiInterface {
     @GET("/navi/json")
     suspend fun getCategoryData(): BaseResponse<MutableList<CategoryItem>>?
 
-//    @GET("/project/tree/json")
-//    suspend fun getTabData(): BaseResponse<MutableList<ProjectTabItem>>?
+    /**
+     * 获取体系列表
+     */
+    @GET("/tree/json")
+    suspend fun getSystemList(): BaseResponse<MutableList<SystemList>>?
+
+    /**
+     * 项目二级列表
+     * @param count  分页数量
+     * @param cid    项目分类的id
+     */
+    @GET("/article/list/{count}/json")
+    suspend fun getSystemSecondList(
+        @Path("count") count: Int,
+        @Query("cid") cid: Int
+    ): BaseResponse<SystemSecondList>?
 }

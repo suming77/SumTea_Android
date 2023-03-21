@@ -50,7 +50,7 @@ dependencies {
     androidTestCompileOnly rootProject.depsLibs.espressoCore
 
     compileOnly rootProject.depsLibs.gson
-
+    compileOnly rootProject.depsLibs.flexbox
     compileOnly rootProject.depsLibs.mmkv
 
     compileOnly rootProject.depsLibs.refreshLayout

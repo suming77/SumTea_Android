@@ -79,6 +79,8 @@ dependencies {
     implementation rootProject.depsLibs.glide
     annotationProcessor rootProject.depsLibs.glideCompiler
 
+    implementation rootProject.depsLibs.flexbox
+
     implementation project(path: ':mod_main')
     implementation project(path: ':lib_framework')
     implementation project(path: ':lib_network')
