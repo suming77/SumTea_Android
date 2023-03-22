@@ -75,8 +75,9 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
 
     private fun initTab() {
         mArrayTabFragments.append(0, HomeVideoFragment())
-
-        mFragmentAdapter = ViewPage2FragmentAdapter(this, mArrayTabFragments)
+        activity?.let {
+            mFragmentAdapter = ViewPage2FragmentAdapter(it, mArrayTabFragments)
+        }
         mBinding?.let {
             it.viewPager.adapter = mFragmentAdapter
             //可左右滑动

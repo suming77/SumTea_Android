@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title">Kotlin+jetpack+协程+Flow+ARouter+组件化+模块化+Glide+OkHttp+Retrofit+</string>
+    <string name="author_name">作者：%s</string>
 </resources>

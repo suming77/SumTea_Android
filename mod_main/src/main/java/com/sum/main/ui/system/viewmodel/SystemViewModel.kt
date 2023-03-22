@@ -1,4 +1,4 @@
-package com.sum.main.ui.system
+package com.sum.main.ui.system.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

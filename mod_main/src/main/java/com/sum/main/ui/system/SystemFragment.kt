@@ -5,9 +5,11 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.decoration.NormalItemDecoration
+import com.sum.framework.ext.toJson
 import com.sum.main.R
 import com.sum.main.databinding.FragmentSystemBinding
 import com.sum.main.ui.system.adapter.SystemAdapter
+import com.sum.main.ui.system.viewmodel.SystemViewModel
 
 /**
  * @author mingyan.su
@@ -23,10 +25,11 @@ class SystemFragment : BaseMvvmFragment<FragmentSystemBinding, SystemViewModel>(
         mBinding?.recyclerView?.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = mAdapter
-            addItemDecoration(NormalItemDecoration(space = 8))
+            addItemDecoration(NormalItemDecoration(topBottom = 10, leftRight = 8))
         }
         mAdapter.onItemClickListener = { view: View, position: Int ->
-
+            val item = mAdapter.getItem(position)
+            ArticleTabActivity.startIntent(requireContext(), item?.toJson(true))
         }
     }
 

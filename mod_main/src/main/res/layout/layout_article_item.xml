@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="@dimen/dp_8"
+        android:background="@drawable/shape_ffffff_radius10">
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_author_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/color_898e92"
+            android:layout_marginTop="@dimen/dp_2"
+            android:lines="1"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_time"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="作者" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/color_898e92"
+            android:ellipsize="end"
+            android:lines="1"
+            android:layout_marginTop="@dimen/dp_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2023-3-21" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/color_222427"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dp_6"
+            app:layout_constraintTop_toBottomOf="@+id/tv_author_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_12"
+            android:textColor="@color/color_898e92"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginTop="@dimen/dp_2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_from"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_12"
+            android:textColor="@color/color_898e92"
+            android:lines="1"
+            android:ellipsize="end"
+            android:layout_marginTop="@dimen/dp_2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="渠道" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_collect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_4"
+            android:drawablePadding="@dimen/dp_4"
+            android:textSize="@dimen/dp_12"
+            android:drawableStart="@mipmap/ic_collect_selected"
+            app:layout_constraintTop_toBottomOf="@+id/tv_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="99" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@ class CategoryFragment : BaseMvvmFragment<FragmentCategoryBinding, CategoryViewM
     private var mCurrentSelectPosition = 0
     private var fragments = SparseArray<Fragment>()
     private lateinit var mTabAdapter: CategoryTabAdapter
-    private lateinit var mViewPagerAdapter: ViewPage2FragmentAdapter
+    private var mViewPagerAdapter: ViewPage2FragmentAdapter? = null
 
     override fun getLayoutResId(): Int = R.layout.fragment_category
 
@@ -46,7 +46,9 @@ class CategoryFragment : BaseMvvmFragment<FragmentCategoryBinding, CategoryViewM
     }
 
     private fun initViewPager2() {
-        mViewPagerAdapter = ViewPage2FragmentAdapter(this@CategoryFragment, fragments)
+        activity?.let {
+            mViewPagerAdapter = ViewPage2FragmentAdapter(it, fragments)
+        }
         mBinding?.viewPager2?.apply {
             offscreenPageLimit = ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
             orientation = ViewPager2.ORIENTATION_VERTICAL
@@ -66,7 +68,7 @@ class CategoryFragment : BaseMvvmFragment<FragmentCategoryBinding, CategoryViewM
                     val fragment = CategorySecondFragment.newInstance(item.articles.toJson(true))
                     fragments.append(index, fragment)
                 }
-                mViewPagerAdapter.notifyItemRangeChanged(0, it.size)
+                mViewPagerAdapter?.notifyItemRangeChanged(0, it.size)
             } ?: kotlin.run {
                 //TODO 空视图
             }

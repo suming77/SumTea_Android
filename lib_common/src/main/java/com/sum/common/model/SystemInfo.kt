@@ -1,5 +1,8 @@
 package com.sum.common.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 /**
  * @author mingyan.su
  * @date   2023/3/21 7:52
@@ -16,8 +19,9 @@ data class SystemList(
 /**
  * 二级列表
  */
+@Parcelize
 data class SystemSecondList(
     val id: Int,
-    val name: String,
+    val name: String, // 二级名称
     val visible: Int
-)
+) : Parcelable

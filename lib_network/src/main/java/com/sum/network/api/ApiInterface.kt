@@ -1,5 +1,7 @@
 package com.sum.network.api
 
+import com.sum.common.model.ArticleInfo
+import com.sum.common.model.ArticleList
 import com.sum.common.model.Banner
 import com.sum.common.model.CategoryItem
 import com.sum.common.model.HomeInfoList
@@ -66,12 +68,12 @@ interface ApiInterface {
 
     /**
      * 项目二级列表
-     * @param count  分页数量
+     * @param page  分页数量
      * @param cid    项目分类的id
      */
     @GET("/article/list/{count}/json")
-    suspend fun getSystemSecondList(
-        @Path("count") count: Int,
+    suspend fun getArticleList(
+        @Path("count") page: Int,
         @Query("cid") cid: Int
-    ): BaseResponse<SystemSecondList>?
+    ): BaseResponse<ArticleList?>?
 }

@@ -10,9 +10,10 @@ import com.sum.framework.utils.dpToPx
  * 普通条目间距
  * @author mingyan.su
  * @date   2023/3/21 8:18
- * @param space 条目间距 单位dp
+ * @param topBottom 条目上下间距 单位dp
+ * @param topBottom 条目左右间距 单位dp
  */
-class NormalItemDecoration(var space: Int = 12) : RecyclerView.ItemDecoration() {
+class NormalItemDecoration(var topBottom: Int = 12, var leftRight: Int = 12) : RecyclerView.ItemDecoration() {
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
     }
@@ -23,9 +24,9 @@ class NormalItemDecoration(var space: Int = 12) : RecyclerView.ItemDecoration() 
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
-//        outRect.top = dpToPx(space)
-        outRect.bottom = dpToPx(space)
-        outRect.left = dpToPx(space)
-        outRect.right = dpToPx(space)
+        outRect.top = dpToPx(topBottom)
+//        outRect.bottom = dpToPx(topBottom)
+        outRect.left = dpToPx(leftRight)
+        outRect.right = dpToPx(leftRight)
     }
 }
