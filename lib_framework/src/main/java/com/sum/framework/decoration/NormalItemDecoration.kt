@@ -1,32 +1,57 @@
 package com.sum.framework.decoration
 
-import android.graphics.Canvas
 import android.graphics.Rect
+import android.graphics.drawable.ColorDrawable
 import android.view.View
+import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
-import com.sum.framework.utils.dpToPx
 
 /**
  * 普通条目间距
  * @author mingyan.su
  * @date   2023/3/21 8:18
- * @param topBottom 条目上下间距 单位dp
- * @param topBottom 条目左右间距 单位dp
  */
-class NormalItemDecoration(var topBottom: Int = 12, var leftRight: Int = 12) : RecyclerView.ItemDecoration() {
-    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-        super.onDraw(c, parent, state)
+class NormalItemDecoration : RecyclerView.ItemDecoration() {
+
+    private val mDivider = ColorDrawable()
+    private var mLastBottom = false
+    private var mIsFirstHead = false
+
+    fun setBounds(left: Int = 0, top: Int = 0, right: Int = 0, bottom: Int = 0) {
+        mDivider.bounds.left = left
+        mDivider.bounds.top = top
+        mDivider.bounds.right = right
+        mDivider.bounds.bottom = bottom
     }
 
-    override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-        super.onDrawOver(c, parent, state)
+    fun setColor(@ColorInt color: Int) {
+        mDivider.color = color
+    }
+
+    /**
+     * 是否显示最后一条底部间隔
+     */
+    fun setLastBottom(lastBottom: Boolean) {
+        mLastBottom = lastBottom
+    }
+
+    /**
+     * 是否显示第一条的所有间隔
+     * 用于头部局
+     */
+    fun setFirstHeadMargin(isFirstHead: Boolean) {
+        mIsFirstHead = isFirstHead
     }
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
-        outRect.top = dpToPx(topBottom)
-//        outRect.bottom = dpToPx(topBottom)
-        outRect.left = dpToPx(leftRight)
-        outRect.right = dpToPx(leftRight)
+
+        val lastPosition = state.itemCount - 1
+        val position = parent.getChildAdapterPosition(view)
+
+        outRect.top = if (position == 0 && mIsFirstHead) 0 else mDivider.bounds.top
+        outRect.left = if (position == 0 && mIsFirstHead) 0 else mDivider.bounds.left
+        outRect.right = if (position == 0 && mIsFirstHead) 0 else mDivider.bounds.right
+        outRect.bottom = if (position == lastPosition && mLastBottom) mDivider.bounds.bottom else 0
     }
 }

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/color_0165B8"
+                android:layout_marginBottom="@dimen/dp_30"
+                app:layout_constraintBottom_toBottomOf="@+id/cl_my_work"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_mine_message"
+                android:visibility="gone"
+                android:padding="@dimen/dp_12"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_setting" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_setting"
+                android:layout_width="@dimen/dp_44"
+                android:layout_height="@dimen/dp_44"
+                android:src="@mipmap/mine_setting_ico"
+                android:padding="@dimen/dp_12"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_head"
+                android:layout_width="@dimen/dp_54"
+                android:layout_height="@dimen/dp_54"
+                android:layout_marginStart="@dimen/dp_12"
+                android:src="@mipmap/default_head"
+                app:layout_constraintTop_toBottomOf="@+id/iv_setting"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_18"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/white"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_12"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_head"
+                app:layout_constraintTop_toTopOf="@+id/iv_head"
+                app:layout_constraintBottom_toTopOf="@+id/tv_desc"
+                tools:text="苏火火~" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_14"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/white"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_12"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_head"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_head"
+                tools:text="天苍苍，野茫茫，风水草低见牛羊！" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_my_work"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_56"
+                android:layout_margin="@dimen/dp_12"
+                android:background="@drawable/shape_ffffff_radius10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_head">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableLeft="@mipmap/ic_mine_work"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/dp_12"
+                    android:text="@string/mine_short_video"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_17"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                    android:id="@+id/tv_work_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="-"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_17"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_work_title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_work_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginEnd="@dimen/dp_16"
+                    android:layout_marginStart="@dimen/dp_6"
+                    android:includeFontPadding="false"
+                    android:text="@string/mine_my_works"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/view_video_line" />
+
+            <View
+                    android:id="@+id/view_video_line"
+                    android:layout_width="@dimen/dp_1"
+                    android:layout_height="@dimen/dp_12"
+                    android:layout_marginEnd="@dimen/dp_16"
+                    android:background="#898989"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_like_count" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="-"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_like_title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_like_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/dp_6"
+                    android:includeFontPadding="false"
+                    android:gravity="center"
+                    android:text="@string/mine_my_like"
+                    android:textColor="@color/black"
+                    android:paddingEnd="@dimen/dp_12"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_mine_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_12"
+                android:background="@drawable/shape_ffffff_radius10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_my_work">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_service_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginStart="@dimen/dp_12"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    android:textSize="@dimen/text_size_16"
+                    android:text="@string/mine_service_title"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                    android:id="@+id/view_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@color/color_f0f2f4"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_service_title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_navigation"
+                    android:text="@string/mine_navigation"
+                    android:drawableTop="@mipmap/mine_coupon_ico"
+                    app:layout_constraintTop_toBottomOf="@+id/view_line"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_life_cycle"
+                    style="@style/style_mine_service" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_life_cycle"
+                    android:text="@string/mine_life_cycle"
+                    android:drawableTop="@mipmap/mine_comment_lab"
+                    app:layout_constraintTop_toBottomOf="@+id/view_line"
+                    app:layout_constraintStart_toEndOf="@+id/tv_navigation"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_data_binging"
+                    style="@style/style_mine_service" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_data_binging"
+                    android:text="@string/mine_data_binging"
+                    android:drawableTop="@mipmap/mine_service_ico"
+                    app:layout_constraintTop_toBottomOf="@+id/view_line"
+                    app:layout_constraintStart_toEndOf="@+id/tv_life_cycle"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_livedata"
+                    style="@style/style_mine_service" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_livedata"
+                    android:text="@string/mine_livedata"
+                    android:drawableTop="@mipmap/mine_reduced_amount"
+                    app:layout_constraintTop_toBottomOf="@+id/view_line"
+                    app:layout_constraintStart_toEndOf="@+id/tv_data_binging"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/style_mine_service" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_view_model"
+                    android:text="@string/mine_view_model"
+                    android:drawableTop="@mipmap/mine_exp_ico"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_navigation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_paging"
+                    style="@style/style_mine_service" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_paging"
+                    android:text="@string/mine_paging"
+                    android:drawableTop="@mipmap/ic_mine_help"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_navigation"
+                    app:layout_constraintStart_toEndOf="@+id/tv_view_model"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_room"
+                    style="@style/style_mine_service" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_room"
+                    android:text="@string/mine_room"
+                    android:drawableTop="@mipmap/mine_consign_earnings"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_navigation"
+                    app:layout_constraintStart_toEndOf="@+id/tv_paging"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_hilt"
+                    style="@style/style_mine_service" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_hilt"
+                    android:text="@string/mine_hilt"
+                    android:drawableTop="@mipmap/mine_sale_center"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_navigation"
+                    app:layout_constraintStart_toEndOf="@+id/tv_room"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/style_mine_service" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_recommend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textStyle="bold"
+                android:text="@string/mine_recommend"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginEnd="@dimen/dp_12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_mine_service" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

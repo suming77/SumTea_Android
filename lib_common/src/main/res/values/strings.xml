@@ -2,4 +2,7 @@
 <resources>
     <string name="title">Kotlin+jetpack+协程+Flow+ARouter+组件化+模块化+Glide+OkHttp+Retrofit+</string>
     <string name="author_name">作者：%s</string>
+
+    <string name="default_save">保存</string>
+
 </resources>

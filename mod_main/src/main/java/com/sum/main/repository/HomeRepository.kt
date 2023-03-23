@@ -1,5 +1,6 @@
 package com.sum.main.repository
 
+import com.sum.common.model.ArticleList
 import com.sum.common.model.Banner
 import com.sum.common.model.HomeInfoList
 import com.sum.common.model.ProjectSubList
@@ -27,7 +28,7 @@ class HomeRepository : BaseRepository() {
      * @param count 页码
      * @param pageSize 每页数量
      */
-    suspend fun getHomeInfoList(count: Int): HomeInfoList? {
+    suspend fun getHomeInfoList(count: Int): ArticleList? {
         return requestResponse {
             ApiManager.api.getHomeList(count, 20)
         }

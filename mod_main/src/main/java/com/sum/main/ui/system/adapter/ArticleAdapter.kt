@@ -11,6 +11,10 @@ import com.sum.main.databinding.LayoutArticleItemBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
 import com.sum.common.R
+import com.sum.framework.ext.Bold
+import com.sum.framework.ext.bold
+import com.sum.framework.ext.gone
+import com.sum.framework.ext.visible
 
 /**
  * @author mingyan.su
@@ -37,7 +41,13 @@ class ArticleAdapter : BaseRecyclerViewAdapter<ArticleInfo, LayoutArticleItemBin
         val authorName = String.format(getStringFromResource(R.string.author_name), name)
         holder.binding.apply {
             tvTitle.text = item.title
+            tvTitle.Bold()
             tvDesc.text = item.desc
+            if (item.desc.isNullOrEmpty()) {
+                tvDesc.gone()
+            } else {
+                tvDesc.visible()
+            }
             tvTime.text = format.format(item.publishTime)
             tvFrom.text = "${item.superChapterName}/${item.chapterName}"
             tvAuthorName.text = authorName

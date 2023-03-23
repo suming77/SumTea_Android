@@ -1,6 +1,5 @@
 package com.sum.network.api
 
-import com.sum.common.model.ArticleInfo
 import com.sum.common.model.ArticleList
 import com.sum.common.model.Banner
 import com.sum.common.model.CategoryItem
@@ -9,7 +8,6 @@ import com.sum.common.model.ProjectSubList
 import com.sum.network.response.BaseResponse
 import com.sum.common.model.ProjectTabItem
 import com.sum.common.model.SystemList
-import com.sum.common.model.SystemSecondList
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -35,7 +33,7 @@ interface ApiInterface {
     suspend fun getHomeList(
         @Path("count") count: Int,
         @Query("page_size") pageSize: Int
-    ): BaseResponse<HomeInfoList>
+    ): BaseResponse<ArticleList>?
 
     /**
      * 首页项目

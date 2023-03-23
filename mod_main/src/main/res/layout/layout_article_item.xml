@@ -5,14 +5,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?attr/selectableItemBackground"
-        android:padding="@dimen/dp_8"
+        android:paddingTop="@dimen/dp_8"
+        android:paddingStart="@dimen/dp_8"
+        android:paddingEnd="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_4"
         android:background="@drawable/shape_ffffff_radius10">
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_author_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_13"
+            android:textSize="@dimen/text_size_12"
             android:textColor="@color/color_898e92"
             android:layout_marginTop="@dimen/dp_2"
             android:lines="1"
@@ -26,7 +29,7 @@
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_13"
+            android:textSize="@dimen/text_size_12"
             android:textColor="@color/color_898e92"
             android:ellipsize="end"
             android:lines="1"
@@ -39,11 +42,10 @@
             android:id="@+id/tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_16"
+            android:textSize="@dimen/text_size_15"
             android:textColor="@color/color_222427"
             android:maxLines="2"
             android:ellipsize="end"
-            android:textStyle="bold"
             android:layout_marginTop="@dimen/dp_6"
             app:layout_constraintTop_toBottomOf="@+id/tv_author_name"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +64,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
             tools:text="@string/title" />
 
     <androidx.appcompat.widget.AppCompatTextView

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.decoration.NormalItemDecoration
 import com.sum.framework.ext.toJson
+import com.sum.framework.utils.dpToPx
 import com.sum.main.R
 import com.sum.main.databinding.FragmentSystemBinding
 import com.sum.main.ui.system.adapter.SystemAdapter
@@ -25,7 +26,10 @@ class SystemFragment : BaseMvvmFragment<FragmentSystemBinding, SystemViewModel>(
         mBinding?.recyclerView?.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = mAdapter
-            addItemDecoration(NormalItemDecoration(topBottom = 10, leftRight = 8))
+            addItemDecoration(NormalItemDecoration().apply {
+                setBounds(left = dpToPx(8), top = dpToPx(10), right = dpToPx(8), bottom = dpToPx(10))
+                setLastBottom(true)
+            })
         }
         mAdapter.onItemClickListener = { view: View, position: Int ->
             val item = mAdapter.getItem(position)

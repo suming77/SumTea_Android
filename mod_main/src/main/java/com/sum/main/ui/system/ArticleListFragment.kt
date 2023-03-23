@@ -9,6 +9,7 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.common.constant.KEY_ID
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.decoration.NormalItemDecoration
+import com.sum.framework.utils.dpToPx
 import com.sum.main.R
 import com.sum.main.databinding.FragmentArticleListBinding
 import com.sum.main.ui.system.adapter.ArticleAdapter
@@ -46,10 +47,14 @@ class ArticleListFragment : BaseMvvmFragment<FragmentArticleListBinding, Article
             autoRefresh()
         }
         mAdapter = ArticleAdapter()
+        val dp12 = dpToPx(12)
         mBinding?.recyclerView?.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = mAdapter
-            addItemDecoration(NormalItemDecoration())
+            addItemDecoration(NormalItemDecoration().apply {
+                setBounds(left = dp12, top = dp12, right = dp12, bottom = dp12)
+                setLastBottom(true)
+            })
         }
         mAdapter.onItemClickListener = { view: View, position: Int ->
 

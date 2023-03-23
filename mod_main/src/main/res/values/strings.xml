@@ -7,6 +7,28 @@
 
     <string name="home_tab_video_title">精品推荐</string>
 
+    <string name="app_exit_one_more_press">再按一次退出程序</string>
 
-    <string name="base_app_exit_one_more_press">再按一次退出程序</string>
+    <string name="mine_service_title">我的服务</string>
+    <string name="mine_recommend">为你推荐</string>
+
+    <string name="mine_about">关于我们</string>
+    <string name="mine_not_login">未登录</string>
+    <string name="mine_short_video">短视频</string>
+    <string name="mine_my_works">我的作品</string>
+    <string name="mine_my_store">我的店铺</string>
+    <string name="mine_my_like">我喜欢的</string>
+
+    <string name="mine_navigation">Navigation</string>
+    <string name="mine_life_cycle">LifeCycle</string>
+    <string name="mine_data_binging">DataBinding</string>
+    <string name="mine_livedata">LiveData</string>
+    <string name="mine_view_model">ViewModel</string>
+    <string name="mine_paging">Paging</string>
+    <string name="mine_room">Room</string>
+    <string name="mine_hilt">Hilt</string>
+    <string name="mine_compose">Compose</string>
+    <string name="mine_mvc">MVC模式</string>
+    <string name="mine_mvp">MVP模式</string>
+
 </resources>

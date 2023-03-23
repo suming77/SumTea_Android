@@ -13,6 +13,11 @@
             android:background="@color/color_b2d0e9"
             android:textColor="@color/color_4f5356"
             android:textSize="@dimen/text_size_12"
+            android:maxLines="3"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMaxTextSize="@dimen/text_size_12"
+            app:autoSizeMinTextSize="@dimen/text_size_8"
+            app:autoSizeStepGranularity="1dp"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="个人博客" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.sum.main.ui.home.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import com.sum.common.model.ArticleList
 import com.sum.common.model.Banner
 import com.sum.common.model.HomeInfoList
 import com.sum.common.model.ProjectSubList
@@ -43,7 +44,7 @@ class HomeViewModel : BaseViewModel() {
      * 首页列表
      * @param count 页码
      */
-    fun getHomeInfoList(count: Int): LiveData<HomeInfoList> {
+    fun getHomeInfoList(count: Int): LiveData<ArticleList> {
         return liveData {
             val response = safeApiCall(errorBlock = { code, errorMsg ->
                 TipsToast.showTips(errorMsg)

@@ -15,9 +15,12 @@
             android:ellipsize="end"
             android:paddingStart="@dimen/dp_3"
             android:paddingEnd="@dimen/dp_3"
-            android:textSize="@dimen/text_size_14"
             android:textColor="@color/color_222427"
             android:background="@color/white"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMaxTextSize="@dimen/text_size_14"
+            app:autoSizeMinTextSize="@dimen/text_size_8"
+            app:autoSizeStepGranularity="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/title" />

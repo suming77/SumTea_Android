@@ -6,7 +6,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sum.framework.base.BaseDataBindActivity
-import com.sum.framework.log.LogUtil
 import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.AppExit
 import com.sum.main.databinding.ActivityMainBinding
@@ -56,7 +55,7 @@ class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
 //        }
         AppExit.onBackPressed(
             this,
-            { TipsToast.showTips(getString(R.string.base_app_exit_one_more_press)) }
+            { TipsToast.showTips(getString(R.string.app_exit_one_more_press)) }
         )
     }
 

@@ -21,4 +21,17 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimary</item>
         <item name="windowActionBar">false</item>
     </style>
+
+    <style name="style_mine_service">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/dp_58</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/color_222427</item>
+        <item name="android:textSize">@dimen/text_size_11</item>
+        <item name="android:drawablePadding">@dimen/dp_4</item>
+        <item name="android:paddingTop">@dimen/dp_6</item>
+        <item name="android:layout_marginTop">@dimen/dp_6</item>
+        <item name="android:paddingBottom">@dimen/dp_6</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
 </resources>

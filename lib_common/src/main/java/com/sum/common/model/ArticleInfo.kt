@@ -29,5 +29,5 @@ data class ArticleInfo(
     val author: String?,
     val superChapterName: String?,
     val chapterName: String?,
-    val tags: MutableList<String>? = arrayListOf(),
+    val tags: MutableList<Any>? = arrayListOf(),
 )
