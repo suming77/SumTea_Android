@@ -18,15 +18,17 @@ ext {
     ]
 
     dependVersion = [
-            multidexVersion    : '2.0.1',
-            retrofitVersion    : '2.9.0',
-            retrofitGsonVersion: '2.4.0',
-            okhttp3LogVersion  : '3.11.0',
-            gsonVersion        : '2.10.1',
-            mmkvVersion        : '1.2.15',
-            refreshVersion     : '2.0.5',
-            glideVersion       : '4.15.0',
-            flexbox            : '3.0.0'
+            multidexVersion       : '2.0.1',
+            retrofitVersion       : '2.9.0',
+            retrofitGsonVersion   : '2.4.0',
+            okhttp3LogVersion     : '3.11.0',
+            gsonVersion           : '2.10.1',
+            mmkvVersion           : '1.2.15',
+            refreshVersion        : '2.0.5',
+            glideVersion          : '4.15.0',
+            flexboxVersion        : '3.0.0',
+            aroutreApiVersion     : '1.5.2',
+            arouterCompilerVersion: '1.5.2'
     ]
 
     depsLibs = [
@@ -60,12 +62,12 @@ ext {
             glide             : "com.github.bumptech.glide:glide:${dependVersion["glideVersion"]}",
             glideCompiler     : "com.github.bumptech.glide:compiler:${dependVersion["glideVersion"]}",
 
-            flexbox           : "com.google.android.flexbox:flexbox:${dependVersion["flexbox"]}"
+            flexbox           : "com.google.android.flexbox:flexbox:${dependVersion["flexboxVersion"]}",
 //            rxjava            : "io.reactivex.rxjava3:rxjava:3.0.6",
 //            rxandroid         : "io.reactivex.rxjava2:rxandroid:2.0.2",
 //
-//            aroutreApi        : "",
-//            arouterCompiler   : "",
+            aroutreApi        : "com.alibaba:arouter-api:${dependVersion["aroutreApiVersion"]}",
+            arouterCompiler   : "com.alibaba:arouter-compiler:${dependVersion["arouterCompilerVersion"]}"
 
     ]
 

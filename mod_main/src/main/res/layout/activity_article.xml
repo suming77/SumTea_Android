@@ -11,25 +11,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_title"
+        <com.sum.common.view.TitleBar
+                android:id="@+id/title_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp_10"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_14"
                 app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
                 android:id="@+id/ll_tab_layout"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title">
+                app:layout_constraintTop_toBottomOf="@+id/title_bar">
 
             <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_home"

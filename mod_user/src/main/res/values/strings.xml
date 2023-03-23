@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mine_collect">我的收藏</string>
+    <string name="mine_setting">设置</string>
+
+    <string name="setting_user_info">个人信息</string>
+    <string name="setting_account_safe">账户与安全</string>
+    <string name="setting_privacy_policy">隐私政策</string>
+    <string name="setting_newest_version">已是最新版</string>
+    <string name="setting_clear_cache">清除缓存</string>
+    <string name="setting_current_version">当前版本V1.0.1</string>
+    <string name="setting_logout">退出</string>
+    <string name="setting_info_about">关于</string>
+
+    <string name="user_info_head">头像</string>
+    <string name="user_info_name">昵称</string>
+    <string name="user_info_phone">手机</string>
+    <string name="user_info_input_name">输入用户名称</string>
+    <string name="user_info_sex">性别</string>
+    <string name="user_info_birthday">生日</string>
+    <string name="user_info_input_birthday">点击设置生日</string>
+    <string name="user_info_signature">签名</string>
+    <string name="user_info_input_signature">请输入您的个性签名</string>
+</resources>

@@ -14,4 +14,31 @@
         <!-- 宽度偏差 -->
         <attr name="vimg_woffset" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="TitleBar">
+
+        <attr name="bottomTextVisible" format="boolean" />
+        <attr name="bottomText" format="reference|string" />
+        <attr name="bottomTextColor" format="reference" />
+        <attr name="leftText" format="reference|string" />
+        <attr name="middleText" format="reference|string" />
+        <attr name="rightText" format="reference|string" />
+        <attr name="rightVisible" format="boolean" />
+        <attr name="leftVisible" format="boolean" />
+        <attr name="showStatusBar" format="boolean" />
+        <attr name="leftIcon" format="reference" />
+        <attr name="rightIcon" format="reference" />
+        <attr name="middleTextColor" format="reference" />
+        <attr name="rightTextColor" format="reference" />
+        <attr name="leftTextColor" format="reference" />
+        <attr name="leftTextSize" format="reference" />
+        <attr name="rightTextSize" format="dimension" />
+        <attr name="leftTextBold" format="boolean" />
+        <attr name="middleTextBold" format="boolean" />
+        <attr name="rightTextBold" format="boolean" />
+        <attr name="background" format="reference" />
+        <attr name="middleTextVisible" format="boolean" />
+        <attr name="rightIconVisible" format="boolean" />
+
+    </declare-styleable>
 </resources>

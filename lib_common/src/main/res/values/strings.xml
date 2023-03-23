@@ -4,5 +4,6 @@
     <string name="author_name">作者：%s</string>
 
     <string name="default_save">保存</string>
+    <string name="default_developing">正在开发中……</string>
 
 </resources>

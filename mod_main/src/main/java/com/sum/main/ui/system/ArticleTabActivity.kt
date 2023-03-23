@@ -49,7 +49,7 @@ class ArticleTabActivity : BaseDataBindActivity<ActivityArticleBinding>() {
         val dataJson = intent?.getStringExtra(KEY_DATA)
         val data = dataJson?.toBeanOrNull<SystemList>()
 
-        mBinding.tvTitle.text = data?.name
+        mBinding.titleBar.setMiddleText(data?.name)
         systemSecondList = data?.children
         systemSecondList?.forEachIndexed { index, item ->
             mArrayTabFragments.append(index, ArticleListFragment.newInstance(item.id))
