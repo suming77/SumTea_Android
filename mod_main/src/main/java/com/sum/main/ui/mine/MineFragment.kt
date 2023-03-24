@@ -1,10 +1,10 @@
 package com.sum.main.ui.mine
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
@@ -48,7 +48,7 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
 
             }
             ivSetting.onClick {
-//                ARouter.getInstance().build(USER_ACTIVITY_SETTING).navigation()
+                ARouter.getInstance().build(USER_ACTIVITY_SETTING).navigation()
             }
             tvVideo.onClick {
 

@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-//    id 'kotlin-kapt'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -25,12 +25,17 @@ android {
 //                arguments "-DANDROID_STL=c++_shared"
 //            }
 //        }
-//        //ARouter
+        //ARouter
 //        javaCompileOptions {
 //            annotationProcessorOptions {
 //                arguments = [AROUTER_MODULE_NAME: project.getName()]
 //            }
 //        }
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     buildTypes {
@@ -88,8 +93,8 @@ dependencies {
 
     implementation rootProject.depsLibs.flexbox
 
-//    implementation rootProject.depsLibs.aroutreApi
-//    kapt rootProject.depsLibs.arouterCompiler
+    implementation rootProject.depsLibs.aroutreApi
+    kapt rootProject.depsLibs.arouterCompiler
 
     implementation project(path: ':mod_main')
     implementation project(path: ':mod_user')

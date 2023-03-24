@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import androidx.multidex.MultiDex
+import com.alibaba.android.arouter.launcher.ARouter
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -44,6 +45,7 @@ class SumApplication : Application() {
         super.onCreate()
         instance = this
         SumAppHelper.init(this, BuildConfig.DEBUG)
+        initRouter()
         //注册APP前后台切换监听
         appFrontBackRegister()
         // App启动立即注册监听
@@ -70,6 +72,20 @@ class SumApplication : Application() {
         //等待，需要等待的方法执行完才可以往下执行
         dispatcher.await()
         initRefreshLayout()
+    }
+
+    /**
+     * 初始化ARouter
+     */
+    private fun initRouter() {
+        // 这两行必须写在init之前，否则这些配置在init过程中将无效
+        if (BuildConfig.DEBUG) {
+            // 开启打印日志
+            ARouter.openLog()
+            // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+            ARouter.openDebug()
+        }
+        ARouter.init(this)
     }
 
     /**

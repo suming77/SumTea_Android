@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-//    id 'kotlin-kapt'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -15,16 +15,11 @@ android {
         consumerProguardFiles "consumer-rules.pro"
 
         //ARouter
-//        javaCompileOptions {
-//            annotationProcessorOptions {
-//                arguments = [AROUTER_MODULE_NAME: project.getName()]
-//            }
-//        }
-//        kapt {
-//            arguments {
-//                arg("AROUTER_MODULE_NAME", project.getName())
-//            }
-//        }
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     buildTypes {
@@ -70,8 +65,8 @@ dependencies {
     compileOnly rootProject.depsLibs.refreshHeader
     compileOnly rootProject.depsLibs.refreshFooter
 
-//    implementation rootProject.depsLibs.aroutreApi
-//    kapt rootProject.depsLibs.arouterCompiler
+    compileOnly rootProject.depsLibs.aroutreApi
+    kapt rootProject.depsLibs.arouterCompiler
 
     compileOnly project(path: ':lib_framework')
     compileOnly project(path: ':lib_common')
