@@ -11,3 +11,6 @@ package com.sum.common.constant
  */
 const val BASE_URL = "https://www.wanandroid.com"
 
+const val USER_INFO_DATA = "user_info_data" // 用户缓存数据
+
+const val USER_PHONE = "user_phone"  // 用户手机号

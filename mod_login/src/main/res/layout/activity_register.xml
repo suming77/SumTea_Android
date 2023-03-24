@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.sum.common.view.TitleBar
+                android:id="@+id/title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/dp_12"
+                app:middleText="@string/register_name"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_register_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_222427"
+                android:textSize="@dimen/text_size_18"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginStart="@dimen/dp_24"
+                android:text="@string/register_new_account"
+                app:layout_constraintTop_toBottomOf="@+id/title_bar"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_register_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_30"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:layout_constraintTop_toBottomOf="@+id/tv_register_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                    android:id="@+id/tv_phone_prefix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+86"
+                    android:textColor="@color/color_222427"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+            <View
+                    android:id="@+id/view_middle_line"
+                    android:layout_width="@dimen/dp_1"
+                    android:layout_height="@dimen/dp_16"
+                    android:background="@color/color_0165B8"
+                    android:layout_marginStart="@dimen/dp_12"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_phone_prefix"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+            <com.sum.framework.weights.ClearEditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_36"
+                    android:layout_marginStart="@dimen/dp_12"
+                    android:background="@color/transparent"
+                    android:hint="@string/login_hint_phone"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:singleLine="true"
+                    android:textColor="@color/color_222427"
+                    android:textColorHint="@color/color_898e92"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintStart_toEndOf="@+id/view_middle_line"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="MissingConstraints,TextFields" />
+
+            <View
+                    android:id="@+id/view_phone_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_0.5"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:background="@color/color_dce0e4"
+                    app:layout_constraintTop_toBottomOf="@+id/et_phone"
+                    tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_register_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:layout_constraintTop_toBottomOf="@+id/cl_register_phone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <com.sum.framework.weights.ClearEditText
+                    android:id="@+id/et_password"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_38"
+                    android:background="@color/transparent"
+                    android:hint="@string/login_hint_password"
+                    android:inputType="text"
+                    android:maxLength="6"
+                    android:singleLine="true"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:textColor="@color/color_222427"
+                    android:textColorHint="@color/color_898e92"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_0.5"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:background="@color/color_dce0e4"
+                    app:layout_constraintTop_toBottomOf="@+id/et_password"
+                    tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_register_repassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:layout_constraintTop_toBottomOf="@+id/cl_register_password"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <com.sum.framework.weights.ClearEditText
+                    android:id="@+id/et_repassword"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_38"
+                    android:background="@color/transparent"
+                    android:hint="@string/register_hint_password"
+                    android:inputType="text"
+                    android:maxLength="6"
+                    android:singleLine="true"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:textColor="@color/color_222427"
+                    android:textColorHint="@color/color_898e92"
+                    android:textSize="@dimen/text_size_16"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_0.5"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:background="@color/color_dce0e4"
+                    app:layout_constraintTop_toBottomOf="@+id/et_repassword"
+                    tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_register_agreement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                app:layout_constraintTop_toBottomOf="@+id/cl_register_repassword"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/cb_agreement"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:background="@null"
+                    android:drawableLeft="@drawable/checkbox_bg_default"
+                    android:drawablePadding="6dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/color_4f5356"
+                    android:text="@string/login_agreement"
+                    android:foreground="@null"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_register"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_48"
+                android:text="@string/register_name"
+                android:textColor="@color/white"
+                android:background="@drawable/login_phone_selector"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_register_agreement" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

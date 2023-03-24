@@ -55,7 +55,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/text_size_17"
+            android:textSize="@dimen/text_size_18"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,4 +99,13 @@
 
     </LinearLayout>
 
+    <View
+            android:id="@+id/divider_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:background="#f0f2f4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="visible"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,7 @@
 package com.sum.user.info
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.sum.framework.base.BaseDataBindActivity
@@ -18,6 +20,14 @@ import kotlinx.coroutines.launch
  * @desc   用户信息
  */
 class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
+
+    companion object {
+        fun start(context: Context) {
+            val intent = Intent(context, UserInfoActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
+
     override fun getLayoutResId(): Int = R.layout.activity_user_info
 
     override fun initView(savedInstanceState: Bundle?) {

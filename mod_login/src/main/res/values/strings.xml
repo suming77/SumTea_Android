@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_name">登录</string>
+    <string name="login_title">登录后了解更多Android技术</string>
+    <string name="login_hint_phone">请输入手机号码</string>
+    <string name="login_hint_password">请输入密码</string>
+    <string name="login_forget_password">忘记密码</string>
+    <string name="login_style_other">其他登录方式</string>
+    <string name="login_agreement">我已阅读并同意 《隐私政策》 及 《用户服务协议》</string>
+    <string name="login_privacy_agreement">《隐私政策》</string>
+    <string name="login_user_agreement">《用户服务协议》</string>
+
+    <string name="success_login">登录成功</string>
+    <string name="success_register">注册成功</string>
+
+    <string name="error_input_password">请输入密码</string>
+    <string name="error_phone_number">请输入正确的手机号码</string>
+    <string name="error_double_password">两次输入密码不一致</string>
+
+    <string name="tips_read_user_agreement">请阅读并勾选用户协议</string>
+
+    <string name="register_name">注册</string>
+    <string name="register_new_account">注册新账号</string>
+    <string name="register_hint_password">请输入确认密码</string>
+
+</resources>

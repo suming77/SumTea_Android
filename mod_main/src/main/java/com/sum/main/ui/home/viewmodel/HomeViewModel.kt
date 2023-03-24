@@ -42,14 +42,14 @@ class HomeViewModel : BaseViewModel() {
 
     /**
      * 首页列表
-     * @param count 页码
+     * @param page 页码
      */
-    fun getHomeInfoList(count: Int): LiveData<ArticleList> {
+    fun getHomeInfoList(page: Int): LiveData<ArticleList> {
         return liveData {
             val response = safeApiCall(errorBlock = { code, errorMsg ->
                 TipsToast.showTips(errorMsg)
             }) {
-                homeRepository.getHomeInfoList(count)
+                homeRepository.getHomeInfoList(page)
             }
             response?.let {
                 emit(it)
@@ -73,13 +73,15 @@ class HomeViewModel : BaseViewModel() {
 
     /**
      * 获取项目列表数据
+     * @param page
+     * @param cid
      */
-    fun getProjectList(count: Int, cid: Int): LiveData<ProjectSubList?> {
+    fun getProjectList(page: Int, cid: Int): LiveData<ProjectSubList?> {
         launchUI(errorBlock = { code, errorMsg ->
             TipsToast.showTips(errorMsg)
             projectItemLiveData.value = null
         }) {
-            val data = homeRepository.getProjectList(count, cid)
+            val data = homeRepository.getProjectList(page, cid)
             projectItemLiveData.value = data
         }
         return projectItemLiveData

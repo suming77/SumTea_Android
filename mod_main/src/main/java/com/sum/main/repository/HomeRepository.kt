@@ -25,12 +25,12 @@ class HomeRepository : BaseRepository() {
 
     /**
      * 首页列表
-     * @param count 页码
+     * @param page 页码
      * @param pageSize 每页数量
      */
-    suspend fun getHomeInfoList(count: Int): ArticleList? {
+    suspend fun getHomeInfoList(page: Int): ArticleList? {
         return requestResponse {
-            ApiManager.api.getHomeList(count, 20)
+            ApiManager.api.getHomeList(page, 20)
         }
     }
 
@@ -45,12 +45,12 @@ class HomeRepository : BaseRepository() {
 
     /**
      * 项目列表
-     * @param count
+     * @param page
      * @param cid
      */
-    suspend fun getProjectList(count: Int, cid: Int): ProjectSubList? {
+    suspend fun getProjectList(page: Int, cid: Int): ProjectSubList? {
         return requestResponse {
-            ApiManager.api.getProjectList(count, cid)
+            ApiManager.api.getProjectList(page, cid)
         }
     }
 }

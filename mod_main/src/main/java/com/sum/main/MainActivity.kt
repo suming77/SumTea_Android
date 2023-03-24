@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.sum.common.constant.MAIN_ACTIVITY_HOME
 import com.sum.framework.base.BaseDataBindActivity
 import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.AppExit
@@ -19,6 +21,7 @@ import com.sum.stater.inittasks.InitTaskB
  * @time   2023/3/3 8:41
  * @desc   主页
  */
+@Route(path = MAIN_ACTIVITY_HOME)
 class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
 
     override fun getLayoutResId(): Int = R.layout.activity_main

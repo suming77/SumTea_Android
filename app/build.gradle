@@ -98,6 +98,7 @@ dependencies {
 
     implementation project(path: ':mod_main')
     implementation project(path: ':mod_user')
+    implementation project(path: ':mod_login')
     implementation project(path: ':lib_framework')
     implementation project(path: ':lib_network')
     implementation project(path: ':lib_common')

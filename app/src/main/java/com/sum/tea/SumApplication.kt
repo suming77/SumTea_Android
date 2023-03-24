@@ -22,6 +22,7 @@ import com.sum.stater.inittasks.InitLanguageTask
 import com.sum.stater.inittasks.InitNetWorkTask
 import com.sum.stater.inittasks.InitShareManagerTask
 import com.tencent.mmkv.MMKV
+import com.tencent.mmkv.MMKVLogLevel
 
 /**
  * @author mingyan.su
@@ -55,6 +56,13 @@ class SumApplication : Application() {
         TaskDispatcher.init(this)
 
         val rootDir: String = MMKV.initialize(this)
+        MMKV.setLogLevel(
+            if (BuildConfig.DEBUG) {
+                MMKVLogLevel.LevelDebug
+            } else {
+                MMKVLogLevel.LevelError
+            }
+        )
         LogUtil.d("mmkv root: $rootDir", tag = "MMKV")
 
         AppManager.init(this)

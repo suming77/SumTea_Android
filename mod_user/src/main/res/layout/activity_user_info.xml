@@ -81,6 +81,7 @@
                 android:background="@color/white">
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_name_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/user_info_name"
@@ -93,17 +94,26 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.sum.framework.weights.ClearEditText
                     android:id="@+id/et_name"
-                    android:layout_width="@dimen/dp_100"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:gravity="center"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:drawablePadding="10dp"
+                    android:gravity="end|center_vertical"
+                    android:maxLength="16"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/color_898e92"
                     android:inputType="text"
-                    android:textSize="@dimen/text_size_14"
+                    android:textSize="@dimen/text_size_13"
                     android:hint="@string/user_info_input_name"
                     android:textColorHint="@color/color_898e92"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_name_next"
+                    app:layout_constraintStart_toEndOf="@+id/tv_name_title"
                     app:layout_constraintBottom_toBottomOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -145,7 +155,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
-
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -239,7 +248,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/et_input_birthday"
                     android:layout_width="@dimen/dp_100"
                     android:layout_height="wrap_content"
@@ -282,6 +291,7 @@
                 android:background="@color/white">
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_signture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/user_info_signature"
@@ -296,15 +306,23 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_signature"
-                    android:layout_width="@dimen/dp_100"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:gravity="center"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:gravity="end|center_vertical"
+                    android:maxLength="32"
+                    android:maxLines="2"
+                    android:singleLine="true"
+                    android:textColor="@color/color_898e92"
+                    android:textSize="@dimen/text_size_13"
                     android:inputType="text"
-                    android:textSize="@dimen/text_size_14"
                     android:hint="@string/user_info_input_signature"
                     android:textColorHint="@color/color_898e92"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_signature_next"
+                    app:layout_constraintStart_toEndOf="@+id/tv_signture"
                     app:layout_constraintBottom_toBottomOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView

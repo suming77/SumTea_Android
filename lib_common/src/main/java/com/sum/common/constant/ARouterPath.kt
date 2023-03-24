@@ -18,3 +18,18 @@ const val USER_ACTIVITY_SETTING = "/user/activity/setting"
  * 搜索模块-搜索页面
  */
 const val SEARCH_ACTIVITY_SEARCH = "/search/activity/search"
+
+/**
+ * 登录模块-登录页面
+ */
+const val LOGIN_ACTIVITY_LOGIN = "/login/activity/login"
+
+/**
+ * 登录模块-注册页面
+ */
+const val LOGIN_ACTIVITY_REGISTER = "/login/activity/register"
+
+/**
+ * 首页模块-首页
+ */
+const val MAIN_ACTIVITY_HOME = "/main/activity/home"

@@ -3,12 +3,15 @@ package com.sum.network.api
 import com.sum.common.model.ArticleList
 import com.sum.common.model.Banner
 import com.sum.common.model.CategoryItem
-import com.sum.common.model.HomeInfoList
 import com.sum.common.model.ProjectSubList
 import com.sum.network.response.BaseResponse
 import com.sum.common.model.ProjectTabItem
 import com.sum.common.model.SystemList
+import com.sum.common.model.User
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -26,12 +29,12 @@ interface ApiInterface {
 
     /**
      * 首页资讯
-     * @param count    页码
+     * @param page    页码
      * @param pageSize 每页数量
      */
-    @GET("/article/list/{count}/json")
+    @GET("/article/list/{page}/json")
     suspend fun getHomeList(
-        @Path("count") count: Int,
+        @Path("page") page: Int,
         @Query("page_size") pageSize: Int
     ): BaseResponse<ArticleList>?
 
@@ -43,12 +46,12 @@ interface ApiInterface {
 
     /**
      * 项目二级列表
-     * @param count  分页数量
+     * @param page  分页数量
      * @param cid    项目分类的id
      */
-    @GET("/project/list/{count}/json")
+    @GET("/project/list/{page}/json")
     suspend fun getProjectList(
-        @Path("count") count: Int,
+        @Path("page") page: Int,
         @Query("cid") cid: Int
     ): BaseResponse<ProjectSubList>?
 
@@ -69,9 +72,45 @@ interface ApiInterface {
      * @param page  分页数量
      * @param cid    项目分类的id
      */
-    @GET("/article/list/{count}/json")
+    @GET("/article/list/{page}/json")
     suspend fun getArticleList(
-        @Path("count") page: Int,
+        @Path("page") page: Int,
         @Query("cid") cid: Int
     ): BaseResponse<ArticleList?>?
+
+    /**
+     * 登录
+     * @param username  用户名
+     * @param password  密码
+     */
+    @FormUrlEncoded
+    @POST("/user/login")
+    suspend fun login(
+        @Field("username") username: String,
+        @Field("password") password: String,
+    ): BaseResponse<User?>?
+
+    /**
+     * 注册
+     * @param username  用户名
+     * @param password  密码
+     * @param repassword  确认密码
+     */
+    @FormUrlEncoded
+    @POST("/user/register")
+    suspend fun register(
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("repassword") repassword: String
+    ): BaseResponse<User?>?
+
+    /**
+     * 登出
+     * @param username  用户名
+     * @param password  密码
+     * @param repassword  确认密码
+     */
+    @GET("/user/logout/json")
+    suspend fun logout(): BaseResponse<Any?>?
+
 }

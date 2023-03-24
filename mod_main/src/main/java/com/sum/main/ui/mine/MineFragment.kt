@@ -8,16 +8,23 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
+import com.sum.common.constant.LOGIN_ACTIVITY_LOGIN
 import com.sum.common.constant.USER_ACTIVITY_SETTING
+import com.sum.common.constant.USER_INFO_DATA
+import com.sum.common.model.User
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.decoration.NormalItemDecoration
 import com.sum.framework.ext.onClick
+import com.sum.framework.ext.toBeanOrNull
+import com.sum.framework.log.LogUtil
 import com.sum.framework.utils.dpToPx
+import com.sum.glide.setUrlCircle
 import com.sum.main.R
 import com.sum.main.databinding.FragmentMineBinding
 import com.sum.main.databinding.FragmentMineHeadBinding
 import com.sum.main.ui.mine.viewmodel.MineViewModel
 import com.sum.main.ui.system.adapter.ArticleAdapter
+import com.tencent.mmkv.MMKV
 
 /**
  * @author mingyan.su
@@ -39,7 +46,16 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
     }
 
     override fun initData() {
-
+        val userData = MMKV.defaultMMKV().decodeString(USER_INFO_DATA)
+        LogUtil.e("userdata:$userData", tag="smy")
+        val user = userData?.toBeanOrNull<User>() ?: return
+        user.icon?.let { mHeadBinding.ivHead.setUrlCircle(it) }
+        if (!user.nickname.isNullOrEmpty()){
+            mHeadBinding.tvName.text = user.nickname
+        }else{
+            mHeadBinding.tvName.text = user.username
+        }
+        mHeadBinding.tvDesc.text = user.signature
     }
 
     private fun initListener() {
@@ -57,7 +73,7 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
 
             }
             tvLikeTitle.onClick {
-
+                ARouter.getInstance().build(LOGIN_ACTIVITY_LOGIN).navigation()
             }
             tvNavigation.onClick {
 

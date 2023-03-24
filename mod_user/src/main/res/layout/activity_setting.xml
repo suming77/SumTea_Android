@@ -142,6 +142,7 @@
                 android:background="@color/white">
 
             <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_current_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/setting_current_version"
@@ -157,7 +158,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/setting_current_version"
+                    android:text="@string/setting_newest_version"
                     android:gravity="center_vertical"
                     android:paddingTop="@dimen/dp_10"
                     android:paddingBottom="@dimen/dp_10"
@@ -206,7 +207,7 @@
                     android:id="@+id/tv_cache"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0MB"
+                    android:text="12MB"
                     android:gravity="center_vertical"
                     android:paddingTop="@dimen/dp_10"
                     android:paddingBottom="@dimen/dp_10"

@@ -7,6 +7,13 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
+    <style name="titleBarStyle">
+        <item name="android:textSize">@dimen/dp_16</item>
+        <item name="android:textColor">@color/black</item>
+        <!--字体小写-->
+        <item name="android:textAllCaps">false</item>
+    </style>
+
     <!-- 视频封面 -->
     <declare-styleable name="VideoImageView">
         <!-- 比例 -->
@@ -39,6 +46,6 @@
         <attr name="background" format="reference" />
         <attr name="middleTextVisible" format="boolean" />
         <attr name="rightIconVisible" format="boolean" />
-
+        <attr name="showDividerLine" format="boolean" />
     </declare-styleable>
 </resources>
