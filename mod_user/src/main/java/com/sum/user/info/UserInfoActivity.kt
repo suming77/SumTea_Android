@@ -28,8 +28,6 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
         }
     }
 
-    override fun getLayoutResId(): Int = R.layout.activity_user_info
-
     override fun initView(savedInstanceState: Bundle?) {
         ViewUtils.setClipViewCornerRadius(mBinding.tvSave, dpToPx(20))
         initListener()

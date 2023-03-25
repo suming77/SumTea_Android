@@ -37,7 +37,6 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
     private var mPage = 0
     private lateinit var mHeadBinding: FragmentMineHeadBinding
     private lateinit var mAdapter: ArticleAdapter
-    override fun getLayoutResId(): Int = R.layout.fragment_mine
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
         initRecyclerView()

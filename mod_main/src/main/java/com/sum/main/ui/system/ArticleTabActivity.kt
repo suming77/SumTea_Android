@@ -14,7 +14,6 @@ import com.sum.common.model.SystemSecondList
 import com.sum.framework.adapter.ViewPage2FragmentAdapter
 import com.sum.framework.base.BaseDataBindActivity
 import com.sum.framework.ext.toBeanOrNull
-import com.sum.main.R
 import com.sum.main.databinding.ActivityArticleBinding
 
 /**
@@ -38,8 +37,6 @@ class ArticleTabActivity : BaseDataBindActivity<ActivityArticleBinding>() {
             context.startActivity(intent)
         }
     }
-
-    override fun getLayoutResId(): Int = R.layout.activity_article
 
     override fun initView(savedInstanceState: Bundle?) {
         initTab()

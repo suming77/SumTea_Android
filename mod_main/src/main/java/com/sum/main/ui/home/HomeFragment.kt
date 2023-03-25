@@ -35,8 +35,6 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
     private var mFragmentAdapter: ViewPage2FragmentAdapter? = null
     private var mProjectTabs: MutableList<ProjectTabItem>? = null
 
-    override fun getLayoutResId(): Int = R.layout.fragment_home
-
     override fun initView(view: View, savedInstanceState: Bundle?) {
         mBinding?.refreshLayout?.apply {
             autoRefresh()

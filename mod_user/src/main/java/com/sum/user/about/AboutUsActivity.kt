@@ -21,8 +21,6 @@ class AboutUsActivity : BaseDataBindActivity<ActivityAboutUsBinding>() {
         }
     }
 
-    override fun getLayoutResId(): Int = R.layout.activity_about_us
-
     override fun initView(savedInstanceState: Bundle?) {
         setSupportActionBar(mBinding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

@@ -24,8 +24,6 @@ import com.sum.stater.inittasks.InitTaskB
 @Route(path = MAIN_ACTIVITY_HOME)
 class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
 
-    override fun getLayoutResId(): Int = R.layout.activity_main
-
     override fun initView(savedInstanceState: Bundle?) {
         val navView: BottomNavigationView = mBinding.navView
         //1.寻找出路由控制器对象，它是路由跳转的唯一入口，找到宿主NavHostFragment

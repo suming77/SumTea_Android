@@ -36,8 +36,6 @@ class ArticleListFragment : BaseMvvmFragment<FragmentArticleListBinding, Article
         }
     }
 
-    override fun getLayoutResId(): Int = R.layout.fragment_article_list
-
     override fun initView(view: View, savedInstanceState: Bundle?) {
         mBinding?.refreshLayout?.apply {
             setEnableRefresh(true)

@@ -42,8 +42,6 @@ class RegisterActivity : BaseMvvmActivity<ActivityRegisterBinding, LoginViewMode
         }
     }
 
-    override fun getLayoutResId(): Int = R.layout.activity_register
-
     override fun initView(savedInstanceState: Bundle?) {
         initAgreement()
         initListener()

@@ -24,8 +24,6 @@ import kotlinx.coroutines.launch
 @Route(path = USER_ACTIVITY_SETTING)
 class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
 
-    override fun getLayoutResId(): Int = R.layout.activity_setting
-
     override fun initView(savedInstanceState: Bundle?) {
         ViewUtils.setClipViewCornerRadius(mBinding.tvLogout, dpToPx(8))
         mBinding.tvCurrentVersion.text = String.format(

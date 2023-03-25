@@ -12,8 +12,6 @@ import com.sum.user.R
  */
 class MyCollectionActivity : BaseMvvmActivity<LayoutNormalRecyclerviewBinding, MyCollectViewModel>() {
 
-    override fun getLayoutResId(): Int = com.sum.common.R.layout.layout_normal_recyclerview
-
     override fun initView(savedInstanceState: Bundle?) {
 
     }

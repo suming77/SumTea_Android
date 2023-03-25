@@ -32,8 +32,6 @@ class CategorySecondFragment : BaseMvvmFragment<FragmentCategorySecondBinding, C
         }
     }
 
-    override fun getLayoutResId(): Int = R.layout.fragment_category_second
-
     override fun initView(view: View, savedInstanceState: Bundle?) {
         mAdapter = CategorySecondItemAdapter()
         mBinding?.recyclerView?.apply {

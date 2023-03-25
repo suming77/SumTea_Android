@@ -47,6 +47,7 @@ abstract class BaseFragment : Fragment() {
     /**
      * 初始化视图
      * @return Int 布局id
+     * 仅用于不继承BaseDataBindFragment类的传递布局文件
      */
     abstract fun getLayoutResId(): Int
 

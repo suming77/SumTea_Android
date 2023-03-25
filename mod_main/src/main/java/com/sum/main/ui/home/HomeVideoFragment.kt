@@ -19,8 +19,6 @@ import com.sum.main.ui.home.viewmodel.HomeViewModel
  */
 class HomeVideoFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewModel>() {
 
-    override fun getLayoutResId(): Int = R.layout.fragment_home_video
-
     override fun initView(view: View, savedInstanceState: Bundle?) {
 
         val list = mutableListOf<VideoInfo>()

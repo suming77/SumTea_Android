@@ -36,8 +36,6 @@ class HomeTabFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewModel
         }
     }
 
-    override fun getLayoutResId(): Int = R.layout.fragment_home_video
-
     override fun initView(view: View, savedInstanceState: Bundle?) {
         mBinding?.refreshLayout?.apply {
             autoRefresh()

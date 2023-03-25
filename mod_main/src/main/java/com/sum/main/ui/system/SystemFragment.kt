@@ -19,7 +19,6 @@ import com.sum.main.ui.system.viewmodel.SystemViewModel
  */
 class SystemFragment : BaseMvvmFragment<FragmentSystemBinding, SystemViewModel>() {
     private lateinit var mAdapter: SystemAdapter
-    override fun getLayoutResId(): Int = R.layout.fragment_system
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
         mAdapter = SystemAdapter()

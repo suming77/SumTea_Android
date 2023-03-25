@@ -36,7 +36,6 @@ import com.tencent.mmkv.MMKV
 @Route(path = LOGIN_ACTIVITY_LOGIN)
 class LoginActivity : BaseMvvmActivity<ActivityLoginBinding, LoginViewModel>() {
     private var isShowPassword = true
-    override fun getLayoutResId(): Int = R.layout.activity_login
 
     override fun initView(savedInstanceState: Bundle?) {
         initAgreement()

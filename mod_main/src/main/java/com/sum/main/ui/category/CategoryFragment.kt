@@ -26,8 +26,6 @@ class CategoryFragment : BaseMvvmFragment<FragmentCategoryBinding, CategoryViewM
     private lateinit var mTabAdapter: CategoryTabAdapter
     private var mViewPagerAdapter: ViewPage2FragmentAdapter? = null
 
-    override fun getLayoutResId(): Int = R.layout.fragment_category
-
     override fun initView(view: View, savedInstanceState: Bundle?) {
         initTabRecyclerView()
         initViewPager2()
