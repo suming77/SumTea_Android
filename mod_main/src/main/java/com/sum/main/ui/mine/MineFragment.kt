@@ -9,22 +9,23 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.common.constant.LOGIN_ACTIVITY_LOGIN
+import com.sum.common.constant.USER_ACTIVITY_COLLECTION
 import com.sum.common.constant.USER_ACTIVITY_SETTING
-import com.sum.common.constant.USER_INFO_DATA
 import com.sum.common.model.User
+import com.sum.common.provider.LoginServiceProvider
+import com.sum.common.provider.UserServiceProvider
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.decoration.NormalItemDecoration
 import com.sum.framework.ext.onClick
-import com.sum.framework.ext.toBeanOrNull
 import com.sum.framework.log.LogUtil
 import com.sum.framework.utils.dpToPx
+import com.sum.framework.utils.getStringFromResource
 import com.sum.glide.setUrlCircle
 import com.sum.main.R
 import com.sum.main.databinding.FragmentMineBinding
 import com.sum.main.databinding.FragmentMineHeadBinding
 import com.sum.main.ui.mine.viewmodel.MineViewModel
 import com.sum.main.ui.system.adapter.ArticleAdapter
-import com.tencent.mmkv.MMKV
 
 /**
  * @author mingyan.su
@@ -45,16 +46,34 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
     }
 
     override fun initData() {
-        val userData = MMKV.defaultMMKV().decodeString(USER_INFO_DATA)
-        LogUtil.e("userdata:$userData", tag="smy")
-        val user = userData?.toBeanOrNull<User>() ?: return
-        user.icon?.let { mHeadBinding.ivHead.setUrlCircle(it) }
-        if (!user.nickname.isNullOrEmpty()){
-            mHeadBinding.tvName.text = user.nickname
-        }else{
-            mHeadBinding.tvName.text = user.username
+        val user = UserServiceProvider.getUserInfo()
+        setUserInfo(user)
+        UserServiceProvider.getUserLiveData().observe(this) {
+            setUserInfo(it)
         }
-        mHeadBinding.tvDesc.text = user.signature
+    }
+
+    /**
+     * 设置用户信息
+     */
+    private fun setUserInfo(user: User?) {
+        LogUtil.e("userdata:$user", tag = "smy")
+        if (UserServiceProvider.isLogin()) {
+            user?.let {
+                mHeadBinding.ivHead.setUrlCircle(it.icon ?: "")
+                if (!it.nickname.isNullOrEmpty()) {
+                    mHeadBinding.tvName.text = it.nickname
+                } else {
+                    mHeadBinding.tvName.text = it.username
+                }
+                mHeadBinding.tvDesc.text = it.signature
+            } ?: kotlin.run {
+
+            }
+        } else {
+            mHeadBinding.tvName.text = getStringFromResource(R.string.mine_not_login)
+            mHeadBinding.tvDesc.text = getStringFromResource(com.sum.common.R.string.login_know_more_android)
+        }
     }
 
     private fun initListener() {
@@ -72,7 +91,11 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
 
             }
             tvLikeTitle.onClick {
-                ARouter.getInstance().build(LOGIN_ACTIVITY_LOGIN).navigation()
+                if (UserServiceProvider.isLogin()) {
+                    ARouter.getInstance().build(USER_ACTIVITY_COLLECTION).navigation()
+                } else {
+                    LoginServiceProvider.login(requireContext())
+                }
             }
             tvNavigation.onClick {
 
@@ -129,8 +152,7 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
 
     private fun initHeadView() {
         mHeadBinding = FragmentMineHeadBinding.inflate(LayoutInflater.from(requireContext()))
-        mHeadBinding?.tvName?.text = "苏火火~"
-        mHeadBinding?.tvDesc?.text = "天苍苍，野茫茫，风水草低见牛羊！"
+        mHeadBinding?.tvName?.text = getStringFromResource(R.string.mine_not_login)
         mAdapter.addHeadView(mHeadBinding.root)
     }
 

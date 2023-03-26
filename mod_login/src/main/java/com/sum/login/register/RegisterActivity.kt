@@ -12,13 +12,10 @@ import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import com.alibaba.android.arouter.launcher.ARouter
-import com.sum.common.constant.MAIN_ACTIVITY_HOME
-import com.sum.common.constant.USER_INFO_DATA
-import com.sum.common.constant.USER_PHONE
+import com.sum.common.provider.MainServiceProvider
+import com.sum.common.provider.UserServiceProvider
 import com.sum.framework.base.BaseMvvmActivity
 import com.sum.framework.ext.onClick
-import com.sum.framework.ext.toJson
 import com.sum.framework.log.LogUtil
 import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.getColorFromResource
@@ -26,7 +23,6 @@ import com.sum.framework.utils.getStringFromResource
 import com.sum.login.login.LoginViewModel
 import com.sum.login.R
 import com.sum.login.databinding.ActivityRegisterBinding
-import com.tencent.mmkv.MMKV
 
 /**
  * @author mingyan.su
@@ -71,10 +67,10 @@ class RegisterActivity : BaseMvvmActivity<ActivityRegisterBinding, LoginViewMode
                 user?.let {
                     TipsToast.showTips(R.string.success_register)
                     //保存用户信息
-                    MMKV.defaultMMKV().encode(USER_INFO_DATA, it.toJson(false))
-                    MMKV.defaultMMKV().encode(USER_PHONE, it.username)
+                    UserServiceProvider.saveUserInfo(user)
+                    UserServiceProvider.saveUserPhone(user.username)
                     LogUtil.e("user:$it", tag = "smy")
-                    ARouter.getInstance().build(MAIN_ACTIVITY_HOME).navigation()
+                    MainServiceProvider.toMain(context = this)
                     finish()
                 } ?: kotlin.run {
 

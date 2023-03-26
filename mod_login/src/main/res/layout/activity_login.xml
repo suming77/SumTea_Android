@@ -29,7 +29,7 @@
                 android:textSize="@dimen/text_size_18"
                 android:layout_marginTop="@dimen/dp_20"
                 android:layout_marginStart="@dimen/dp_24"
-                android:text="@string/login_title"
+                android:text="@string/login_know_more_android"
                 app:layout_constraintTop_toBottomOf="@+id/title_bar"
                 app:layout_constraintStart_toStartOf="parent" />
 

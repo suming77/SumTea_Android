@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.sum.common.constant.USER_ACTIVITY_SETTING
+import com.sum.common.provider.LoginServiceProvider
+import com.sum.common.provider.UserServiceProvider
 import com.sum.framework.base.BaseDataBindActivity
 import com.sum.framework.ext.onClick
 import com.sum.framework.toast.TipsToast
@@ -56,7 +58,11 @@ class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
             AboutUsActivity.start(this)
         }
         mBinding.tvLogout.onClick {
-
+            showLoading()
+            LoginServiceProvider.logout(context = this, lifecycleOwner = this){
+                UserServiceProvider.clearUserInfo()
+                dismissLoading()
+            }
         }
     }
 }

@@ -4,7 +4,10 @@
     <string name="author_name">作者：%s</string>
 
     <string name="default_save">保存</string>
+    <string name="default_save_success">保存成功</string>
     <string name="default_developing">正在开发中....</string>
     <string name="default_loading">正在加载....</string>
+
+    <string name="login_know_more_android">登录后了解更多Android技术</string>
 
 </resources>

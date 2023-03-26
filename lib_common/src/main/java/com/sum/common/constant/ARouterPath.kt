@@ -9,27 +9,56 @@ package com.sum.common.constant
  *       /模块名称/服务[service]/服务名称
  */
 
-/**
- * 用户模块-设置界面
- */
-const val USER_ACTIVITY_SETTING = "/user/activity/setting"
+//**********************跳转相关**********************
 
+/**
+ * 登录模块
+ */
+//登录页面
+const val LOGIN_ACTIVITY_LOGIN = "/login/activity/login"
+
+//注册页面
+const val LOGIN_ACTIVITY_REGISTER = "/login/activity/register"
+
+
+/**
+ * 首页模块
+ */
+//首页
+const val MAIN_ACTIVITY_HOME = "/main/activity/home"
+
+/**
+ * 用户模块
+ */
+//设置界面
+const val USER_ACTIVITY_SETTING = "/user/activity/setting"
+//我的收藏界面
+const val USER_ACTIVITY_COLLECTION = "/user/activity/collection"
 /**
  * 搜索模块-搜索页面
  */
 const val SEARCH_ACTIVITY_SEARCH = "/search/activity/search"
 
-/**
- * 登录模块-登录页面
- */
-const val LOGIN_ACTIVITY_LOGIN = "/login/activity/login"
+
+
+//**********************服务相关**********************
 
 /**
- * 登录模块-注册页面
+ * 登录模块-登录服务
  */
-const val LOGIN_ACTIVITY_REGISTER = "/login/activity/register"
+const val LOGIN_SERVICE_LOGIN = "/login/service/login"
 
 /**
- * 首页模块-首页
+ * 用户模块-用户服务
  */
-const val MAIN_ACTIVITY_HOME = "/main/activity/home"
+const val USER_SERVICE_USER = "/user/service/user"
+
+/**
+ * 主页模块-主页
+ */
+const val MAIN_SERVICE_HOME = "/main/service/home"
+
+/**
+ * 搜索模块模块-搜索
+ */
+const val SEARCH_SERVICE_SEARCH = "/search/service/search"

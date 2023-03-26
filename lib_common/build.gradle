@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -13,6 +14,13 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        //ARouter
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     buildTypes {
@@ -44,6 +52,9 @@ dependencies {
     compileOnly rootProject.depsLibs.refreshLayout
     compileOnly rootProject.depsLibs.refreshHeader
     compileOnly rootProject.depsLibs.refreshFooter
+
+    compileOnly rootProject.depsLibs.aroutreApi
+    kapt rootProject.depsLibs.arouterCompiler
 
     compileOnly project(path: ':lib_framework')
     compileOnly project(path: ':lib_banner')

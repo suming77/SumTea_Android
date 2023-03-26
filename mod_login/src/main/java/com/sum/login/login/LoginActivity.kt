@@ -14,11 +14,10 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.sum.common.constant.LOGIN_ACTIVITY_LOGIN
-import com.sum.common.constant.USER_INFO_DATA
-import com.sum.common.constant.USER_PHONE
+import com.sum.common.provider.MainServiceProvider
+import com.sum.common.provider.UserServiceProvider
 import com.sum.framework.base.BaseMvvmActivity
 import com.sum.framework.ext.onClick
-import com.sum.framework.ext.toJson
 import com.sum.framework.log.LogUtil
 import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.getColorFromResource
@@ -26,7 +25,6 @@ import com.sum.framework.utils.getStringFromResource
 import com.sum.login.R
 import com.sum.login.databinding.ActivityLoginBinding
 import com.sum.login.register.RegisterActivity
-import com.tencent.mmkv.MMKV
 
 /**
  * @author mingyan.su
@@ -40,6 +38,8 @@ class LoginActivity : BaseMvvmActivity<ActivityLoginBinding, LoginViewModel>() {
     override fun initView(savedInstanceState: Bundle?) {
         initAgreement()
         initListener()
+        mBinding.etPhone.setText(UserServiceProvider.getUserPhone())
+        mBinding.etPhone.setSelection(mBinding.etPhone.length())
         mBinding.etPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
     }
 
@@ -47,9 +47,10 @@ class LoginActivity : BaseMvvmActivity<ActivityLoginBinding, LoginViewModel>() {
         mViewModel.loginLiveData.observe(this) { user ->
             //登录成功
             user?.let {
-                MMKV.defaultMMKV().encode(USER_INFO_DATA, it.toJson(false))
-                MMKV.defaultMMKV().encode(USER_PHONE, it.username)
+                UserServiceProvider.saveUserInfo(user)
+                UserServiceProvider.saveUserPhone(user.username)
                 TipsToast.showTips(R.string.success_login)
+                MainServiceProvider.toMain(context = this)
                 finish()
             } ?: kotlin.run {
 
@@ -91,6 +92,7 @@ class LoginActivity : BaseMvvmActivity<ActivityLoginBinding, LoginViewModel>() {
             TipsToast.showTips(R.string.tips_read_user_agreement)
             return
         }
+        showLoading()
         mViewModel.login(userName, password)
     }
 
