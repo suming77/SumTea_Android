@@ -2,4 +2,6 @@
 <resources>
     <item name="click_debounce_action" type="id"/>
     <item name="click_time_stamp" type="id"/>
+    <item name="nav_status_bar" type="id" />
+    <item name="immersion_status_bar_view" type="id" />
 </resources>

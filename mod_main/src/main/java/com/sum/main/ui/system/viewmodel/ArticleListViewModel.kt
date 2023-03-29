@@ -2,6 +2,7 @@ package com.sum.main.ui.system.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import com.sum.common.model.ArticleInfo
 import com.sum.network.callback.IApiErrorCallback
 import com.sum.network.manager.ApiManager
@@ -36,5 +37,29 @@ class ArticleListViewModel : BaseViewModel() {
             }
         })
         return articleListLiveData
+    }
+
+    /**
+     * 收藏 or 取消收藏站内文章
+     * @param id  文章id
+     * @param isCollect 是否收藏
+     */
+    fun collectArticle(id: Int, isCollect: Boolean): LiveData<Boolean> {
+        return liveData {
+            val data = safeApiCallWithResult(errorCall = object : IApiErrorCallback {
+                override fun onError(code: Int?, error: String?) {
+                    super.onError(code, error)
+                }
+            }) {
+                if (!isCollect) {
+                    //收藏站内文章
+                    ApiManager.api.collectArticle(id)
+                } else {
+                    //取消收藏站内文章
+                    ApiManager.api.cancelCollectArticle(id)
+                }
+            }
+            emit(isCollect)
+        }
     }
 }

@@ -9,6 +9,7 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.common.constant.KEY_ID
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.decoration.NormalItemDecoration
+import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.dpToPx
 import com.sum.main.R
 import com.sum.main.databinding.FragmentArticleListBinding
@@ -57,6 +58,9 @@ class ArticleListFragment : BaseMvvmFragment<FragmentArticleListBinding, Article
         mAdapter.onItemClickListener = { view: View, position: Int ->
 
         }
+        mAdapter.onItemCollectListener = { _: View, position: Int ->
+            setCollectView(position)
+        }
     }
 
     override fun initData() {
@@ -92,6 +96,26 @@ class ArticleListFragment : BaseMvvmFragment<FragmentArticleListBinding, Article
      */
     private fun getArticleList() {
         mViewModel.getArticleList(page, cId)
+    }
+
+    /**
+     * 收藏和取消收藏
+     * @param position
+     */
+    private fun setCollectView(position: Int) {
+        val data = mAdapter.getItem(position)
+        data?.let { item ->
+            showLoading()
+            val collect = item.collect ?: false
+            mViewModel.collectArticle(item.id, collect).observe(this) {
+                val tipsRes =
+                    if (collect) com.sum.common.R.string.collect_cancel else com.sum.common.R.string.collect_success
+                TipsToast.showSuccessTips(tipsRes)
+                item.collect = !collect
+                mAdapter.updateItem(position, item)
+                dismissLoading()
+            }
+        }
     }
 
 }

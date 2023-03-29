@@ -1,6 +1,6 @@
 package com.sum.network.repository
 
-import com.sum.network.ApiException
+import com.sum.network.error.ApiException
 import com.sum.network.response.BaseResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

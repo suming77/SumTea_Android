@@ -10,4 +10,6 @@
 
     <string name="login_know_more_android">登录后了解更多Android技术</string>
 
+    <string name="collect_success">收藏成功</string>
+    <string name="collect_cancel">取消收藏</string>
 </resources>

@@ -10,6 +10,7 @@ import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.common.constant.LOGIN_ACTIVITY_LOGIN
 import com.sum.common.constant.USER_ACTIVITY_COLLECTION
+import com.sum.common.constant.USER_ACTIVITY_INFO
 import com.sum.common.constant.USER_ACTIVITY_SETTING
 import com.sum.common.model.User
 import com.sum.common.provider.LoginServiceProvider
@@ -18,6 +19,7 @@ import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.decoration.NormalItemDecoration
 import com.sum.framework.ext.onClick
 import com.sum.framework.log.LogUtil
+import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.dpToPx
 import com.sum.framework.utils.getStringFromResource
 import com.sum.glide.setUrlCircle
@@ -79,7 +81,11 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
     private fun initListener() {
         mHeadBinding?.apply {
             ivHead.onClick {
-
+                if (UserServiceProvider.isLogin()) {
+                    ARouter.getInstance().build(USER_ACTIVITY_INFO).navigation()
+                } else {
+                    LoginServiceProvider.login(requireContext())
+                }
             }
             ivSetting.onClick {
                 ARouter.getInstance().build(USER_ACTIVITY_SETTING).navigation()
@@ -148,6 +154,9 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
         mAdapter.onItemClickListener = { view: View, position: Int ->
 
         }
+        mAdapter.onItemCollectListener = { _: View, position: Int ->
+            setCollectView(position)
+        }
     }
 
     private fun initHeadView() {
@@ -183,5 +192,25 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
     override fun onLoadMore(refreshLayout: RefreshLayout) {
         mPage++
         getRecommendList()
+    }
+
+    /**
+     * 收藏和取消收藏
+     * @param position
+     */
+    private fun setCollectView(position: Int) {
+        val data = mAdapter.getItem(position)
+        data?.let { item ->
+            showLoading()
+            val collect = item.collect ?: false
+            mViewModel.collectArticle(item.id, collect).observe(this) {
+                val tipsRes =
+                    if (collect) com.sum.common.R.string.collect_cancel else com.sum.common.R.string.collect_success
+                TipsToast.showSuccessTips(tipsRes)
+                item.collect = !collect
+                mAdapter.updateItem(position, item)
+                dismissLoading()
+            }
+        }
     }
 }

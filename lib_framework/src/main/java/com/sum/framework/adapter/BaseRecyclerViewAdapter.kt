@@ -88,9 +88,10 @@ abstract class BaseRecyclerViewAdapter<T, B : ViewBinding> : RecyclerView.Adapte
                 //holder必须继承自BaseBindViewHolder
                 if (holder is BaseBindViewHolder<*>) {
                     holder as BaseBindViewHolder<B>
-                    val item = getItem(position - headerLayoutCount)
+                    val realPosition = position - headerLayoutCount
+                    val item = getItem(realPosition)
                     item?.let {
-                        onBindDefViewHolder(holder, it, position)
+                        onBindDefViewHolder(holder, it, realPosition)
                     }
                 }
             }

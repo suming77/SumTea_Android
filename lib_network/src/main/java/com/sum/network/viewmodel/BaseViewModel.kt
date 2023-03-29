@@ -3,7 +3,7 @@ package com.sum.network.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sum.framework.log.LogUtil
-import com.sum.network.ApiException
+import com.sum.network.error.ApiException
 import com.sum.network.response.BaseResponse
 import com.sum.network.error.ExceptionHandler
 import com.sum.network.callback.IApiErrorCallback

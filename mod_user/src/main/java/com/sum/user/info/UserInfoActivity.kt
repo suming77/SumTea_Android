@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.sum.common.constant.USER_ACTIVITY_INFO
 import com.sum.common.provider.LoginServiceProvider
 import com.sum.common.provider.UserServiceProvider
 import com.sum.framework.base.BaseDataBindActivity
@@ -20,6 +22,7 @@ import kotlinx.coroutines.launch
  * @date   2023/3/23 18:43
  * @desc   用户信息
  */
+@Route(path = USER_ACTIVITY_INFO)
 class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
 
     companion object {

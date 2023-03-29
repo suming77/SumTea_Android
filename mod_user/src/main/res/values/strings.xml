@@ -21,4 +21,6 @@
     <string name="user_info_input_birthday">点击设置生日</string>
     <string name="user_info_signature">签名</string>
     <string name="user_info_input_signature">请输入您的个性签名</string>
+
+    <string name="collect_my">我的收藏</string>
 </resources>

@@ -44,13 +44,12 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_15"
             android:textColor="@color/color_222427"
-            android:lines="2"
+            android:maxLines="2"
             android:ellipsize="end"
-            android:layout_marginEnd="@dimen/dp_4"
             android:layout_marginTop="@dimen/dp_6"
             app:layout_constraintTop_toBottomOf="@+id/tv_author_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/iv_collect"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="@string/title" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -82,23 +81,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="渠道" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_collect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/selector_collect_new"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_zan"
+            android:id="@+id/tv_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="@dimen/dp_4"
             android:drawablePadding="@dimen/dp_4"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
+            android:background="@color/color_f0f2f4"
+            android:text="@string/collect_cancel"
             android:textSize="@dimen/dp_12"
-            android:drawableStart="@mipmap/ic_collect_selected"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_desc"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="99" />
+            tools:text="取消收藏" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

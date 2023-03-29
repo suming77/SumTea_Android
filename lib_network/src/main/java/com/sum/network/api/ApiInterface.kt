@@ -113,4 +113,56 @@ interface ApiInterface {
     @GET("/user/logout/json")
     suspend fun logout(): BaseResponse<Any?>?
 
+    /**
+     * 我的收藏列表
+     * @param page  页码
+     */
+    @GET("/lg/collect/list/{page}/json")
+    suspend fun getCollectList(
+        @Path("page") page: Int
+    ): BaseResponse<ArticleList?>?
+
+    /**
+     * 收藏站内文章
+     * @param id 文章id
+     */
+    @POST("lg/collect/{id}/json")
+    suspend fun collectArticle(
+        @Path("id") id: Int
+    ): BaseResponse<Any>?
+
+    /**
+     * 收藏站外文章
+     * @param title 标题
+     * @param author 作者
+     * @param link 链接
+     */
+    @POST("lg/collect/add/json")
+    @FormUrlEncoded
+    suspend fun collectOutsideArticle(
+        @Field("title") title: String,
+        @Field("author") author: String,
+        @Field("link") link: String
+    ): BaseResponse<Any>?
+
+    /**
+     * 文章列表中取消收藏文章
+     * @param id
+     */
+    @POST("lg/uncollect_originId/{id}/json")
+    suspend fun cancelCollectArticle(
+        @Path("id") id: Int
+    ): BaseResponse<Any>?
+
+    /**
+     * 收藏列表中取消收藏文章
+     * @param id
+     * @param originId
+     */
+    @POST("lg/uncollect/{id}/json")
+    @FormUrlEncoded
+    suspend fun cancelMyCollect(
+        @Path("id") id: Int,
+        @Field("originId") originId: Int = -1
+    ): BaseResponse<Any>?
 }
