@@ -13,6 +13,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
+import com.sum.common.model.ProjectTabItem
 import com.sum.framework.adapter.ViewPage2FragmentAdapter
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.ext.gone
@@ -20,7 +21,6 @@ import com.sum.framework.ext.visible
 import com.sum.main.R
 import com.sum.main.databinding.FragmentHomeBinding
 import com.sum.main.ui.home.viewmodel.HomeViewModel
-import com.sum.common.model.ProjectTabItem
 
 /**
  * @author mingyan.su

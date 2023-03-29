@@ -11,9 +11,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        <View
+                android:id="@+id/state_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_36"
+                android:background="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/state_bar"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:orientation="horizontal">
 
             <androidx.recyclerview.widget.RecyclerView
