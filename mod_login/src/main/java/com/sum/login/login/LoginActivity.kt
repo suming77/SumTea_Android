@@ -46,11 +46,12 @@ class LoginActivity : BaseMvvmActivity<ActivityLoginBinding, LoginViewModel>() {
     override fun initData() {
         mViewModel.loginLiveData.observe(this) { user ->
             //登录成功
+            dismissLoading()
             user?.let {
                 UserServiceProvider.saveUserInfo(user)
                 UserServiceProvider.saveUserPhone(user.username)
                 TipsToast.showTips(R.string.success_login)
-                MainServiceProvider.toMain(context = this)
+//                MainServiceProvider.toMain(context = this)
                 finish()
             } ?: kotlin.run {
 

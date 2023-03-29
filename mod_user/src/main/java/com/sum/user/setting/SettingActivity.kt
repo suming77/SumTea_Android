@@ -9,8 +9,10 @@ import com.sum.common.provider.UserServiceProvider
 import com.sum.framework.base.BaseDataBindActivity
 import com.sum.framework.ext.onClick
 import com.sum.framework.toast.TipsToast
+import com.sum.framework.utils.AppManager
 import com.sum.framework.utils.ViewUtils
 import com.sum.framework.utils.dpToPx
+import com.sum.network.manager.CookiesManager
 import com.sum.user.R
 import com.sum.user.about.AboutUsActivity
 import com.sum.user.databinding.ActivitySettingBinding
@@ -31,7 +33,7 @@ class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
         mBinding.tvCurrentVersion.text = String.format(
             getString(
                 R.string.setting_current_version
-            ), packageManager.getPackageInfo(packageName, 0).versionName
+            ), AppManager.getAppVersionName(this)
         )
         initListener()
     }
@@ -60,6 +62,7 @@ class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
         mBinding.tvLogout.onClick {
             showLoading()
             LoginServiceProvider.logout(context = this, lifecycleOwner = this){
+                CookiesManager.clearCookies()
                 UserServiceProvider.clearUserInfo()
                 dismissLoading()
             }

@@ -6,11 +6,8 @@ package com.sum.common.constant
  * @desc   常量管理
  */
 
-/**
- * base_url
- */
-const val BASE_URL = "https://www.wanandroid.com"
-
 const val USER_INFO_DATA = "user_info_data" // 用户缓存数据
 
 const val USER_PHONE_NUMBER = "user_phone_number"  // 用户手机号
+
+const val HTTP_COOKIES_INFO = "http_cookies_info" //cookies缓存

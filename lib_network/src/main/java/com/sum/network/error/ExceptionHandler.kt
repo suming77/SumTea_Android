@@ -4,8 +4,6 @@ import android.net.ParseException
 import com.google.gson.JsonParseException
 import com.google.gson.stream.MalformedJsonException
 import com.sum.framework.toast.TipsToast
-import com.sum.network.ApiException
-import com.sum.network.NoNetWorkException
 import org.json.JSONException
 import retrofit2.HttpException
 import java.net.ConnectException
@@ -20,6 +18,9 @@ object ExceptionHandler {
         val ex: ApiException
         if (e is ApiException) {
             ex = ApiException(e.errCode, e.errMsg, e)
+            if (ex.errCode == 1001){
+                //登录失效
+            }
         } else if (e is NoNetWorkException) {
             TipsToast.showTips("网络异常，请尝试刷新")
             ex = ApiException(ERROR.NETWORD_ERROR, e)

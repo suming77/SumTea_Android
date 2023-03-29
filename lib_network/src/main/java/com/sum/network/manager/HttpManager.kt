@@ -1,11 +1,13 @@
 package com.sum.network.manager
 
 import android.util.Log
-import com.sum.common.constant.BASE_URL
 import com.sum.framework.helper.SumAppHelper
 import com.sum.framework.utils.NetworkUtil
-import com.sum.network.NoNetWorkException
+import com.sum.network.constant.BASE_URL
+import com.sum.network.error.NoNetWorkException
 import com.sum.network.error.ERROR
+import com.sum.network.interceptor.CookiesInterceptor
+import com.sum.network.interceptor.HeaderInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -47,9 +49,12 @@ object HttpManager {
                 .readTimeout(12, TimeUnit.SECONDS)
         // 添加参数拦截器
         val interceptors = mutableListOf<Interceptor>()
+        build.addInterceptor(CookiesInterceptor())
+        build.addInterceptor(HeaderInterceptor())
+
         //日志拦截器
         val logInterceptor = HttpLoggingInterceptor { message: String ->
-            Log.e("okhttp", "data:$message")
+            Log.i("okhttp", "data:$message")
         }
         if (SumAppHelper.isDebug()) {
             logInterceptor.level = HttpLoggingInterceptor.Level.BODY

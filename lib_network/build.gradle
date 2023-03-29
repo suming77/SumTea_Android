@@ -39,6 +39,8 @@ dependencies {
     compileOnly rootProject.depsLibs.retrofit2Gson
     compileOnly rootProject.depsLibs.loggingInterceptor
 
+    compileOnly rootProject.depsLibs.mmkv
+
     compileOnly rootProject.depsLibs.gson
     compileOnly rootProject.depsLibs.liveDataKtx
     compileOnly rootProject.depsLibs.viewModelKtx

@@ -2,12 +2,14 @@ package com.sum.framework.utils
 
 import android.app.Application
 import android.content.Context
+import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.os.Build
 import android.provider.Settings
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
+import com.sum.framework.log.LogUtil
 import kotlin.math.max
 import kotlin.math.min
 
@@ -202,6 +204,43 @@ object AppManager {
 
     fun dip2px(dipValue: Float): Int {
         return (dipValue * mDensity + 0.5f).toInt()
+    }
+
+    /**
+     * 获取版本名称
+     */
+    fun getAppVersionName(context: Context): String {
+        var versionName = ""
+        try {
+            val pm = context.packageManager
+            val packageName = context.packageName ?: "com.sum.tea"
+            pm.getPackageInfo(packageName, 0).versionName
+            val pi = pm.getPackageInfo(packageName, 0)
+            versionName = pi.versionName
+            if (versionName.isNullOrEmpty()) {
+                return ""
+            }
+        } catch (e: Exception) {
+            LogUtil.e("VersionInfo", e)
+        }
+        return versionName
+    }
+
+    /**
+     * 获取版本号
+     */
+    fun getAppVersionCode(context: Context): Long {
+        var appVersionCode: Long = 0
+        try {
+            val packageName = context.packageName ?: "com.sum.tea"
+            val packageInfo = context.applicationContext
+                    .packageManager
+                    .getPackageInfo(packageName, 0)
+            appVersionCode = packageInfo.versionCode.toLong()
+        } catch (e: PackageManager.NameNotFoundException) {
+            LogUtil.e("getAppVersionCode-${e.message}")
+        }
+        return appVersionCode
     }
 
     override fun toString(): String {

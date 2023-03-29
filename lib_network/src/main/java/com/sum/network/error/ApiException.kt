@@ -1,6 +1,5 @@
-package com.sum.network
+package com.sum.network.error
 
-import com.sum.network.error.ERROR
 import java.io.IOException
 
 /**

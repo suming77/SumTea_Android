@@ -32,8 +32,11 @@ const val MAIN_ACTIVITY_HOME = "/main/activity/home"
  */
 //设置界面
 const val USER_ACTIVITY_SETTING = "/user/activity/setting"
+//设置用户信息
+const val USER_ACTIVITY_INFO = "/user/activity/info"
 //我的收藏界面
 const val USER_ACTIVITY_COLLECTION = "/user/activity/collection"
+
 /**
  * 搜索模块-搜索页面
  */
