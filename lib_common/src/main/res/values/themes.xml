@@ -48,4 +48,13 @@
         <attr name="rightIconVisible" format="boolean" />
         <attr name="showDividerLine" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="EmptyDataView">
+        <!-- 背景颜色 -->
+        <attr name="bg_color" format="color" />
+        <attr name="emptyImage" format="reference" />
+        <attr name="emptyText" format="string" />
+        <!-- 下边距 -->
+        <attr name="emptyPaddingBottom" format="dimension" />
+    </declare-styleable>
 </resources>

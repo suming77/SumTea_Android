@@ -78,7 +78,7 @@ class SumApplication : Application() {
                 .start()
 
         //等待，需要等待的方法执行完才可以往下执行
-        dispatcher.await()
+//        dispatcher.await()
         initRefreshLayout()
     }
 

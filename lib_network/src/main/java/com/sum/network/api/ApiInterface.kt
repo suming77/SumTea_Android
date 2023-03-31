@@ -3,6 +3,7 @@ package com.sum.network.api
 import com.sum.common.model.ArticleList
 import com.sum.common.model.Banner
 import com.sum.common.model.CategoryItem
+import com.sum.common.model.HotSearch
 import com.sum.common.model.ProjectSubList
 import com.sum.network.response.BaseResponse
 import com.sum.common.model.ProjectTabItem
@@ -157,7 +158,7 @@ interface ApiInterface {
     /**
      * 收藏列表中取消收藏文章
      * @param id
-     * @param originId
+     * @param originId  收藏之前的那篇文章本身的id
      */
     @POST("lg/uncollect/{id}/json")
     @FormUrlEncoded
@@ -165,4 +166,22 @@ interface ApiInterface {
         @Path("id") id: Int,
         @Field("originId") originId: Int = -1
     ): BaseResponse<Any>?
+
+    /**
+     * 搜索结果
+     * @param page   页码
+     * @param keyWord  关键词，支持多个，空格分开
+     */
+    @POST("article/query/{page}/json")
+    @FormUrlEncoded
+    suspend fun searchResult(
+        @Path("page") page: Int,
+        @Field("k") keyWord: String
+    ): BaseResponse<ArticleList>?
+
+    /**
+     * 搜索热词
+     */
+    @GET("hotkey/json")
+    suspend fun getHotSearchData(): BaseResponse<MutableList<HotSearch>>
 }

@@ -18,7 +18,7 @@ object ExceptionHandler {
         val ex: ApiException
         if (e is ApiException) {
             ex = ApiException(e.errCode, e.errMsg, e)
-            if (ex.errCode == 1001){
+            if (ex.errCode == ERROR.UNLOGIN.code){
                 //登录失效
             }
         } else if (e is NoNetWorkException) {

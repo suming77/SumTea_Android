@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
 import java.lang.reflect.ParameterizedType
 
 /**
@@ -11,7 +12,7 @@ import java.lang.reflect.ParameterizedType
  * @date   2023/2/27 12:18
  * @desc   DataBinding+ViewModel基类
  */
-abstract class BaseMvvmActivity<DB : ViewDataBinding, VM : ViewModel> : BaseDataBindActivity<DB>() {
+abstract class BaseMvvmActivity<DB : ViewBinding, VM : ViewModel> : BaseDataBindActivity<DB>() {
     lateinit var mViewModel: VM
 
     override fun onCreate(savedInstanceState: Bundle?) {

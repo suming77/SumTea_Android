@@ -7,6 +7,7 @@ import com.sum.network.error.ApiException
 import com.sum.network.response.BaseResponse
 import com.sum.network.error.ExceptionHandler
 import com.sum.network.callback.IApiErrorCallback
+import com.sum.network.error.ERROR
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -87,7 +88,11 @@ open class BaseViewModel : ViewModel() {
             e.printStackTrace()
             LogUtil.e(e)
             val exception = ExceptionHandler.handleException(e)
-            errorCall?.onError(exception.errCode, exception.errMsg)
+            if (ERROR.UNLOGIN.code == exception.errCode) {
+                errorCall?.onLoginFail(exception.errCode, exception.errMsg)
+            } else {
+                errorCall?.onError(exception.errCode, exception.errMsg)
+            }
         }
         return null
     }

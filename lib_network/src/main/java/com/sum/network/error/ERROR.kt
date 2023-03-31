@@ -76,6 +76,11 @@ enum class ERROR(val code: Int, val errMsg: String) {
     TIMEOUT_ERROR(1006, "连接超时"),
 
     /**
+     * 未登录
+     */
+    UNLOGIN(-1001, "未登录"),
+
+    /**
      * 未知Host
      */
     UNKNOW_HOST(1007, "未知Host");

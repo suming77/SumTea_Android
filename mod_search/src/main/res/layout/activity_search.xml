@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_64"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:background="@color/color_f0f2f4"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/search_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/dp_16"
+                android:paddingEnd="@dimen/dp_12"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <com.sum.framework.weights.ClearEditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_32"
+                android:drawableStart="@mipmap/ic_gary_search"
+                android:drawablePadding="@dimen/dp_4"
+                android:paddingStart="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:paddingEnd="8dp"
+                android:background="@color/white"
+                android:hint="@string/search_hint"
+                android:imeOptions="actionSearch"
+                android:maxLength="30"
+                android:focusable="true"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/color_222427"
+                android:textColorHint="@color/color_8f8e94"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/search_back"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_search"
+                tools:ignore="MissingConstraints" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_search"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_12"
+                android:background="@color/color_0165B8"
+                android:layout_width="@dimen/dp_52"
+                android:layout_height="@dimen/dp_30"
+                android:text="@string/search_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_14"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_20"
+            android:background="@color/color_f0f2f4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_search_bar" />
+
+    <com.sum.search.view.SearchHistoryView
+            android:id="@+id/view_search_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_search_bar"
+            app:title="@string/search_history" />
+
+    <com.sum.search.view.SearchHistoryView
+            android:id="@+id/view_search_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_search_history"
+            app:title="@string/search_recommend" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_Search_result"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/cl_search_bar"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+                android:id="@+id/refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white" />
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+        <com.sum.common.view.EmptyDataView
+                android:id="@+id/view_empty_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:emptyPaddingBottom="@dimen/dp_50"
+                app:emptyImage="@mipmap/ic_search_empty"
+                app:emptyText="@string/search_no_data_tips"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

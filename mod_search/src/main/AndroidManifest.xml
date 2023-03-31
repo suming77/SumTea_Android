@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.sum.search">
+
+    <application android:allowBackup="true">
+        <activity
+                android:name=".activity.SearchActivity"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="adjustPan" />
+    </application>
+</manifest>
