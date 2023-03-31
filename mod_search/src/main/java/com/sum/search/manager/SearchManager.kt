@@ -21,8 +21,8 @@ object SearchManager {
     fun saveSearchHistory(searchList: MutableList<String>) {
         val histories = getSearchHistory() ?: mutableListOf()
         histories.addAll(searchList)
-        histories.distinct()
-        mmkv.encode(SEARCH_HISTORY_INFO, searchList.toJson(true))
+        val duplicateRemoval = histories.distinct()
+        mmkv.encode(SEARCH_HISTORY_INFO, duplicateRemoval.toJson(true))
     }
 
     /**
@@ -32,8 +32,8 @@ object SearchManager {
     fun addSearchHistory(keyWord: String) {
         val histories = getSearchHistory() ?: mutableListOf()
         histories.add(keyWord)
-        histories.distinct()
-        mmkv.encode(SEARCH_HISTORY_INFO, histories.toJson())
+        val duplicateRemoval = histories.distinct()
+        mmkv.encode(SEARCH_HISTORY_INFO, duplicateRemoval.toJson())
     }
 
     /**

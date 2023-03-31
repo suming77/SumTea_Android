@@ -34,7 +34,7 @@ class MineViewModel : BaseViewModel() {
                 recommendLiveData.value = null
             }
         }, successBlock = {
-            if (it == null || it.datas.isEmpty()) {
+            if (it == null || it.datas.isNullOrEmpty()) {
                 recommendLiveData.value = null
             } else {
                 recommendLiveData.value = it.datas

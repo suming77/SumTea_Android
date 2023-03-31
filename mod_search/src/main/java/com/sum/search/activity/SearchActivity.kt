@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.sum.common.R
-import com.sum.common.model.ArticleInfo
 import com.sum.common.provider.LoginServiceProvider
+import com.sum.common.provider.MainServiceProvider
 import com.sum.framework.base.BaseMvvmActivity
 import com.sum.framework.ext.gone
 import com.sum.framework.ext.onClick
@@ -18,7 +18,6 @@ import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.ViewUtils
 import com.sum.framework.utils.dpToPx
 import com.sum.framework.utils.getColorFromResource
-import com.sum.network.error.ERROR
 import com.sum.search.SearchResultAdapter
 import com.sum.search.viewmodel.SearchViewModel
 import com.sum.search.databinding.ActivitySearchBinding
@@ -56,6 +55,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
             finish()
         }
         mBinding.tvSearch.onClick {
+            page = 0
             getSearchResult()
         }
 //        mBinding.etSearch.textChangeFlow()
@@ -99,7 +99,14 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
             adapter = mAdapter
         }
         mAdapter.onItemClickListener = { view: View, position: Int ->
-
+            val item = mAdapter.getItem(position)
+            if (item != null && !item.link.isNullOrEmpty()) {
+                MainServiceProvider.toArticleDetail(
+                    context = this,
+                    url = item.link!!,
+                    title = item.title ?: ""
+                )
+            }
         }
         mAdapter.onItemCollectListener = { _: View, position: Int ->
             if (LoginServiceProvider.isLogin()) {
@@ -112,9 +119,10 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
 
     override fun initData() {
         mViewModel.getHotSearchData().observe(this) { hotList ->
-            val list = hotList?.map { it.name }?.toMutableList()
+            val list = hotList?.map { it.name ?: "" }?.toMutableList()
             mBinding.viewSearchRecommend.setHistoryData(list)
         }
+        mBinding.viewSearchRecommend.getDeleteImageView().gone()
 
         setSearchHistory()
 

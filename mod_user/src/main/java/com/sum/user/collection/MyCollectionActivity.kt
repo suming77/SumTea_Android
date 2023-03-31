@@ -10,6 +10,7 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.common.R
 import com.sum.common.constant.USER_ACTIVITY_COLLECTION
 import com.sum.common.provider.LoginServiceProvider
+import com.sum.common.provider.MainServiceProvider
 import com.sum.framework.base.BaseMvvmActivity
 import com.sum.framework.decoration.NormalItemDecoration
 import com.sum.framework.ext.gone
@@ -46,8 +47,15 @@ class MyCollectionActivity : BaseMvvmActivity<ActivityMyCollectListBinding, MyCo
                 setLastBottom(true)
             })
         }
-        mAdapter.onItemClickListener = { view: View, position: Int ->
-
+        mAdapter.onItemClickListener = { _: View, position: Int ->
+            val item = mAdapter.getItem(position)
+            if (item != null && !item.link.isNullOrEmpty()) {
+                MainServiceProvider.toArticleDetail(
+                    context = this,
+                    url = item.link!!,
+                    title = item.title ?: ""
+                )
+            }
         }
 
         mAdapter.onItemCancelCollectListener = { view: View, position: Int ->
@@ -67,7 +75,7 @@ class MyCollectionActivity : BaseMvvmActivity<ActivityMyCollectListBinding, MyCo
         val item = mAdapter.getItem(position)
         item?.let {
             showLoading()
-            mViewModel.collectArticle(this, it.id, it.originId).observe(this) {
+            mViewModel.collectArticle(this, it.id, it.originId ?: -1).observe(this) {
                 mAdapter.removeAt(position)
                 dismissLoading()
                 TipsToast.showTips(R.string.collect_cancel)

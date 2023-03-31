@@ -9,11 +9,11 @@ import kotlinx.parcelize.Parcelize
  * @desc   体系
  */
 data class SystemList(
-    val id: Int,
-    val courseId: Int,
-    val name: String,       //一级名称
-    val children: MutableList<SystemSecondList>,
-    val visible: Int
+    val id: Int?,
+    val courseId: Int?,
+    val name: String?,       //一级名称
+    val children: MutableList<SystemSecondList>? = mutableListOf(),
+    val visible: Int?
 )
 
 /**
@@ -21,7 +21,7 @@ data class SystemList(
  */
 @Parcelize
 data class SystemSecondList(
-    val id: Int,
-    val name: String, // 二级名称
-    val visible: Int
+    val id: Int?,
+    val name: String?, // 二级名称
+    val visible: Int?
 ) : Parcelable

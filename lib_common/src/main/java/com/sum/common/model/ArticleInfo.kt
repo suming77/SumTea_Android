@@ -6,19 +6,19 @@ package com.sum.common.model
  * @desc   文章info
  */
 data class ArticleList(
-    val curPage: Int,
-    val offset: Int,
-    val size: Int,
-    val total: Int,
-    val pageCount: Int,
-    val datas: MutableList<ArticleInfo>
+    val curPage: Int? = 0,
+    val offset: Int? = 0,
+    val size: Int? = 0,
+    val total: Int? = 0,
+    val pageCount: Int? = 0,
+    val datas: MutableList<ArticleInfo>? = mutableListOf()
 )
 
 data class ArticleInfo(
     val id: Int,
     val userId: Int,
-    val courseId: Int,
-    val originId: Int,
+    val courseId: Int?,
+    val originId: Int?,
     var collect: Boolean? = false,
     val title: String?,
     val desc: String?,

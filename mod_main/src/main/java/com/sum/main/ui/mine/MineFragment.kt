@@ -13,6 +13,7 @@ import com.sum.common.constant.USER_ACTIVITY_INFO
 import com.sum.common.constant.USER_ACTIVITY_SETTING
 import com.sum.common.model.User
 import com.sum.common.provider.LoginServiceProvider
+import com.sum.common.provider.MainServiceProvider
 import com.sum.common.provider.UserServiceProvider
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.decoration.NormalItemDecoration
@@ -27,6 +28,7 @@ import com.sum.glide.setUrlCircle
 import com.sum.main.R
 import com.sum.main.databinding.FragmentMineBinding
 import com.sum.main.databinding.FragmentMineHeadBinding
+import com.sum.main.ui.ArticleDetailActivity
 import com.sum.main.ui.mine.viewmodel.MineViewModel
 import com.sum.main.ui.system.adapter.ArticleAdapter
 
@@ -152,8 +154,15 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
             })
             adapter = mAdapter
         }
-        mAdapter.onItemClickListener = { view: View, position: Int ->
-
+        mAdapter.onItemClickListener = { _: View, position: Int ->
+            val item = mAdapter.getItem(position)
+            if (item != null && !item.link.isNullOrEmpty()) {
+                MainServiceProvider.toArticleDetail(
+                    context = requireContext(),
+                    url = item.link!!,
+                    title = item.title ?: ""
+                )
+            }
         }
         mAdapter.onItemCollectListener = { _: View, position: Int ->
             if (LoginServiceProvider.isLogin()) {

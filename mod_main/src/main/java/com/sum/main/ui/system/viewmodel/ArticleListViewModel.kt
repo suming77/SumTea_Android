@@ -33,7 +33,7 @@ class ArticleListViewModel : BaseViewModel() {
                 articleListLiveData.value = null
             }
         }, successBlock = {
-            if (it == null || it.datas.isEmpty()) {
+            if (it == null || it.datas.isNullOrEmpty()) {
                 articleListLiveData.value = null
             } else {
                 articleListLiveData.value = it.datas

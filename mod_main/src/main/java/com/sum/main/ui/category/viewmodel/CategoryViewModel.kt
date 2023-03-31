@@ -29,7 +29,7 @@ class CategoryViewModel : BaseViewModel() {
                 categoryItemLiveData.value = null
             }
         }) {
-            categoryItemLiveData.value = null
+            categoryItemLiveData.value = it
         }
     }
 }

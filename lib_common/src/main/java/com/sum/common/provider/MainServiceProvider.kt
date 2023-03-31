@@ -20,6 +20,7 @@ object MainServiceProvider {
     init {
         ARouter.getInstance().inject(this)
     }
+
     /**
      * 跳转主页
      * @param context
@@ -27,5 +28,15 @@ object MainServiceProvider {
      */
     fun toMain(context: Context, index: Int = 0) {
         mainService.toMain(context, index)
+    }
+
+    /**
+     * 跳转文章详情
+     * @param context
+     * @param url 文章链接
+     * @param title 标题
+     */
+    fun toArticleDetail(context: Context, url: String, title: String) {
+        mainService.toArticleDetail(context, url, title)
     }
 }

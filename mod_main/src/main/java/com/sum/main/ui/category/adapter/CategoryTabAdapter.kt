@@ -52,7 +52,7 @@ class CategoryTabAdapter : BaseRecyclerViewAdapter<CategoryItem, LayoutCategoryT
 
         holder.binding.apply {
             tvTitle.text = item.name
-            if (item.isSelected) {
+            if (item.isSelected == true) {
                 viewTag.visible()
                 tvTitle.background = getBgDrawable(R.color.white)
                 tvTitle.typeface = Typeface.DEFAULT_BOLD

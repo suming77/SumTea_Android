@@ -1,12 +1,11 @@
 package com.sum.main.service
 
 import android.content.Context
-import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.sum.common.constant.KEY_INDEX
 import com.sum.common.constant.MAIN_SERVICE_HOME
 import com.sum.common.service.IMainService
 import com.sum.main.MainActivity
+import com.sum.main.ui.ArticleDetailActivity
 
 /**
  * @author mingyan.su
@@ -22,9 +21,17 @@ class MainService : IMainService {
      * @param index tab位置
      */
     override fun toMain(context: Context, index: Int) {
-        val intent = Intent(context, MainActivity::class.java)
-        intent.putExtra(KEY_INDEX, index)
-        context.startActivity(intent)
+        MainActivity.start(context, index)
+    }
+
+    /**
+     * 跳转主页
+     * @param context
+     * @param url
+     * @param title 标题
+     */
+    override fun toArticleDetail(context: Context, url: String, title: String) {
+        ArticleDetailActivity.start(context, url, title)
     }
 
     override fun init(context: Context?) {

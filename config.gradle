@@ -28,7 +28,8 @@ ext {
             glideVersion          : '4.15.0',
             flexboxVersion        : '3.0.0',
             aroutreApiVersion     : '1.5.2',
-            arouterCompilerVersion: '1.5.2'
+            arouterCompilerVersion: '1.5.2',
+            tbssdkVersion         : '44132'
     ]
 
     depsLibs = [
@@ -67,8 +68,9 @@ ext {
 //            rxandroid         : "io.reactivex.rxjava2:rxandroid:2.0.2",
 //
             aroutreApi        : "com.alibaba:arouter-api:${dependVersion["aroutreApiVersion"]}",
-            arouterCompiler   : "com.alibaba:arouter-compiler:${dependVersion["arouterCompilerVersion"]}"
+            arouterCompiler   : "com.alibaba:arouter-compiler:${dependVersion["arouterCompilerVersion"]}",
 
+            tbssdk            : "com.tencent.tbs:tbssdk:${dependVersion["tbssdkVersion"]}"
     ]
 
 }

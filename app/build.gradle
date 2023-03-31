@@ -96,6 +96,8 @@ dependencies {
     implementation rootProject.depsLibs.aroutreApi
     kapt rootProject.depsLibs.arouterCompiler
 
+    implementation rootProject.depsLibs.tbssdk
+
     implementation project(path: ':mod_main')
     implementation project(path: ':mod_user')
     implementation project(path: ':mod_login')

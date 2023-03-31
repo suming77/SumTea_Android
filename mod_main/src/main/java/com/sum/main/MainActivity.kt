@@ -1,5 +1,6 @@
 package com.sum.main
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.navigation.findNavController
@@ -28,6 +29,14 @@ import com.sum.stater.inittasks.InitTaskB
  */
 @Route(path = MAIN_ACTIVITY_HOME)
 class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
+
+    companion object {
+        fun start(context: Context, index: Int = 0) {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.putExtra(KEY_INDEX, index)
+            context.startActivity(intent)
+        }
+    }
 
     override fun initView(savedInstanceState: Bundle?) {
         val navView: BottomNavigationView = mBinding.navView

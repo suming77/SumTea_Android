@@ -5,6 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sum.common.constant.KEY_LIST
 import com.sum.common.model.CategorySecondItem
+import com.sum.common.provider.MainServiceProvider
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.ext.dividerGridSpace
 import com.sum.framework.ext.gone
@@ -41,8 +42,15 @@ class CategorySecondFragment : BaseMvvmFragment<FragmentCategorySecondBinding, C
             adapter = mAdapter
             dividerGridSpace(2, 8.0f, true)
         }
-        mAdapter.onItemClickListener = { view: View, position: Int ->
-            TipsToast.showTips("点击事件")
+        mAdapter.onItemClickListener = { _: View, position: Int ->
+            val item = mAdapter.getItem(position)
+            if (item != null && !item.link.isNullOrEmpty()) {
+                MainServiceProvider.toArticleDetail(
+                    context = requireContext(),
+                    url = item.link!!,
+                    title = item.title ?: ""
+                )
+            }
         }
     }
 

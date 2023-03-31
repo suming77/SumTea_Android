@@ -3,6 +3,7 @@ package com.sum.search.view
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.chip.Chip
 import com.sum.common.model.HotSearch
@@ -92,6 +93,10 @@ class SearchHistoryView @JvmOverloads constructor(
             mKeyWords.clear()
             callBack()
         }
+    }
+
+    fun getDeleteImageView(): ImageView {
+        return mBinding.ivDelete
     }
 
 }

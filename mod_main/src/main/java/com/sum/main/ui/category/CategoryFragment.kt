@@ -66,7 +66,7 @@ class CategoryFragment : BaseMvvmFragment<FragmentCategoryBinding, CategoryViewM
                 it.firstOrNull()?.isSelected = true
                 mTabAdapter.setData(it)
                 it.forEachIndexed { index, item ->
-                    val fragment = CategorySecondFragment.newInstance(item.articles.toJson(true))
+                    val fragment = CategorySecondFragment.newInstance(item.articles?.toJson(true) ?: "")
                     fragments.append(index, fragment)
                 }
                 mViewPagerAdapter?.notifyItemRangeChanged(0, it.size)

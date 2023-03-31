@@ -7,6 +7,7 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.common.constant.KEY_ID
+import com.sum.common.provider.MainServiceProvider
 import com.sum.framework.decoration.StaggeredItemDecoration
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.ext.gone
@@ -55,6 +56,16 @@ class HomeTabFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewModel
             addItemDecoration(StaggeredItemDecoration(dpToPx(10)))
             adapter = mAdapter
         }
+        mAdapter.onItemClickListener = { view, position ->
+            val item = mAdapter.getItem(position)
+            if (item != null && !item.link.isNullOrEmpty()) {
+                MainServiceProvider.toArticleDetail(
+                    context = requireContext(),
+                    url = item.link!!,
+                    title = item.title ?: ""
+                )
+            }
+        }
     }
 
     override fun initData() {
@@ -64,9 +75,9 @@ class HomeTabFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewModel
                 mAdapter.setData(it)
                 mBinding?.refreshLayout?.finishRefresh()
                 mBinding?.refreshLayout?.setEnableRefresh(false)
-                if (it.isNullOrEmpty()){
+                if (it.isNullOrEmpty()) {
                     mBinding?.viewEmptyData?.visible()
-                }else{
+                } else {
                     mBinding?.viewEmptyData?.gone()
                 }
             } else {

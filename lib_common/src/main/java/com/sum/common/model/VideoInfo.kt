@@ -6,10 +6,10 @@ package com.sum.common.model
  * @desc   视频列表信息
  */
 data class VideoInfo(
-    val title: String,
-    val desc: String,
-    val authorName: String,
-    val playUrl: String,
-    val imageUrl: String,
-    val collectionCount: String
+    val title: String?,
+    val desc: String?,
+    val authorName: String?,
+    val playUrl: String?,
+    val imageUrl: String?,
+    val collectionCount: String?
 )

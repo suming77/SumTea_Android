@@ -16,4 +16,11 @@ interface IMainService : IProvider {
      * @param index tab位置
      */
     fun toMain(context: Context, index: Int)
+
+    /**
+     * 跳转主页
+     * @param url
+     * @param title tab位置
+     */
+    fun toArticleDetail(context: Context, url: String, title: String)
 }

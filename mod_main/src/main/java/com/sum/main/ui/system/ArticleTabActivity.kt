@@ -54,7 +54,7 @@ class ArticleTabActivity : BaseDataBindActivity<ActivityArticleBinding>() {
         mBinding.titleBar.setMiddleText(data?.name)
         systemSecondList = data?.children
         systemSecondList?.forEachIndexed { index, item ->
-            mArrayTabFragments.append(index, ArticleListFragment.newInstance(item.id))
+            mArrayTabFragments.append(index, ArticleListFragment.newInstance(item.id ?: 0))
         }
         mFragmentAdapter?.setData(mArrayTabFragments)
         mFragmentAdapter?.notifyDataSetChanged()

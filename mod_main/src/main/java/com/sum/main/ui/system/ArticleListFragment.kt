@@ -8,6 +8,7 @@ import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.common.constant.KEY_ID
 import com.sum.common.provider.LoginServiceProvider
+import com.sum.common.provider.MainServiceProvider
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.decoration.NormalItemDecoration
 import com.sum.framework.toast.TipsToast
@@ -55,8 +56,15 @@ class ArticleListFragment : BaseMvvmFragment<FragmentArticleListBinding, Article
                 setLastBottom(true)
             })
         }
-        mAdapter.onItemClickListener = { view: View, position: Int ->
-
+        mAdapter.onItemClickListener = { _: View, position: Int ->
+            val item = mAdapter.getItem(position)
+            if (item != null && !item.link.isNullOrEmpty()) {
+                MainServiceProvider.toArticleDetail(
+                    context = requireContext(),
+                    url = item.link!!,
+                    title = item.title ?: ""
+                )
+            }
         }
         mAdapter.onItemCollectListener = { _: View, position: Int ->
             if (LoginServiceProvider.isLogin()) {

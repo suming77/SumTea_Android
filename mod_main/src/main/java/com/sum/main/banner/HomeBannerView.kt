@@ -3,9 +3,11 @@ package com.sum.main.banner
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.view.View
 import com.sum.banner.BannerViewPager
 import com.sum.common.holder.BannerImageHolder
 import com.sum.common.model.Banner
+import com.sum.common.provider.MainServiceProvider
 import com.sum.framework.utils.dpToPx
 
 /**
@@ -44,6 +46,19 @@ class HomeBannerView @JvmOverloads constructor(
                 .setIndicatorSliderWidth(dpToPx(6))
                 .setIndicatorSliderColor(Color.parseColor("#8F8E94"), Color.parseColor("#0165b8"))
                 .create() // 创建
+
+        mAdapter.setPageClickListener(object : OnPageClickListener {
+            override fun onPageClick(clickedView: View?, position: Int) {
+                   val item = mAdapter.getData()[position]
+                if (!item.url.isNullOrEmpty()) {
+                    MainServiceProvider.toArticleDetail(
+                        context = context,
+                        url = item.url!!,
+                        title = item.title ?: ""
+                    )
+                }
+            }
+        })
     }
 
     /**

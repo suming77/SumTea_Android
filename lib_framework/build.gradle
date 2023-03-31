@@ -41,4 +41,5 @@ dependencies {
     compileOnly rootProject.depsLibs.gson
 
     compileOnly rootProject.depsLibs.refreshLayout
+    compileOnly rootProject.depsLibs.tbssdk
 }
