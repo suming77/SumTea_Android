@@ -179,11 +179,13 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
             showLoading()
             val collect = item.collect ?: false
             mViewModel.collectArticle(item.id, collect).observe(this) {
-                val tipsRes = if (collect) R.string.collect_cancel else R.string.collect_success
-                TipsToast.showSuccessTips(tipsRes)
-                item.collect = !collect
-                mAdapter.updateItem(position, item)
                 dismissLoading()
+                it?.let {
+                    val tipsRes = if (collect) R.string.collect_cancel else R.string.collect_success
+                    TipsToast.showSuccessTips(tipsRes)
+                    item.collect = !collect
+                    mAdapter.updateItem(position, item)
+                }
             }
         }
     }

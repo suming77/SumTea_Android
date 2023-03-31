@@ -18,6 +18,7 @@ import com.sum.network.viewmodel.BaseViewModel
  */
 class MyCollectViewModel : BaseViewModel() {
     var collectListLiveData = MutableLiveData<MutableList<ArticleInfo>?>()
+    val collectLiveData: MutableLiveData<Boolean?> = MutableLiveData()
 
     /**
      * 我的收藏列表
@@ -41,21 +42,23 @@ class MyCollectViewModel : BaseViewModel() {
      * @param id  文章id
      * @param originId 收藏之前的那篇文章本身的id
      */
-    fun collectArticle(context: Context, id: Int, originId: Int): LiveData<Any?> {
-        return liveData {
-            val data = safeApiCallWithResult(errorCall = object : IApiErrorCallback {
-                override fun onError(code: Int?, error: String?) {
-                    super.onError(code, error)
-                }
-
-                override fun onLoginFail(code: Int?, error: String?) {
-                    super.onLoginFail(code, error)
-                    LoginServiceProvider.login(context)
-                }
-            }) {
-                ApiManager.api.cancelMyCollect(id, originId)
+    fun collectArticle(context: Context, id: Int, originId: Int): LiveData<Boolean?> {
+        launchUIWithResult(responseBlock = {
+            ApiManager.api.cancelMyCollect(id, originId)
+        }, errorCall = object : IApiErrorCallback {
+            override fun onError(code: Int?, error: String?) {
+                super.onError(code, error)
+                collectLiveData.value = null
             }
-            emit(data)
+
+            override fun onLoginFail(code: Int?, error: String?) {
+                super.onLoginFail(code, error)
+                collectLiveData.value = null
+                LoginServiceProvider.login(context)
+            }
+        }) {
+            collectLiveData.value = true
         }
+        return collectLiveData
     }
 }

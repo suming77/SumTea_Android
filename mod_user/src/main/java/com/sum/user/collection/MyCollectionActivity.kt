@@ -75,10 +75,12 @@ class MyCollectionActivity : BaseMvvmActivity<ActivityMyCollectListBinding, MyCo
         val item = mAdapter.getItem(position)
         item?.let {
             showLoading()
-            mViewModel.collectArticle(this, it.id, it.originId ?: -1).observe(this) {
-                mAdapter.removeAt(position)
+            mViewModel.collectArticle(this, it.id, it.originId ?: -1).observe(this) { result ->
+                if (result == true) {
+                    mAdapter.removeAt(position)
+                    TipsToast.showTips(R.string.collect_cancel)
+                }
                 dismissLoading()
-                TipsToast.showTips(R.string.collect_cancel)
             }
         }
     }

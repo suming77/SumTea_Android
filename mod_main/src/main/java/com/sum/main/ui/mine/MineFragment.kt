@@ -219,12 +219,13 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
             showLoading()
             val collect = item.collect ?: false
             mViewModel.collectArticle(requireContext(), item.id, collect).observe(this) {
-                val tipsRes =
-                    if (collect) com.sum.common.R.string.collect_cancel else com.sum.common.R.string.collect_success
-                TipsToast.showSuccessTips(tipsRes)
-                item.collect = !collect
-                mAdapter.updateItem(position, item)
                 dismissLoading()
+                it?.let {
+                    val tipsRes = if (collect) com.sum.common.R.string.collect_cancel else com.sum.common.R.string.collect_success
+                    TipsToast.showSuccessTips(tipsRes)
+                    item.collect = !collect
+                    mAdapter.updateItem(position, item)
+                }
             }
         }
     }

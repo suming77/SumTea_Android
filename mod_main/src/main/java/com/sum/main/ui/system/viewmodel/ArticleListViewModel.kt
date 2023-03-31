@@ -18,7 +18,7 @@ import com.sum.network.viewmodel.BaseViewModel
  */
 class ArticleListViewModel : BaseViewModel() {
     val articleListLiveData: MutableLiveData<MutableList<ArticleInfo>?> = MutableLiveData()
-
+    val collectLiveData: MutableLiveData<Boolean?> = MutableLiveData()
     /**
      * 项目二级列表
      * @param page  分页数量
@@ -47,29 +47,29 @@ class ArticleListViewModel : BaseViewModel() {
      * @param id  文章id
      * @param isCollect 是否收藏
      */
-    fun collectArticle(context: Context, id: Int, isCollect: Boolean): LiveData<Boolean> {
-        return liveData {
-            val data = safeApiCallWithResult(errorCall = object : IApiErrorCallback {
-                override fun onError(code: Int?, error: String?) {
-                    super.onError(code, error)
-                }
+    fun collectArticle(context: Context, id: Int, isCollect: Boolean): LiveData<Boolean?> {
+        launchUIWithResult(responseBlock = {
+            if (!isCollect) {
+                //收藏站内文章
+                ApiManager.api.collectArticle(id)
+            } else {
+                //取消收藏站内文章
+                ApiManager.api.cancelCollectArticle(id)
+            }
+        }, errorCall = object : IApiErrorCallback {
+            override fun onError(code: Int?, error: String?) {
+                super.onError(code, error)
+                collectLiveData.value = null
+            }
 
-                override fun onLoginFail(code: Int?, error: String?) {
-                    super.onError(code, error)
-                    LoginServiceProvider.login(context)
-                }
-            }) {
-                if (!isCollect) {
-                    //收藏站内文章
-                    ApiManager.api.collectArticle(id)
-                } else {
-                    //取消收藏站内文章
-                    ApiManager.api.cancelCollectArticle(id)
-                }
+            override fun onLoginFail(code: Int?, error: String?) {
+                super.onLoginFail(code, error)
+                collectLiveData.value = null
+                LoginServiceProvider.login(context)
             }
-            data?.let {
-                emit(isCollect)
-            }
+        }) {
+            collectLiveData.value = isCollect
         }
+        return collectLiveData
     }
 }

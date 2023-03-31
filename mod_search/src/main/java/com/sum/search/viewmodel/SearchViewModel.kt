@@ -17,7 +17,7 @@ import com.sum.search.SearchRepository
 class SearchViewModel : BaseViewModel() {
     val hotSearchLiveData = MutableLiveData<MutableList<HotSearch>?>()
     val searchResultLiveData = MutableLiveData<MutableList<ArticleInfo>?>()
-    val collectArticleLivedata = MutableLiveData<Any?>()
+    val collectArticleLivedata = MutableLiveData<Boolean?>()
 
     val repository by lazy { SearchRepository() }
 
@@ -59,15 +59,15 @@ class SearchViewModel : BaseViewModel() {
      * @param id  文章id
      * @param isCollect 是否收藏
      */
-    fun collectArticle(id: Int, isCollect: Boolean): LiveData<Any?> {
-        return liveData {
-            val response = safeApiCall(errorBlock = { code, error ->
-                TipsToast.showTips(error)
-            }) {
-                repository.collectArticle(id, isCollect)
-            }
-            emit(response)
-        }
+    fun collectArticle(id: Int, isCollect: Boolean): LiveData<Boolean?> {
+        launchUI(errorBlock = { code, error ->
+            TipsToast.showTips(error)
+            collectArticleLivedata.value = null
+        }, responseBlock = {
+            repository.collectArticle(id, isCollect)
+            collectArticleLivedata.value = isCollect
+        })
+        return collectArticleLivedata
     }
 
 }
