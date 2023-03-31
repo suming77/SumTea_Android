@@ -1,11 +1,14 @@
 package com.sum.main.ui.mine.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.sum.common.model.ArticleInfo
+import com.sum.common.provider.LoginServiceProvider
 import com.sum.framework.toast.TipsToast
 import com.sum.network.callback.IApiErrorCallback
+import com.sum.network.error.ERROR
 import com.sum.network.manager.ApiManager
 import com.sum.network.viewmodel.BaseViewModel
 
@@ -45,11 +48,16 @@ class MineViewModel : BaseViewModel() {
      * @param id  文章id
      * @param isCollect 是否收藏
      */
-    fun collectArticle(id: Int, isCollect: Boolean): LiveData<Boolean> {
+    fun collectArticle(context: Context, id: Int, isCollect: Boolean): LiveData<Boolean> {
         return liveData {
             val data = safeApiCallWithResult(errorCall = object : IApiErrorCallback {
                 override fun onError(code: Int?, error: String?) {
                     super.onError(code, error)
+                }
+
+                override fun onLoginFail(code: Int?, error: String?) {
+                    super.onLoginFail(code, error)
+                    LoginServiceProvider.login(context)
                 }
             }) {
                 if (!isCollect) {
@@ -60,7 +68,9 @@ class MineViewModel : BaseViewModel() {
                     ApiManager.api.cancelCollectArticle(id)
                 }
             }
-            emit(isCollect)
+            data?.let {
+                emit(isCollect)
+            }
         }
     }
 }

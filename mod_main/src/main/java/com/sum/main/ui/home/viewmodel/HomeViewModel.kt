@@ -6,6 +6,7 @@ import androidx.lifecycle.liveData
 import com.sum.common.model.ArticleList
 import com.sum.common.model.Banner
 import com.sum.common.model.HomeInfoList
+import com.sum.common.model.ProjectSubInfo
 import com.sum.common.model.ProjectSubList
 import com.sum.framework.log.LogUtil
 import com.sum.framework.toast.TipsToast
@@ -21,7 +22,7 @@ import com.sum.network.viewmodel.BaseViewModel
  * @desc   首页ViewModel
  */
 class HomeViewModel : BaseViewModel() {
-    val projectItemLiveData = MutableLiveData<ProjectSubList?>()
+    val projectItemLiveData = MutableLiveData<MutableList<ProjectSubInfo>?>()
     val bannersLiveData = MutableLiveData<MutableList<Banner>?>()
 
     val homeRepository by lazy { HomeRepository() }
@@ -76,13 +77,13 @@ class HomeViewModel : BaseViewModel() {
      * @param page
      * @param cid
      */
-    fun getProjectList(page: Int, cid: Int): LiveData<ProjectSubList?> {
+    fun getProjectList(page: Int, cid: Int): LiveData<MutableList<ProjectSubInfo>?> {
         launchUI(errorBlock = { code, errorMsg ->
             TipsToast.showTips(errorMsg)
             projectItemLiveData.value = null
         }) {
             val data = homeRepository.getProjectList(page, cid)
-            projectItemLiveData.value = data
+            projectItemLiveData.value = data?.datas
         }
         return projectItemLiveData
     }

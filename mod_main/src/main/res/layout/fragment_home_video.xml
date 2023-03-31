@@ -19,5 +19,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+        <com.sum.common.view.EmptyDataView
+                android:id="@+id/view_empty_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

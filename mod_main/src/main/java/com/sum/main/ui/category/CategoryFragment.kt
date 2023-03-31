@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.sum.framework.adapter.ViewPage2FragmentAdapter
 import com.sum.framework.base.BaseMvvmFragment
+import com.sum.framework.ext.gone
 import com.sum.framework.ext.toJson
+import com.sum.framework.ext.visible
 import com.sum.main.R
 import com.sum.main.databinding.FragmentCategoryBinding
 import com.sum.main.ui.category.adapter.CategoryTabAdapter
@@ -59,6 +61,7 @@ class CategoryFragment : BaseMvvmFragment<FragmentCategoryBinding, CategoryViewM
         mViewModel.getCategoryData()
         mViewModel.categoryItemLiveData.observe(this) {
             it?.let {
+                mBinding?.viewEmptyData?.gone()
                 //默认第一条选中
                 it.firstOrNull()?.isSelected = true
                 mTabAdapter.setData(it)
@@ -68,7 +71,7 @@ class CategoryFragment : BaseMvvmFragment<FragmentCategoryBinding, CategoryViewM
                 }
                 mViewPagerAdapter?.notifyItemRangeChanged(0, it.size)
             } ?: kotlin.run {
-                //TODO 空视图
+                mBinding?.viewEmptyData?.visible()
             }
         }
     }

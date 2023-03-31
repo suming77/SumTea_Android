@@ -11,8 +11,10 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.sum.common.constant.KEY_DATA
 import com.sum.common.model.SystemList
 import com.sum.common.model.SystemSecondList
+import com.sum.common.provider.SearchServiceProvider
 import com.sum.framework.adapter.ViewPage2FragmentAdapter
 import com.sum.framework.base.BaseDataBindActivity
+import com.sum.framework.ext.onClick
 import com.sum.framework.ext.toBeanOrNull
 import com.sum.main.databinding.ActivityArticleBinding
 
@@ -40,6 +42,9 @@ class ArticleTabActivity : BaseDataBindActivity<ActivityArticleBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         initTab()
+        mBinding.ivSearch.onClick {
+            SearchServiceProvider.toSearch(this)
+        }
     }
 
     override fun initData() {

@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/text_size_12"
+            android:textSize="@dimen/text_size_14"
             android:textColor="@color/color_222427"
             android:text="ST_Wan_Android" />
 </FrameLayout>

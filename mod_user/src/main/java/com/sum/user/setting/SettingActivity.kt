@@ -5,6 +5,7 @@ import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.sum.common.constant.USER_ACTIVITY_SETTING
 import com.sum.common.provider.LoginServiceProvider
+import com.sum.common.provider.SearchServiceProvider
 import com.sum.common.provider.UserServiceProvider
 import com.sum.framework.base.BaseDataBindActivity
 import com.sum.framework.ext.onClick
@@ -64,6 +65,7 @@ class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
             LoginServiceProvider.logout(context = this, lifecycleOwner = this){
                 CookiesManager.clearCookies()
                 UserServiceProvider.clearUserInfo()
+                SearchServiceProvider.clearSearchHistoryCache()
                 dismissLoading()
             }
         }

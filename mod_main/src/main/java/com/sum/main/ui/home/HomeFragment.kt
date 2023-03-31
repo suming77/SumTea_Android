@@ -14,9 +14,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.common.model.ProjectTabItem
+import com.sum.common.provider.SearchServiceProvider
 import com.sum.framework.adapter.ViewPage2FragmentAdapter
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.ext.gone
+import com.sum.framework.ext.onClick
 import com.sum.framework.ext.visible
 import com.sum.main.R
 import com.sum.main.databinding.FragmentHomeBinding
@@ -42,7 +44,9 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
             setEnableLoadMore(false)
             setOnRefreshListener(this@HomeFragment)
         }
-
+        mBinding?.ivSearch?.onClick {
+            SearchServiceProvider.toSearch(requireContext())
+        }
         initTab()
     }
 

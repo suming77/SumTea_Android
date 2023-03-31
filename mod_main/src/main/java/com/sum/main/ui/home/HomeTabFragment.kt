@@ -9,6 +9,8 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.common.constant.KEY_ID
 import com.sum.framework.decoration.StaggeredItemDecoration
 import com.sum.framework.base.BaseMvvmFragment
+import com.sum.framework.ext.gone
+import com.sum.framework.ext.visible
 import com.sum.framework.utils.dpToPx
 import com.sum.main.R
 import com.sum.main.databinding.FragmentHomeVideoBinding
@@ -59,11 +61,16 @@ class HomeTabFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewModel
         mId = arguments?.getInt(KEY_ID, 0)
         mViewModel.projectItemLiveData.observe(this) {
             if (mPage == 1) {
-                mAdapter.setData(it?.datas)
+                mAdapter.setData(it)
                 mBinding?.refreshLayout?.finishRefresh()
                 mBinding?.refreshLayout?.setEnableRefresh(false)
+                if (it.isNullOrEmpty()){
+                    mBinding?.viewEmptyData?.visible()
+                }else{
+                    mBinding?.viewEmptyData?.gone()
+                }
             } else {
-                mAdapter.addAll(it?.datas)
+                mAdapter.addAll(it)
                 mBinding?.refreshLayout?.finishLoadMore()
             }
         }

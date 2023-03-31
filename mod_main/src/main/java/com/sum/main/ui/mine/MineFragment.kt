@@ -8,7 +8,6 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
-import com.sum.common.constant.LOGIN_ACTIVITY_LOGIN
 import com.sum.common.constant.USER_ACTIVITY_COLLECTION
 import com.sum.common.constant.USER_ACTIVITY_INFO
 import com.sum.common.constant.USER_ACTIVITY_SETTING
@@ -17,7 +16,9 @@ import com.sum.common.provider.LoginServiceProvider
 import com.sum.common.provider.UserServiceProvider
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.decoration.NormalItemDecoration
+import com.sum.framework.ext.gone
 import com.sum.framework.ext.onClick
+import com.sum.framework.ext.visible
 import com.sum.framework.log.LogUtil
 import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.dpToPx
@@ -155,7 +156,11 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
 
         }
         mAdapter.onItemCollectListener = { _: View, position: Int ->
-            setCollectView(position)
+            if (LoginServiceProvider.isLogin()) {
+                setCollectView(position)
+            } else {
+                LoginServiceProvider.login(requireContext())
+            }
         }
     }
 
@@ -178,8 +183,9 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
             if (mPage == 0) {
                 mAdapter.setData(it)
                 if (it.isNullOrEmpty()) {
-                    //空视图
-
+                    mHeadBinding.tvRecommendTitle.gone()
+                } else {
+                    mHeadBinding.tvRecommendTitle.visible()
                 }
                 mBinding?.refreshLayout?.finishRefresh()
             } else {
@@ -203,7 +209,7 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
         data?.let { item ->
             showLoading()
             val collect = item.collect ?: false
-            mViewModel.collectArticle(item.id, collect).observe(this) {
+            mViewModel.collectArticle(requireContext(), item.id, collect).observe(this) {
                 val tipsRes =
                     if (collect) com.sum.common.R.string.collect_cancel else com.sum.common.R.string.collect_success
                 TipsToast.showSuccessTips(tipsRes)

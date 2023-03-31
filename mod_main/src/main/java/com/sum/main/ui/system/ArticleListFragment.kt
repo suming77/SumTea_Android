@@ -7,11 +7,11 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.common.constant.KEY_ID
+import com.sum.common.provider.LoginServiceProvider
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.decoration.NormalItemDecoration
 import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.dpToPx
-import com.sum.main.R
 import com.sum.main.databinding.FragmentArticleListBinding
 import com.sum.main.ui.system.adapter.ArticleAdapter
 import com.sum.main.ui.system.viewmodel.ArticleListViewModel
@@ -59,7 +59,11 @@ class ArticleListFragment : BaseMvvmFragment<FragmentArticleListBinding, Article
 
         }
         mAdapter.onItemCollectListener = { _: View, position: Int ->
-            setCollectView(position)
+            if (LoginServiceProvider.isLogin()) {
+                setCollectView(position)
+            } else {
+                LoginServiceProvider.login(requireContext())
+            }
         }
     }
 
@@ -107,7 +111,7 @@ class ArticleListFragment : BaseMvvmFragment<FragmentArticleListBinding, Article
         data?.let { item ->
             showLoading()
             val collect = item.collect ?: false
-            mViewModel.collectArticle(item.id, collect).observe(this) {
+            mViewModel.collectArticle(requireContext(), item.id, collect).observe(this) {
                 val tipsRes =
                     if (collect) com.sum.common.R.string.collect_cancel else com.sum.common.R.string.collect_success
                 TipsToast.showSuccessTips(tipsRes)

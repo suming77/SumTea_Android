@@ -289,7 +289,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_recommend"
+                android:id="@+id/tv_recommend_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_16"

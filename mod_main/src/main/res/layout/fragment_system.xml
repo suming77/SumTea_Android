@@ -27,5 +27,11 @@
                 android:background="@color/color_f0f2f4"
                 app:layout_constraintTop_toBottomOf="@+id/state_bar"
                 app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.sum.common.view.EmptyDataView
+                android:id="@+id/view_empty_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

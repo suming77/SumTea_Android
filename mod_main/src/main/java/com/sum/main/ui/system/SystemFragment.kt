@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.decoration.NormalItemDecoration
 import com.sum.framework.ext.toJson
+import com.sum.framework.ext.visible
 import com.sum.framework.utils.dpToPx
 import com.sum.main.R
 import com.sum.main.databinding.FragmentSystemBinding
@@ -44,6 +45,7 @@ class SystemFragment : BaseMvvmFragment<FragmentSystemBinding, SystemViewModel>(
         }
         mViewModel.errorListLiveData.observe(this) {
             //空数据视图
+            mBinding?.viewEmptyData?.visible()
         }
     }
 }

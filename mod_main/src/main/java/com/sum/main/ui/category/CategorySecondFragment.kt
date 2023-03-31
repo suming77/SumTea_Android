@@ -7,7 +7,9 @@ import com.sum.common.constant.KEY_LIST
 import com.sum.common.model.CategorySecondItem
 import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.ext.dividerGridSpace
+import com.sum.framework.ext.gone
 import com.sum.framework.ext.toBeanOrNull
+import com.sum.framework.ext.visible
 import com.sum.framework.toast.TipsToast
 import com.sum.main.R
 import com.sum.main.databinding.FragmentCategorySecondBinding
@@ -48,5 +50,10 @@ class CategorySecondFragment : BaseMvvmFragment<FragmentCategorySecondBinding, C
         val listJson = arguments?.getString(KEY_LIST, "")
         val list = listJson?.toBeanOrNull<MutableList<CategorySecondItem>>()
         mAdapter.setData(list)
+        if (list.isNullOrEmpty()) {
+            mBinding?.viewEmptyData?.visible()
+        } else {
+            mBinding?.viewEmptyData?.gone()
+        }
     }
 }

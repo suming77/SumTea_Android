@@ -42,5 +42,10 @@
                     android:layout_weight="2" />
         </LinearLayout>
 
+        <com.sum.common.view.EmptyDataView
+                android:id="@+id/view_empty_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
