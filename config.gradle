@@ -8,10 +8,10 @@ ext {
     android = [
             applicationId    : "com.sum.tea",
 
-            compileSdk       : 32,
+            compileSdk       : 33,
             buildToolsVersion: '32.0.0',
             minSdk           : 21,
-            targetSdk        : 32,
+            targetSdk        : 33,
 
             versionCode      : 1,
             versionName      : "1.0.1",
@@ -29,7 +29,8 @@ ext {
             flexboxVersion        : '3.0.0',
             aroutreApiVersion     : '1.5.2',
             arouterCompilerVersion: '1.5.2',
-            tbssdkVersion         : '44132'
+            tbssdkVersion         : '44132',
+            exoPlayerVersion      : '2.18.5',
     ]
 
     depsLibs = [
@@ -47,12 +48,15 @@ ext {
             espressoCore      : 'androidx.test.espresso:espresso-core:3.4.0',
 
             multidex          : "androidx.multidex:multidex:${dependVersion["multidexVersion"]}",
+            //网络请求
             retrofit2         : "com.squareup.retrofit2:retrofit:${dependVersion["retrofitVersion"]}",
             retrofit2Gson     : "com.squareup.retrofit2:converter-gson:${dependVersion["retrofitGsonVersion"]}",
+            //日志打印
             loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${dependVersion["okhttp3LogVersion"]}",
 
             gson              : "com.google.code.gson:gson:${dependVersion["gsonVersion"]}",
 //            xlog              : "com.tencent.mars:mars-xlog:1.2.5",
+            //数据存储
             mmkv              : "com.tencent:mmkv:${dependVersion["mmkvVersion"]}",
 
             //下拉刷新
@@ -60,17 +64,24 @@ ext {
             refreshHeader     : "io.github.scwang90:refresh-header-classics:${dependVersion["refreshVersion"]}",
             refreshFooter     : "io.github.scwang90:refresh-footer-classics:${dependVersion["refreshVersion"]}",
 
+            //图片加载
             glide             : "com.github.bumptech.glide:glide:${dependVersion["glideVersion"]}",
             glideCompiler     : "com.github.bumptech.glide:compiler:${dependVersion["glideVersion"]}",
 
+            //流式布局
             flexbox           : "com.google.android.flexbox:flexbox:${dependVersion["flexboxVersion"]}",
 //            rxjava            : "io.reactivex.rxjava3:rxjava:3.0.6",
 //            rxandroid         : "io.reactivex.rxjava2:rxandroid:2.0.2",
 //
+            //路由
             aroutreApi        : "com.alibaba:arouter-api:${dependVersion["aroutreApiVersion"]}",
             arouterCompiler   : "com.alibaba:arouter-compiler:${dependVersion["arouterCompilerVersion"]}",
 
-            tbssdk            : "com.tencent.tbs:tbssdk:${dependVersion["tbssdkVersion"]}"
+            //腾讯X5
+            tbssdk            : "com.tencent.tbs:tbssdk:${dependVersion["tbssdkVersion"]}",
+
+            //ExoPlayer播放器
+            exoPlayer         : "com.google.android.exoplayer:exoplayer:${dependVersion["exoPlayerVersion"]}"
     ]
 
 }

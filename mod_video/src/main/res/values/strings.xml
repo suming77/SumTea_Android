@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="video_play_error">播放错误，请稍后重试~</string>
+    <string name="video_error_retry">出了点小问题，请稍后重试~</string>
+    <string name="video_retry">重试</string>
+</resources>

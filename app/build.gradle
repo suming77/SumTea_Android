@@ -97,11 +97,13 @@ dependencies {
     kapt rootProject.depsLibs.arouterCompiler
 
     implementation rootProject.depsLibs.tbssdk
+    implementation rootProject.depsLibs.exoPlayer
 
     implementation project(path: ':mod_main')
     implementation project(path: ':mod_user')
     implementation project(path: ':mod_login')
     implementation project(path: ':mod_search')
+    implementation project(path: ':mod_video')
     implementation project(path: ':lib_framework')
     implementation project(path: ':lib_network')
     implementation project(path: ':lib_common')

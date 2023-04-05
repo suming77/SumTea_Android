@@ -42,7 +42,10 @@ const val USER_ACTIVITY_COLLECTION = "/user/activity/collection"
  */
 const val SEARCH_ACTIVITY_SEARCH = "/search/activity/search"
 
-
+/**
+ * 视频模块
+ */
+const val VIDEO_ACTIVITY_PLAYER = "/video/activity/player"
 
 //**********************服务相关**********************
 

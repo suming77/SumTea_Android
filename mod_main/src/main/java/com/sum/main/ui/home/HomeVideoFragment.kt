@@ -3,6 +3,9 @@ package com.sum.main.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
+import com.sum.common.constant.KEY_VIDEO_PLAY_LIST
+import com.sum.common.constant.VIDEO_ACTIVITY_PLAYER
 import com.sum.framework.decoration.StaggeredItemDecoration
 import com.sum.common.model.VideoInfo
 import com.sum.framework.base.BaseMvvmFragment
@@ -11,6 +14,7 @@ import com.sum.main.R
 import com.sum.main.databinding.FragmentHomeVideoBinding
 import com.sum.main.ui.home.adapter.HomeVideoItemAdapter
 import com.sum.main.ui.home.viewmodel.HomeViewModel
+import java.util.ArrayList
 
 /**
  * @author mingyan.su
@@ -113,6 +117,12 @@ class HomeVideoFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewMod
             adapter = videoAdapter
         }
         videoAdapter.setData(list)
+
+        videoAdapter.onItemClickListener = { view: View, position: Int ->
+            ARouter.getInstance().build(VIDEO_ACTIVITY_PLAYER)
+                    .withParcelableArrayList(KEY_VIDEO_PLAY_LIST, list as ArrayList<VideoInfo>)
+                    .navigation()
+        }
     }
 
 

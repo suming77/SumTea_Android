@@ -34,7 +34,7 @@ abstract class BaseRecyclerViewAdapter<T, B : ViewBinding> : RecyclerView.Adapte
     /**
      * Item点击事件监听
      */
-    var onItemClickListener: ((view: View, position: Int) -> Unit?)? = null
+    var onItemClickListener: ((view: View, position: Int) -> Unit)? = null
 
     /**
      * Item长按事件监听

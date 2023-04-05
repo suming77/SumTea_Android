@@ -12,6 +12,8 @@ import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.sum.common.constant.LOGIN_ACTIVITY_REGISTER
 import com.sum.common.provider.MainServiceProvider
 import com.sum.common.provider.UserServiceProvider
 import com.sum.framework.base.BaseMvvmActivity
@@ -29,6 +31,7 @@ import com.sum.login.databinding.ActivityRegisterBinding
  * @date   2023/3/24 18:24
  * @desc   注册
  */
+@Route(path = LOGIN_ACTIVITY_REGISTER)
 class RegisterActivity : BaseMvvmActivity<ActivityRegisterBinding, LoginViewModel>() {
 
     companion object {

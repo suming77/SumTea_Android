@@ -5,9 +5,11 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.sum.common.R
+import com.sum.common.constant.SEARCH_ACTIVITY_SEARCH
 import com.sum.common.provider.LoginServiceProvider
 import com.sum.common.provider.MainServiceProvider
 import com.sum.framework.base.BaseMvvmActivity
@@ -28,6 +30,7 @@ import com.sum.search.manager.SearchManager
  * @date   2023/3/29 18:14
  * @desc   搜索Activity
  */
+@Route(path = SEARCH_ACTIVITY_SEARCH)
 class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(), OnLoadMoreListener {
     private var page = 0
     private lateinit var mAdapter: SearchResultAdapter

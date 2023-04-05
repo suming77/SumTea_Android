@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/out_side_cl"
+        android:layout_width="94dp"
+        android:layout_height="59dp">
+
+        <RelativeLayout
+            android:id="@+id/music_button_mb_rl"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/ic_head_record"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/music_info_iv"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/default_video_head" />
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/note_quaver_1"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_below="@+id/music_button_mb_rl"
+            android:layout_marginLeft="70dp"
+            android:src="@mipmap/ic_music_one"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/note_quaver_2"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_below="@+id/music_button_mb_rl"
+            android:layout_marginLeft="70dp"
+            android:background="@mipmap/ic_music_two"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/note_quaver_3"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_below="@+id/music_button_mb_rl"
+            android:layout_marginLeft="70dp"
+            android:background="@mipmap/ic_music_one"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/note_quaver_4"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_below="@+id/music_button_mb_rl"
+            android:layout_marginLeft="70dp"
+            android:background="@mipmap/ic_music_two"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+</merge>
