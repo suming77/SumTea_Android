@@ -10,14 +10,16 @@ import android.text.method.LinkMovementMethod
 import android.text.method.PasswordTransformationMethod
 import android.text.style.ClickableSpan
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.sum.common.constant.LOGIN_ACTIVITY_LOGIN
-import com.sum.common.provider.MainServiceProvider
 import com.sum.common.provider.UserServiceProvider
 import com.sum.framework.base.BaseMvvmActivity
 import com.sum.framework.ext.onClick
+import com.sum.framework.ext.textChangeFlow
 import com.sum.framework.log.LogUtil
 import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.getColorFromResource
@@ -25,6 +27,11 @@ import com.sum.framework.utils.getStringFromResource
 import com.sum.login.R
 import com.sum.login.databinding.ActivityLoginBinding
 import com.sum.login.register.RegisterActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 /**
  * @author mingyan.su
@@ -72,6 +79,40 @@ class LoginActivity : BaseMvvmActivity<ActivityLoginBinding, LoginViewModel>() {
         mBinding.tvRegister.onClick {
             RegisterActivity.start(this)
         }
+
+        setEditTextChange(mBinding.etPhone)
+        setEditTextChange(mBinding.etPassword)
+        mBinding.cbAgreement.setOnCheckedChangeListener { _, _ ->
+            updateLoginState()
+        }
+    }
+
+    /**
+     * 更新登录按钮状态
+     */
+    private fun updateLoginState() {
+        val phone = mBinding.etPhone.text.toString()
+        val phoneEnable = !phone.isNullOrEmpty() && phone.length == 11
+        val password = mBinding.etPassword.text.toString()
+        val passwordEnable = !password.isNullOrEmpty()
+        val agreementEnable = mBinding.cbAgreement.isChecked
+
+        mBinding.tvLogin.isSelected = phoneEnable && passwordEnable && agreementEnable
+    }
+
+    /**
+     * 监听EditText文本变化
+     */
+    private fun setEditTextChange(editText: EditText) {
+        editText.textChangeFlow()
+//                .filter { it.isNotEmpty() }
+                .debounce(300)
+                //.flatMapLatest { searchFlow(it.toString()) }
+                .flowOn(Dispatchers.IO)
+                .onEach {
+                    updateLoginState()
+                }
+                .launchIn(lifecycleScope)
     }
 
     /**

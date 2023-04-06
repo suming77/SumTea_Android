@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.sum.search">
 
-    <application android:allowBackup="true">
+    <application android:allowBackup="false">
         <activity
                 android:name=".activity.SearchActivity"
                 android:launchMode="singleTop"
