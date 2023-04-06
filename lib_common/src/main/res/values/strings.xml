@@ -8,6 +8,7 @@
     <string name="default_developing">正在开发中....</string>
     <string name="default_loading">正在加载....</string>
     <string name="default_no_data">暂无数据</string>
+    <string name="default_agree_permission">请授权相关权限后再使用</string>
 
     <string name="login_know_more_android">登录后了解更多Android技术</string>
 

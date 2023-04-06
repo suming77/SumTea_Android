@@ -1,5 +1,6 @@
 package com.sum.main.ui.home
 
+import android.Manifest
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -9,11 +10,13 @@ import com.sum.common.constant.VIDEO_ACTIVITY_PLAYER
 import com.sum.framework.decoration.StaggeredItemDecoration
 import com.sum.common.model.VideoInfo
 import com.sum.framework.base.BaseMvvmFragment
+import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.dpToPx
 import com.sum.main.R
 import com.sum.main.databinding.FragmentHomeVideoBinding
 import com.sum.main.ui.home.adapter.HomeVideoItemAdapter
 import com.sum.main.ui.home.viewmodel.HomeViewModel
+import com.tbruyelle.rxpermissions3.RxPermissions
 import java.util.ArrayList
 
 /**
@@ -55,7 +58,7 @@ class HomeVideoFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewMod
             "早餐营养吐司",
             "营养早餐牛奶吐司……",
             "江南皮革厂",
-            "https://vdn1.vzuu.com/HD/c8af2fd6-438d-11eb-991f-da1190f1515e.mp4",
+            "https://vdn1.vzuu.com/HD/c8af2fd6-438d-11eb-991f-da1190f15.mp4",
             "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.alicdn.com%2Fbao%2Fuploaded%2Fi1%2F52353880%2FO1CN0182xqN91eX5I4APE7S-52353880.jpg&refer=http%3A%2F%2Fimg.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1661768404&t=21d529ab25637dc1f1d40af384b00ec1",
             "48"
         )
@@ -119,9 +122,18 @@ class HomeVideoFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewMod
         videoAdapter.setData(list)
 
         videoAdapter.onItemClickListener = { view: View, position: Int ->
-            ARouter.getInstance().build(VIDEO_ACTIVITY_PLAYER)
-                    .withParcelableArrayList(KEY_VIDEO_PLAY_LIST, list as ArrayList<VideoInfo>)
-                    .navigation()
+            RxPermissions(this).request(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ).subscribe { granted ->
+                if (granted) {
+                    ARouter.getInstance().build(VIDEO_ACTIVITY_PLAYER)
+                            .withParcelableArrayList(KEY_VIDEO_PLAY_LIST, list as ArrayList<VideoInfo>)
+                            .navigation()
+                } else {
+                    TipsToast.showTips(com.sum.common.R.string.default_agree_permission)
+                }
+            }
         }
     }
 

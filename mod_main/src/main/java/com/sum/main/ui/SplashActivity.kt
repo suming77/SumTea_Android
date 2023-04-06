@@ -27,6 +27,7 @@ class SplashActivity : BaseDataBindActivity<ActivitySplashBinding>() {
             mBinding.tvSkip.text = getString(R.string.splash_time, it.plus(1).toString())
         }) {
             MainServiceProvider.toMain(this)
+            finish()
         }
     }
 }

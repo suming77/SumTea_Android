@@ -1,10 +1,8 @@
 package com.sum.video
 
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -63,7 +61,7 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
     private var mPlayingPosition = 0
 
     //当前播放URL
-    private var mPlayUrl = ""
+    private var mPlayUrl: String? = null
 
     //自动播放
     private val mStartAutoPlay = true
@@ -102,30 +100,6 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
             mExoPlayer?.prepare()
         }
         ViewUtils.setClipViewCornerRadius(mBinding.tvRetry, dpToPx(4))
-    }
-
-    private fun requestPermission() {
-        //申请权限授权
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(
-                android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ),
-            100
-        )
-
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 100) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //申请权限成功
-            } else {
-                //权限被拒绝
-            }
-        }
     }
 
     private fun initRecyclerView() {
@@ -268,7 +242,6 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
      */
     private val onScrollPagerListener = object : OnViewPagerListener {
         override fun onInitComplete(view: View?) {
-            LogUtil.i("onInitComplete===${this@VideoPlayActivity.mPlayingPosition}", tag = TAG)
             startPlay(0, view)
         }
 
@@ -278,14 +251,14 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
             //TODO
             val rotateNoteView = view?.findViewById<RotateNoteView>(R.id.rotate_note_view)
             rotateNoteView?.stopAnim()
-            mExoPlayer?.removeListener(playerBackListener)
+//            mExoPlayer?.removeListener(playerBackListener)
         }
 
         override fun onPageSelected(position: Int, isBottom: Boolean, view: View?) {
             LogUtil.i("onPageSelected===$position | $isBottom | ${mAdapter.itemCount}", tag = TAG)
             if (position <= 0 || position >= mAdapter.itemCount) return
-            if (position == this@VideoPlayActivity.mPlayingPosition) return
-            this@VideoPlayActivity.mPlayingPosition = position
+            if (position == mPlayingPosition) return
+            mPlayingPosition = position
             startPlay(position, view)
         }
     }
@@ -297,41 +270,43 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
      */
     private fun startPlay(position: Int, view: View?) {
         //播放器视图
-        LogUtil.i("startPlay", tag = TAG)
         if (view == null) return
         val item = mAdapter.getItem(position)
         if (item == null || item.playUrl?.isEmpty() == true) return
         showErrorView(false)
-        showLoading()
-        LogUtil.i("startPlay == null", tag = TAG)
         // //如果父容器不等于this,则把playView添加进去
         //parent如果不为空则是被添加到别的容器中了，需要移除
         (mPlayView?.parent as? FrameLayout)?.removeAllViews()
         val frameLayout = view.findViewById<FrameLayout>(R.id.fl_container)
         mRotateNoteView = view.findViewById<RotateNoteView>(R.id.rotate_note_view)
         mRotateNoteView?.initAnimator()
+        mRotateNoteView?.startAnim()
+        //添加播放器
         frameLayout.addView(mPlayView)
 
         //判断当前播放的和即将播放的是否同一个媒体资源
-//        val = mVideoUrl
-//        if (TextUtils.equals(playUrl, mVideoUrl)) {
-//
-//        } else {
-        val mediaSource: MediaSource =
-            mMediaSource.createMediaSource(MediaItem.fromUri(item.playUrl ?: ""))
-        //设置ExoPlayer需要播放的多媒体item
-        mExoPlayer?.setMediaSource(mediaSource)
+        //如果是同一个视频资源,则不需要从重新创建mediaSource
+        if (mPlayUrl == item.playUrl) {
+
+        } else {
+            showLoading()
+            LogUtil.i("position:$position, playUrl:${item.playUrl}", tag = TAG)
+            val mediaSource: MediaSource =
+                mMediaSource.createMediaSource(MediaItem.fromUri(item.playUrl ?: ""))
+            //设置ExoPlayer需要播放的多媒体item
+            mExoPlayer?.setMediaSource(mediaSource)
+            mExoPlayer?.prepare()
+
 //        //构建媒体播放的一个Item， 一个item就是一个播放的多媒体文件
 //        val mediaItem = MediaItem.fromUri("https://vdn1.vzuu.com/HD/c8af2fd6-438d-11eb-991f-da1190f1515e.mp4")
 //        //设置ExoPlayer需要播放的多媒体item
 //        mExoPlayer?.setMediaItem(mediaItem)
-        mExoPlayer?.repeatMode = Player.REPEAT_MODE_ONE //无限循环
-//            playUrl = mVideoUrl
-//        }
 
-        //如果是同一个视频资源,则不需要从重新创建mediaSource。
-        //但需要onPlayerStateChanged 否则不会触发onPlayerStateChanged()
-        mExoPlayer?.addListener(playerBackListener)
+            mExoPlayer?.repeatMode = Player.REPEAT_MODE_ONE //无限循环
+            mPlayUrl = item.playUrl
+            //但需要onPlayerStateChanged 否则不会触发onPlayerStateChanged()
+            mExoPlayer?.addListener(playerBackListener)
+        }
 
         mExoPlayer?.playWhenReady = true//资源缓冲好后立马播放
     }
@@ -344,17 +319,26 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
          * 播放状态改变
          */
         override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
-            LogUtil.i("playWhenReady == $playWhenReady | playbackState:$playbackState", tag = TAG)
-            dismissLoading()
+            LogUtil.i("onPlayerStateChanged playWhenReady == $playWhenReady | playbackState:$playbackState", tag = TAG)
             //判断当前视屏是否已经准备好
-            val mIsPlaying =
-                playbackState == Player.STATE_READY && mExoPlayer?.bufferedPosition != 0L && playWhenReady
-            if (playbackState == Player.STATE_IDLE) {//播放错误
-                mBinding.ivVideoPause.gone()
-            } else if (playbackState == Player.STATE_BUFFERING) {//缓冲中
-//                    mBuffer.setVisibility(View.VISIBLE)
-            } else if (mIsPlaying) {//播放中
-                mBinding.ivVideoPause.visibility = if (mIsPlaying) View.GONE else View.VISIBLE
+            val mIsPlaying = mExoPlayer?.bufferedPosition != 0L && playWhenReady
+            when (playbackState) {
+                Player.STATE_IDLE -> {//播放错误
+                    mBinding.ivVideoPause.gone()
+                    dismissLoading()
+                }
+                Player.STATE_BUFFERING -> {//缓冲中
+                    // mBuffer.setVisibility(View.VISIBLE)
+                    showLoading()
+                }
+                Player.STATE_READY -> {//准备完毕，开始播放
+                    dismissLoading()
+                    //播放中
+                    mBinding.ivVideoPause.visibility = if (mIsPlaying) View.GONE else View.VISIBLE
+                }
+                Player.STATE_ENDED -> {//播放完成，无限循环模式则不会回调这里
+                    //播放完成
+                }
             }
         }
 
@@ -370,7 +354,7 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
                 mRotateNoteView?.pauseAnim()
 //                mBinding.ivVideoPause.visible()
             }
-            LogUtil.i("isPlaying == $isPlaying ", tag = TAG)
+            LogUtil.i("onIsPlayingChanged isPlaying == $isPlaying ", tag = TAG)
         }
 
         /**
@@ -403,7 +387,7 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
      * 释放视频播放资源
      */
     private fun releasePlayer() {
-        //是否mExoPlayer资源
+        //清理ExoPlayer资源
         mExoPlayer?.apply {
             playWhenReady = false
             stop()
@@ -415,7 +399,7 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
         mPlayView?.adViewGroup?.removeAllViews()
         mPlayView?.player = null
         mPlayView = null
-        //清楚动画
+        //清除动画
         mRotateNoteView?.stopAnim()
         mRotateNoteView = null
         //清理缓存

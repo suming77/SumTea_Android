@@ -99,6 +99,10 @@ dependencies {
     implementation rootProject.depsLibs.tbssdk
     implementation rootProject.depsLibs.exoPlayer
 
+    implementation rootProject.depsLibs.rxPermission
+    implementation rootProject.depsLibs.rxjava
+    implementation rootProject.depsLibs.rxandroid
+
     implementation project(path: ':mod_main')
     implementation project(path: ':mod_user')
     implementation project(path: ':mod_login')

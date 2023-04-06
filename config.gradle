@@ -7,11 +7,11 @@ ext {
 
     android = [
             applicationId    : "com.sum.tea",
-
+            //使用exoPlayer编译版本需要到33，而33中有bug,xml写代码没有代码提示
             compileSdk       : 33,
             buildToolsVersion: '32.0.0',
             minSdk           : 21,
-            targetSdk        : 33,
+            targetSdk        : 32,
 
             versionCode      : 1,
             versionName      : "1.0.1",
@@ -31,6 +31,7 @@ ext {
             arouterCompilerVersion: '1.5.2',
             tbssdkVersion         : '44132',
             exoPlayerVersion      : '2.18.5',
+            permissionsVersion    : '0.12',
     ]
 
     depsLibs = [
@@ -70,8 +71,6 @@ ext {
 
             //流式布局
             flexbox           : "com.google.android.flexbox:flexbox:${dependVersion["flexboxVersion"]}",
-//            rxjava            : "io.reactivex.rxjava3:rxjava:3.0.6",
-//            rxandroid         : "io.reactivex.rxjava2:rxandroid:2.0.2",
 //
             //路由
             aroutreApi        : "com.alibaba:arouter-api:${dependVersion["aroutreApiVersion"]}",
@@ -81,7 +80,12 @@ ext {
             tbssdk            : "com.tencent.tbs:tbssdk:${dependVersion["tbssdkVersion"]}",
 
             //ExoPlayer播放器
-            exoPlayer         : "com.google.android.exoplayer:exoplayer:${dependVersion["exoPlayerVersion"]}"
+            exoPlayer         : "com.google.android.exoplayer:exoplayer:${dependVersion["exoPlayerVersion"]}",
+
+            //权限处理
+            rxPermission      : "com.github.tbruyelle:rxpermissions:${dependVersion["permissionsVersion"]}",
+            rxjava            : "io.reactivex.rxjava3:rxjava:3.0.6",
+            rxandroid         : "io.reactivex.rxjava2:rxandroid:2.1.1",
     ]
 
 }
