@@ -14,6 +14,7 @@ import com.sum.room.entity.VideoInfo
  * @author mingyan.su
  * @date   2023/4/11 15:29
  * @desc   定义数据操作的方法，增删改查 一般为interface
+ * 注意:下面的函数确保要正确，否则会出现不可预知问题
  */
 @Dao
 interface VideoListCacheDao {

@@ -58,8 +58,10 @@ class CategoryFragment : BaseMvvmFragment<FragmentCategoryBinding, CategoryViewM
     }
 
     override fun initData() {
+        showLoading()
         mViewModel.getCategoryData()
         mViewModel.categoryItemLiveData.observe(this) {
+            dismissLoading()
             it?.let {
                 mBinding?.viewEmptyData?.gone()
                 //默认第一条选中
