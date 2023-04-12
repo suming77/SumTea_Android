@@ -3,11 +3,11 @@ package com.sum.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sum.common.constant.KEY_INDEX
 import com.sum.common.constant.MAIN_ACTIVITY_HOME
 import com.sum.framework.base.BaseDataBindActivity
@@ -29,6 +29,8 @@ import com.sum.stater.inittasks.InitTaskB
 @Route(path = MAIN_ACTIVITY_HOME)
 class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
 
+    private lateinit var navController: NavController
+
     companion object {
         fun start(context: Context, index: Int = 0) {
             val intent = Intent(context, MainActivity::class.java)
@@ -38,9 +40,10 @@ class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        val navView: BottomNavigationView = mBinding.navView
+        setTheme(R.style.AppTheme)
+        val navView = mBinding.navView
         //1.寻找出路由控制器对象，它是路由跳转的唯一入口，找到宿主NavHostFragment
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        navController = findNavController(R.id.nav_host_fragment_activity_main)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         //2.自定义FragmentNavigator，mobile_navigation.xml文件中的fragment标识改为SumFragmentNavigator的sumFragment
@@ -49,7 +52,6 @@ class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
         navController.navigatorProvider.addNavigator(fragmentNavigator)
         //4.设置Graph，需要将activity_main.xml文件中的app:navGraph="@navigation/mobile_navigation"移除
         navController.setGraph(R.navigation.mobile_navigation)
-
         //5.将NavController和BottomNavigationView绑定，形成联动效果
         navView.setupWithNavController(navController)
 
@@ -61,8 +63,7 @@ class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
         super.onNewIntent(intent)
         intent?.let {
             val index = intent.getIntExtra(KEY_INDEX, 0)
-            val navController = findNavController(R.id.nav_host_fragment_activity_main)
-            navController.navigate(R.id.navi_home)
+//            navController.navigate(R.id.navi_home)
             LogUtil.e("onNewIntent:index:$index", tag = "smy")
         }
     }

@@ -28,7 +28,6 @@ import com.sum.glide.setUrlCircle
 import com.sum.main.R
 import com.sum.main.databinding.FragmentMineBinding
 import com.sum.main.databinding.FragmentMineHeadBinding
-import com.sum.main.ui.ArticleDetailActivity
 import com.sum.main.ui.mine.viewmodel.MineViewModel
 import com.sum.main.ui.system.adapter.ArticleAdapter
 

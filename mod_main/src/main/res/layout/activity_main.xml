@@ -41,7 +41,7 @@
         <!--app:navGraph="@navigation/mobile_navigation" 防止重走生命周期，通过代码加载-->
         <fragment
                 android:id="@+id/nav_host_fragment_activity_main"
-                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:name="com.sum.main.navigator.WindowNavHostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:defaultNavHost="true"
