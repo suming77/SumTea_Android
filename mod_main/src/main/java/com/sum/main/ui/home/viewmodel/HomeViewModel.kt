@@ -1,20 +1,20 @@
 package com.sum.main.ui.home.viewmodel
 
+import android.content.res.AssetManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import com.sum.common.constant.FILE_VIDEO_LIST
 import com.sum.common.model.ArticleList
 import com.sum.common.model.Banner
-import com.sum.common.model.HomeInfoList
 import com.sum.common.model.ProjectSubInfo
-import com.sum.common.model.ProjectSubList
-import com.sum.framework.log.LogUtil
 import com.sum.framework.toast.TipsToast
 import com.sum.main.repository.HomeRepository
-import com.sum.network.callback.IApiErrorCallback
-import com.sum.network.manager.ApiManager
 import com.sum.common.model.ProjectTabItem
+import com.sum.main.ParseFileUtils
 import com.sum.network.viewmodel.BaseViewModel
+import com.sum.room.entity.VideoInfo
+import com.sum.room.manager.VideoCacheManager
 
 /**
  * @author mingyan.su
@@ -89,35 +89,24 @@ class HomeViewModel : BaseViewModel() {
     }
 
     /**
-     * 首页Project tab
+     * 首页视频列表
      */
-//    fun getProjectTab(): LiveData<MutableList<ProjectTabItem>?> {
-//        launchUIWithResult(responseBlock = {
-//            ApiManager.api.getProjectTab()
-//        }, errorCall = object : IApiErrorCallback {
-//            override fun onError(code: Int?, error: String?) {
-//                super.onError(code, error)
-//                TipsToast.showTips(error)
-//                projectTabLiveData.value = null
-//            }
-//        }) {
-//            projectTabLiveData.value = it
-//        }
-//        return projectTabLiveData
-//    }
+    fun getVideoList(assetManager: AssetManager): LiveData<MutableList<VideoInfo>?> {
+        return liveData {
+            val response = safeApiCall(errorBlock = { code, errorMsg ->
+                TipsToast.showTips(errorMsg)
+            }) {
+                var list = homeRepository.getVideoListCache()
+                //缓存为空则创建视频数据
+                if (list.isNullOrEmpty()) {
+                    list = ParseFileUtils.parseAssetsFile(assetManager, FILE_VIDEO_LIST)
+                    VideoCacheManager.saveVideoList(list)
+                }
+                list
+            }
 
-//    fun getBannerList4(): LiveData<MutableList<ProjectTabItem>> {
-//        return liveData {
-//            val data = safeApiCallWithResult(errorCall = object : IApiErrorCallback {
-//                override fun onError(code: Int?, error: String?) {
-//                    TipsToast.showTips(error)
-//                }
-//            }) {
-//                ApiManager.api.getTabData()
-//            }
-//            data?.let {
-//                emit(it)
-//            }
-//        }
-//    }
+            emit(response)
+        }
+    }
+
 }

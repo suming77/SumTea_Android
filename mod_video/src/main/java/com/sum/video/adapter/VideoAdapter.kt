@@ -2,11 +2,11 @@ package com.sum.video.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.sum.common.model.VideoInfo
 import com.sum.framework.adapter.BaseBindViewHolder
 import com.sum.framework.adapter.BaseRecyclerViewAdapter
 import com.sum.framework.ext.onClick
 import com.sum.framework.toast.TipsToast
+import com.sum.room.entity.VideoInfo
 import com.sum.video.databinding.LayoutVideoItemBinding
 
 /**
@@ -29,6 +29,11 @@ class VideoAdapter : BaseRecyclerViewAdapter<VideoInfo, LayoutVideoItemBinding>(
         item: VideoInfo?,
         position: Int
     ) {
+        item?.let {
+            holder.binding.tvAuthor.text = "@${it.authorName}"
+            holder.binding.tvTitle.text = it.title + it.desc
+        }
+
         holder.binding.rotateNoteView.initAnimator()
         holder.binding.includeVideoAction.tvLike.text = "10"
         holder.binding.includeVideoAction.tvComment.text = "24"

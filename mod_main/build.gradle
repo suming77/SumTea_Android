@@ -79,5 +79,6 @@ dependencies {
     compileOnly project(path: ':lib_stater')
     compileOnly project(path: ':lib_banner')
     compileOnly project(path: ':lib_glide')
+    compileOnly project(path: ':lib_room')
 
 }

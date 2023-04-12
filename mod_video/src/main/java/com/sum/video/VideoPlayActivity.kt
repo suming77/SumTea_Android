@@ -31,7 +31,6 @@ import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvicto
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.sum.common.constant.KEY_VIDEO_PLAY_LIST
 import com.sum.common.constant.VIDEO_ACTIVITY_PLAYER
-import com.sum.common.model.VideoInfo
 import com.sum.framework.base.BaseDataBindActivity
 import com.sum.framework.ext.gone
 import com.sum.framework.ext.onClick
@@ -42,6 +41,7 @@ import com.sum.framework.utils.StatusBarSettingHelper
 import com.sum.framework.utils.ViewUtils
 import com.sum.framework.utils.dpToPx
 import com.sum.framework.utils.getStringFromResource
+import com.sum.room.entity.VideoInfo
 import com.sum.video.adapter.VideoAdapter
 import com.sum.video.manager.PagerLayoutManager
 import com.sum.video.databinding.ActivityVideoPlayBinding
@@ -197,9 +197,9 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
             controllerShowTimeoutMs = 10000
             setKeepContentOnPlayerReset(false)
             setShowBuffering(SHOW_BUFFERING_NEVER)//不展示缓冲view
-            resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
+            resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
             useController = false //是否使用默认控制器，如需要可参考PlayerControlView
-            keepScreenOn = true
+//            keepScreenOn = true
         }
     }
 
@@ -256,7 +256,7 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
 
         override fun onPageSelected(position: Int, isBottom: Boolean, view: View?) {
             LogUtil.i("onPageSelected===$position | $isBottom | ${mAdapter.itemCount}", tag = TAG)
-            if (position <= 0 || position >= mAdapter.itemCount) return
+            if (position < 0 || position >= mAdapter.itemCount) return
             if (position == mPlayingPosition) return
             mPlayingPosition = position
             startPlay(position, view)

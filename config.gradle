@@ -32,6 +32,7 @@ ext {
             tbssdkVersion         : '44132',
             exoPlayerVersion      : '2.18.5',
             permissionsVersion    : '0.12',
+            roomVersion    : '2.5.0',
     ]
 
     depsLibs = [
@@ -43,6 +44,9 @@ ext {
             viewModelKtx      : 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1',
             navigationFragment: 'androidx.navigation:navigation-fragment-ktx:2.3.5',
             navigationUI      : 'androidx.navigation:navigation-ui-ktx:2.3.5',
+
+            roomKtx        : "androidx.room:room-ktx:${dependVersion["roomVersion"]}",
+            roomCompiler      : "androidx.room:room-compiler:${dependVersion["roomVersion"]}",
 
             junit             : 'junit:junit:4.13.2',
             extJunit          : 'androidx.test.ext:junit:1.1.3',

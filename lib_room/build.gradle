@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
     id 'kotlin-kapt'
 }
 
@@ -13,12 +14,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-        //ARouter
-        kapt {
-            arguments {
-                arg("AROUTER_MODULE_NAME", project.getName())
-            }
-        }
     }
 
     buildTypes {
@@ -34,10 +29,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        dataBinding = true
-        viewBinding = true
-    }
 }
 
 dependencies {
@@ -46,24 +37,14 @@ dependencies {
     compileOnly rootProject.depsLibs.coreKtx
     compileOnly rootProject.depsLibs.appcompat
     compileOnly rootProject.depsLibs.material
-    compileOnly rootProject.depsLibs.constraintlayout
+
+    compileOnly rootProject.depsLibs.gson
     compileOnly rootProject.depsLibs.liveDataKtx
     compileOnly rootProject.depsLibs.viewModelKtx
 
-    testCompileOnly rootProject.depsLibs.junit
-    androidTestCompileOnly rootProject.depsLibs.extJunit
-    androidTestCompileOnly rootProject.depsLibs.espressoCore
-
-    compileOnly rootProject.depsLibs.gson
-    compileOnly rootProject.depsLibs.mmkv
-
-    compileOnly rootProject.depsLibs.aroutreApi
-    kapt rootProject.depsLibs.arouterCompiler
-
-    compileOnly rootProject.depsLibs.exoPlayer
+    compileOnly rootProject.depsLibs.roomKtx
+    kapt rootProject.depsLibs.roomCompiler
 
     compileOnly project(path: ':lib_framework')
     compileOnly project(path: ':lib_common')
-    compileOnly project(path: ':lib_network')
-    compileOnly project(path: ':lib_room')
 }

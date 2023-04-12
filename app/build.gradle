@@ -55,6 +55,11 @@ android {
         dataBinding = true
         viewBinding = true
     }
+
+    //Room官方建议：在`android`块中添加以下代码块，以从软件包中排除原子函数模块并防止出现警告
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
 }
 
 dependencies {
@@ -67,6 +72,9 @@ dependencies {
     implementation rootProject.depsLibs.viewModelKtx
     implementation rootProject.depsLibs.navigationFragment
     implementation rootProject.depsLibs.navigationUI
+
+    implementation rootProject.depsLibs.roomKtx
+    kapt rootProject.depsLibs.roomCompiler
 
     testImplementation rootProject.depsLibs.junit
     androidTestImplementation rootProject.depsLibs.extJunit
@@ -114,4 +122,5 @@ dependencies {
     implementation project(path: ':lib_stater')
     implementation project(path: ':lib_banner')
     implementation project(path: ':lib_glide')
+    implementation project(path: ':lib_room')
 }

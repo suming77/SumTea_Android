@@ -3,11 +3,11 @@ package com.sum.main.ui.home.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.sum.common.model.VideoInfo
 import com.sum.framework.adapter.BaseBindViewHolder
 import com.sum.framework.adapter.BaseRecyclerViewAdapter
 import com.sum.glide.setUrl
 import com.sum.main.databinding.LayoutHomeVideoItemBinding
+import com.sum.room.entity.VideoInfo
 
 /**
  * @author mingyan.su
