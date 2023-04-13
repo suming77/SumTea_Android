@@ -8,9 +8,11 @@ import com.sum.network.response.BaseResponse
 import com.sum.network.error.ExceptionHandler
 import com.sum.network.callback.IApiErrorCallback
 import com.sum.network.error.ERROR
+import com.sum.network.flow.requestFlow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeout
 
 /**
  * @author mingyan.su
@@ -77,7 +79,9 @@ open class BaseViewModel : ViewModel() {
     ): T? {
         try {
             val response = withContext(Dispatchers.IO) {
-                responseBlock()
+                withTimeout(20 * 1000) {
+                    responseBlock()
+                }
             } ?: return null
 
             if (response.isFailed()) {
@@ -95,5 +99,30 @@ open class BaseViewModel : ViewModel() {
             }
         }
         return null
+    }
+
+    /**
+     * flow 运行在主线程中，可直接调用
+     * @param errorCall 错误回调
+     * @param requestCall 请求函数
+     * @param showLoading 是否展示加载框
+     * @param successBlock 请求结果
+     */
+    fun <T> launchFlow(
+        errorCall: IApiErrorCallback? = null,
+        requestCall: suspend () -> BaseResponse<T>?,
+        showLoading: ((Boolean) -> Unit)? = null,
+        successBlock: (T?) -> Unit
+    ) {
+        viewModelScope.launch(Dispatchers.Main) {
+            val data = requestFlow(errorBlock = { code, error ->
+                if (ERROR.UNLOGIN.code == code) {
+                    errorCall?.onLoginFail(code, error)
+                } else {
+                    errorCall?.onError(code, error)
+                }
+            }, requestCall, showLoading)
+            successBlock(data)
+        }
     }
 }

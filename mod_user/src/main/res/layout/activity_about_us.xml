@@ -7,49 +7,140 @@
 
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/color_f0f2f4">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <com.sum.common.view.TitleBar
+                android:id="@+id/title_bar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_108">
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:middleText="@string/about_us" />
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                    android:id="@+id/collapsing_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:contentScrim="@android:color/white"
-                    android:background="@color/white"
-                    app:expandedTitleMarginStart="@dimen/dp_12"
-                    app:expandedTitleMarginTop="@dimen/dp_24"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-                <androidx.appcompat.widget.Toolbar
-                        android:id="@+id/toolbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="?android:attr/actionBarSize"
-                        android:background="@android:color/white"
-                        android:minHeight="?android:attr/actionBarSize"
-                        app:layout_collapseMode="pin"
-                        app:titleTextColor="@color/black"
-                        app:titleTextAppearance="@style/titleBarStyle"
-                        app:navigationIcon="@drawable/ic_back"
-                        app:title="@string/setting_info_about" />
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.core.widget.NestedScrollView
-                android:id="@+id/scrollView"
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_main_link"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="@dimen/dp_14"
+                android:paddingEnd="@dimen/dp_8"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/dp_8"
+                app:layout_constraintTop_toBottomOf="@+id/title_bar">
+
             <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:text="关于我们"
-                    android:textSize="@dimen/dp_28"
-                    android:layout_height="wrap_content"/>
-        </androidx.core.widget.NestedScrollView>
+                    android:id="@+id/tv_main_link_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about_main_link"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_main_link"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|end"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:textColor="@color/color_0165b8"
+                    android:textSize="@dimen/text_size_11"
+                    android:drawablePadding="@dimen/dp_6"
+                    android:drawableRight="@mipmap/ic_next"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_main_link_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_github"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="@dimen/dp_14"
+                android:paddingEnd="@dimen/dp_8"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/dp_1"
+                app:layout_constraintTop_toBottomOf="@+id/cl_main_link">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_github_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about_github"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_github"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|end"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:textColor="@color/color_0165b8"
+                    android:textSize="@dimen/text_size_11"
+                    android:drawablePadding="@dimen/dp_6"
+                    android:drawableRight="@mipmap/ic_next"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_github_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_about_project"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_project"
+                android:gravity="center_vertical"
+                android:layout_margin="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintTop_toBottomOf="@+id/cl_github"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_my_wechat"
+                android:layout_width="@dimen/dp_120"
+                android:layout_height="@dimen/dp_120"
+                android:src="@mipmap/wechat"
+                android:layout_marginTop="@dimen/dp_50"
+                app:layout_constraintBottom_toTopOf="@+id/tv_my_wechat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_my_wechat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_wechat"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

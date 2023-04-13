@@ -22,5 +22,12 @@
     <string name="user_info_signature">签名</string>
     <string name="user_info_input_signature">请输入您的个性签名</string>
 
+    <string name="about_us">关于我们</string>
+    <string name="about_main_link">我的主页</string>
+    <string name="about_github">我的github</string>
+    <string name="about_wechat">微信号</string>
+    <string name="about_project">基于Kotlin+Flow+Retrofit+Jetpack+MVVM架构实现WanAndroid客户端开发搭建</string>
+
+
     <string name="collect_my">我的收藏</string>
 </resources>

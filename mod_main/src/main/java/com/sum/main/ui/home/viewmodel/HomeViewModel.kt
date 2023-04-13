@@ -4,6 +4,7 @@ import android.content.res.AssetManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.sum.common.constant.FILE_VIDEO_LIST
 import com.sum.common.model.ArticleList
 import com.sum.common.model.Banner
@@ -12,9 +13,12 @@ import com.sum.framework.toast.TipsToast
 import com.sum.main.repository.HomeRepository
 import com.sum.common.model.ProjectTabItem
 import com.sum.main.ParseFileUtils
+import com.sum.network.flow.requestFlow
+import com.sum.network.manager.ApiManager
 import com.sum.network.viewmodel.BaseViewModel
 import com.sum.room.entity.VideoInfo
 import com.sum.room.manager.VideoCacheManager
+import kotlinx.coroutines.launch
 
 /**
  * @author mingyan.su
@@ -31,11 +35,22 @@ class HomeViewModel : BaseViewModel() {
      * 首页banner
      */
     fun getBannerList(): LiveData<MutableList<Banner>?> {
-        launchUI(errorBlock = { code, errorMsg ->
-            TipsToast.showTips(errorMsg)
-            bannersLiveData.value = null
-        }) {
-            val data = homeRepository.getHomeBanner()
+//        launchUI(errorBlock = { code, errorMsg ->
+//            TipsToast.showTips(errorMsg)
+//            bannersLiveData.value = null
+//        }) {
+//            val data = homeRepository.getHomeBanner()
+//            bannersLiveData.value = data
+//        }
+//        return bannersLiveData
+        //通过flow来请求
+        viewModelScope.launch {
+            val data = requestFlow(requestCall = {
+                ApiManager.api.getHomeBanner()
+            }, errorBlock = { code, error ->
+                TipsToast.showTips(error)
+                bannersLiveData.value = null
+            })
             bannersLiveData.value = data
         }
         return bannersLiveData
