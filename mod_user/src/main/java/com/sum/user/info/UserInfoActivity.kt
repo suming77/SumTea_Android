@@ -43,26 +43,29 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
      */
     private fun initUserInfo() {
         val user = UserServiceProvider.getUserInfo() ?: return
-        user.apply {
-            val name = if (!nickname.isNullOrEmpty()) {
-                nickname
-            } else {
-                username
-            }
-            mBinding.etName.setText(name)
-            mBinding.tvPhone.text = username
-            mBinding.tvSex.text = if (sex.isNullOrEmpty()) "--" else sex
-            mBinding.etSignature.setText(signature)
-        }
+        mBinding.user = user
+        mBinding.activity = this
+
+//        user.apply {
+//            val name = if (!nickname.isNullOrEmpty()) {
+//                nickname
+//            } else {
+//                username
+//            }
+//            mBinding.etName.setText(name)
+//            mBinding.tvPhone.text = username
+//            mBinding.tvSex.text = if (sex.isNullOrEmpty()) "--" else sex
+//            mBinding.etSignature.setText(signature)
+//        }
     }
 
     private fun initListener() {
         mBinding.clHead.onClick {
 
         }
-        mBinding.clSex.onClick {
-            TipsToast.showWarningTips(com.sum.common.R.string.default_developing)
-        }
+//        mBinding.clSex.onClick {
+//            TipsToast.showWarningTips(com.sum.common.R.string.default_developing)
+//        }
         mBinding.clBirthday.onClick {
         }
         mBinding.tvSave.onClick {
@@ -82,5 +85,12 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
                 LoginServiceProvider.login(this)
             }
         }
+    }
+
+    /**
+     * 性别选择弹框
+     */
+    fun showSelectSexDialog() {
+        TipsToast.showWarningTips(com.sum.common.R.string.default_developing)
     }
 }

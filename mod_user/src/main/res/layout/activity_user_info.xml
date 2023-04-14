@@ -5,6 +5,13 @@
 
     <data>
 
+        <variable
+                name="user"
+                type="com.sum.common.model.User" />
+
+        <variable
+                name="activity"
+                type="com.sum.user.info.UserInfoActivity" />
     </data>
 
     <LinearLayout
@@ -109,6 +116,7 @@
                     android:textColor="@color/color_898e92"
                     android:inputType="text"
                     android:textSize="@dimen/text_size_13"
+                    android:text="@{user.getName()}"
                     android:hint="@string/user_info_input_name"
                     android:textColorHint="@color/color_898e92"
                     app:layout_constraintTop_toTopOf="parent"
@@ -165,6 +173,7 @@
                     android:paddingBottom="@dimen/dp_10"
                     android:paddingEnd="@dimen/dp_4"
                     android:textColor="@color/color_898e92"
+                    android:text="@{user.username}"
                     android:textSize="@dimen/text_size_12"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -178,6 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10"
                 android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{(view)->activity.showSelectSexDialog()}"
                 android:paddingStart="@dimen/dp_14"
                 android:paddingEnd="@dimen/dp_8"
                 android:background="@color/white">
@@ -200,7 +210,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:text="--"
+                    android:text="@{user.sex == null ? `--` : user.sex}"
                     android:paddingTop="@dimen/dp_10"
                     android:paddingBottom="@dimen/dp_10"
                     android:textColor="@color/color_898e92"
@@ -316,6 +326,7 @@
                     android:maxLength="32"
                     android:maxLines="2"
                     android:singleLine="true"
+                    android:text="@{user.signature}"
                     android:textColor="@color/color_898e92"
                     android:textSize="@dimen/text_size_13"
                     android:inputType="text"
@@ -337,7 +348,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <!--中文字符使用：android:text='@{user.name? "确定" :"OK"}'-->
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_save"
                 android:layout_width="@dimen/dp_200"
