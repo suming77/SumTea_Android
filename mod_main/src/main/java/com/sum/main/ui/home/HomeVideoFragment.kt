@@ -9,6 +9,9 @@ import com.sum.common.constant.KEY_VIDEO_PLAY_LIST
 import com.sum.common.constant.VIDEO_ACTIVITY_PLAYER
 import com.sum.framework.decoration.StaggeredItemDecoration
 import com.sum.framework.base.BaseMvvmFragment
+import com.sum.framework.ext.gone
+import com.sum.framework.ext.visible
+import com.sum.framework.log.LogUtil
 import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.dpToPx
 import com.sum.main.databinding.FragmentHomeVideoBinding
@@ -57,8 +60,9 @@ class HomeVideoFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewMod
         mViewModel.getVideoList(requireContext().assets).observe(this) {
             dismissLoading()
             if (it.isNullOrEmpty()) {
-
+                mBinding?.viewEmptyData?.visible()
             } else {
+                mBinding?.viewEmptyData?.gone()
                 videoAdapter.setData(it)
             }
         }

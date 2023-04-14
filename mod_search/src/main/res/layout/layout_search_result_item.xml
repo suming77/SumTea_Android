@@ -42,7 +42,7 @@
             android:id="@+id/tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_15"
+            android:textSize="@dimen/text_size_14"
             android:textColor="@color/color_222427"
             android:lines="2"
             android:ellipsize="end"
@@ -86,6 +86,7 @@
             android:id="@+id/iv_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="@dimen/dp_4"
             android:src="@drawable/selector_collect_new"
             app:layout_constraintTop_toBottomOf="@+id/tv_desc"
             app:layout_constraintEnd_toEndOf="parent" />

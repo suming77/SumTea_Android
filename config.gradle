@@ -32,7 +32,9 @@ ext {
             tbssdkVersion         : '44132',
             exoPlayerVersion      : '2.18.5',
             permissionsVersion    : '0.12',
-            roomVersion    : '2.5.0',
+            roomVersion           : '2.5.0',
+            rxjavaVersion         : '3.1.6',
+            rxandroidVersion      : '3.0.2',
     ]
 
     depsLibs = [
@@ -45,7 +47,8 @@ ext {
             navigationFragment: 'androidx.navigation:navigation-fragment-ktx:2.3.5',
             navigationUI      : 'androidx.navigation:navigation-ui-ktx:2.3.5',
 
-            roomKtx        : "androidx.room:room-ktx:${dependVersion["roomVersion"]}",
+            //room数据库
+            roomKtx           : "androidx.room:room-ktx:${dependVersion["roomVersion"]}",
             roomCompiler      : "androidx.room:room-compiler:${dependVersion["roomVersion"]}",
 
             junit             : 'junit:junit:4.13.2',
@@ -88,8 +91,8 @@ ext {
 
             //权限处理
             rxPermission      : "com.github.tbruyelle:rxpermissions:${dependVersion["permissionsVersion"]}",
-            rxjava            : "io.reactivex.rxjava3:rxjava:3.0.6",
-            rxandroid         : "io.reactivex.rxjava2:rxandroid:2.1.1",
+            rxjava            : "io.reactivex.rxjava3:rxjava:${dependVersion["rxjavaVersion"]}",
+            rxandroid         : "io.reactivex.rxjava3:rxandroid:${dependVersion["rxandroidVersion"]}",
     ]
 
 }

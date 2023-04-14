@@ -97,7 +97,7 @@ dependencies {
     implementation rootProject.depsLibs.refreshFooter
 
     implementation rootProject.depsLibs.glide
-    annotationProcessor rootProject.depsLibs.glideCompiler
+    kapt rootProject.depsLibs.glideCompiler
 
     implementation rootProject.depsLibs.flexbox
 

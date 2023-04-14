@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
  */
 class MyCollectViewModel : BaseViewModel() {
     var collectListLiveData = MutableLiveData<MutableList<ArticleInfo>?>()
-    val collectLiveData: MutableLiveData<Boolean?> = MutableLiveData()
 
     /**
      * 我的收藏列表
@@ -72,6 +71,7 @@ class MyCollectViewModel : BaseViewModel() {
 //            collectLiveData.value = true
 //        }
 //        return collectLiveData
+        val collectLiveData: MutableLiveData<Boolean?> = MutableLiveData()
 
         launchFlow(errorCall = object : IApiErrorCallback {
             override fun onError(code: Int?, error: String?) {

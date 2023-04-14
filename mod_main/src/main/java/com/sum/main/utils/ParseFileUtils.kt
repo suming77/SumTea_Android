@@ -1,4 +1,4 @@
-package com.sum.main
+package com.sum.main.utils
 
 import android.content.res.AssetManager
 import com.sum.framework.ext.toBean

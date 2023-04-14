@@ -43,7 +43,6 @@ class SearchResultAdapter : BaseRecyclerViewAdapter<ArticleInfo, LayoutSearchRes
         val authorName = String.format(getStringFromResource(R.string.author_name), name)
         holder.binding.apply {
             tvTitle.text = item.title
-            tvTitle.Bold()
             tvDesc.text = item.desc
             if (item.desc.isNullOrEmpty()) {
                 tvDesc.gone()

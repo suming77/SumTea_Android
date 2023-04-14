@@ -12,7 +12,7 @@ import com.sum.common.model.ProjectSubInfo
 import com.sum.framework.toast.TipsToast
 import com.sum.main.repository.HomeRepository
 import com.sum.common.model.ProjectTabItem
-import com.sum.main.ParseFileUtils
+import com.sum.main.utils.ParseFileUtils
 import com.sum.network.flow.requestFlow
 import com.sum.network.manager.ApiManager
 import com.sum.network.viewmodel.BaseViewModel

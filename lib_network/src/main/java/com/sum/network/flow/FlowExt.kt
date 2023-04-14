@@ -56,7 +56,7 @@ suspend fun <T> requestFlowResponse(
     //1.执行请求
     val flow = flow {
         //设置超时时间
-        val response = withTimeout(20 * 1000) {
+        val response = withTimeout(10 * 1000) {
             requestCall()
         }
 

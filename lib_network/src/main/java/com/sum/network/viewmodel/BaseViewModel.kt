@@ -79,7 +79,7 @@ open class BaseViewModel : ViewModel() {
     ): T? {
         try {
             val response = withContext(Dispatchers.IO) {
-                withTimeout(20 * 1000) {
+                withTimeout(10 * 1000) {
                     responseBlock()
                 }
             } ?: return null

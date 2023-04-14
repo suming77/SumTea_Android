@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -37,7 +38,7 @@ dependencies {
     compileOnly rootProject.depsLibs.constraintlayout
 
     compileOnly rootProject.depsLibs.glide
-    compileOnly rootProject.depsLibs.glideCompiler
+    kapt rootProject.depsLibs.glideCompiler
 
     compileOnly project(path: ':lib_framework')
 }

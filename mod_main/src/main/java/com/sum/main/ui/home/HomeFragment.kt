@@ -68,7 +68,7 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
         mViewModel.getProjectTab().observe(this) { tabs ->
             mProjectTabs = tabs
             tabs?.forEachIndexed { index, _ ->
-                mArrayTabFragments.append(index, HomeTabFragment.newInstance(tabs[index].id))
+                mArrayTabFragments.append(index + 1, HomeTabFragment.newInstance(tabs[index].id))
             }
             mFragmentAdapter?.setData(mArrayTabFragments)
             mFragmentAdapter?.notifyItemRangeChanged(1, mArrayTabFragments.size())
@@ -91,8 +91,8 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
             mTabLayoutMediator = TabLayoutMediator(it.tabHome, it.viewPager) { tab: TabLayout.Tab, position: Int ->
                 if (position == 0) {
                     tab.setText(R.string.home_tab_video_title)
-                } else if (!mProjectTabs.isNullOrEmpty() && (position < mProjectTabs!!.size)) {
-                    tab.text = mProjectTabs!![position].name
+                } else if (!mProjectTabs.isNullOrEmpty() && position > 1 && (position - 1 < mProjectTabs!!.size)) {
+                    tab.text = mProjectTabs!![position - 1].name
                 }
             }
             //tabLayout和viewPager2关联起来
