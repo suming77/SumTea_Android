@@ -2,13 +2,10 @@
 
 🚀 SumTea是一个基于**组件化+模块化+Kotlin+协程+Flow+Retrofit+Jetpack+MVVM+短视频**架构实现的WanAndroid客户端。能提供给初学者学习如何从0到1打造一个符合大型项目的架构模式。
 
-|                             图片                             |                             图片                             |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![分类体系](other/st_video.gif) | ![分类体系](other/st_category_system.gif) |
-| ![搜索](other/st_search.gif) | ![登录](other/st_login.gif) |
-
-| --- | --- | --- | --- |
-| ![](other/st_home.jpeg) | ![](other/st_category.jpeg) | ![](other/st_system.jpeg) | ![](other/st_mine.jpeg) |
+|                             项目截图                             |                             项目截图                             |                             项目截图                             |                             项目截图                             |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![首页](https://user-images.githubusercontent.com/20841967/233286288-c648a7b5-7b0f-4481-81aa-047ed2a67c73.jpeg) | ![分类](https://user-images.githubusercontent.com/20841967/233286273-873501d5-f484-4d05-8eb0-8741acd28b1e.jpeg) | ![体系](https://user-images.githubusercontent.com/20841967/233286299-5b8036bd-573f-4c78-8a8e-603063298b10.jpeg) | ![我的](https://user-images.githubusercontent.com/20841967/233286293-04e9c0fe-e0d9-49bb-b572-a055fc697a25.jpeg) |
+| ![首页视频](https://user-images.githubusercontent.com/20841967/233398135-45da89b4-bbe9-4cc9-9486-acb67f88d905.gif) | ![分类体系](https://user-images.githubusercontent.com/20841967/233252110-ebc4fdc0-132a-451a-8f27-29ea92052edf.gif) | ![搜索](https://user-images.githubusercontent.com/20841967/233252130-59da489b-0595-4e8d-87cc-c9c1805ece1b.gif) | ![登录](https://user-images.githubusercontent.com/20841967/233252123-18ed07a7-89bc-42f8-a57d-7a1d4e388b09.gif) |
 
 ## 一、 关于SumTea
 
