@@ -16,6 +16,7 @@ import com.sum.framework.utils.dpToPx
 import com.sum.main.databinding.FragmentArticleListBinding
 import com.sum.main.ui.system.adapter.ArticleAdapter
 import com.sum.main.ui.system.viewmodel.ArticleListViewModel
+import com.sum.network.error.ERROR
 
 /**
  * @author mingyan.su
@@ -119,7 +120,7 @@ class ArticleListFragment : BaseMvvmFragment<FragmentArticleListBinding, Article
         data?.let { item ->
             showLoading()
             val collect = item.collect ?: false
-            mViewModel.collectArticle(requireContext(), item.id, collect).observe(this) {
+            mViewModel.collectArticle(item.id, collect).observe(this) {
                 dismissLoading()
                 it?.let {
                     val tipsRes =
@@ -127,6 +128,10 @@ class ArticleListFragment : BaseMvvmFragment<FragmentArticleListBinding, Article
                     TipsToast.showSuccessTips(tipsRes)
                     item.collect = !collect
                     mAdapter.updateItem(position, item)
+                }
+
+                if (it == ERROR.UNLOGIN.code){
+                    LoginServiceProvider.login(requireContext())
                 }
             }
         }

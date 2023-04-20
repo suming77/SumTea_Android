@@ -15,7 +15,7 @@ import com.sum.framework.manager.AppFrontBackListener
 import com.sum.framework.log.LogUtil
 import com.sum.framework.manager.ActivityManager
 import com.sum.framework.toast.TipsToast
-import com.sum.framework.utils.AppManager
+import com.sum.framework.manager.AppManager
 import com.sum.stater.dispatcher.TaskDispatcher
 import com.sum.stater.inittasks.InitGlideTask
 import com.sum.stater.inittasks.InitLanguageTask

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.sum.framework.helper.SumAppHelper
-import com.sum.framework.utils.AppManager
+import com.sum.framework.manager.AppManager
 import java.math.BigDecimal
 import java.text.DecimalFormat
 

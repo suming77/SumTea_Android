@@ -1,11 +1,8 @@
 package com.sum.main.ui.mine.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
 import com.sum.common.model.ArticleInfo
-import com.sum.common.provider.LoginServiceProvider
 import com.sum.framework.toast.TipsToast
 import com.sum.network.callback.IApiErrorCallback
 import com.sum.network.error.ERROR
@@ -19,7 +16,7 @@ import com.sum.network.viewmodel.BaseViewModel
  */
 class MineViewModel : BaseViewModel() {
     val recommendLiveData: MutableLiveData<MutableList<ArticleInfo>?> = MutableLiveData()
-    val collectLiveData: MutableLiveData<Boolean?> = MutableLiveData()
+    val collectLiveData: MutableLiveData<Int?> = MutableLiveData()
 
     /**
      * 首页推荐列表
@@ -49,7 +46,7 @@ class MineViewModel : BaseViewModel() {
      * @param id  文章id
      * @param isCollect 是否收藏
      */
-    fun collectArticle(context: Context, id: Int, isCollect: Boolean): LiveData<Boolean?> {
+    fun collectArticle(id: Int, isCollect: Boolean): LiveData<Int?> {
         launchUIWithResult(responseBlock = {
             if (!isCollect) {
                 //收藏站内文章
@@ -66,11 +63,10 @@ class MineViewModel : BaseViewModel() {
 
             override fun onLoginFail(code: Int?, error: String?) {
                 super.onLoginFail(code, error)
-                collectLiveData.value = null
-                LoginServiceProvider.login(context)
+                collectLiveData.value = ERROR.UNLOGIN.code
             }
         }) {
-            collectLiveData.value = isCollect
+            collectLiveData.value = if (isCollect) 0 else 1
         }
         return collectLiveData
     }

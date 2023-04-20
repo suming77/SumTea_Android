@@ -1,7 +1,7 @@
 package com.sum.network.interceptor
 
 import com.sum.framework.helper.SumAppHelper
-import com.sum.framework.utils.AppManager
+import com.sum.framework.manager.AppManager
 import com.sum.framework.utils.DeviceInfoUtils
 import okhttp3.Interceptor
 import okhttp3.Response

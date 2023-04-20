@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sum.common.model.ArticleInfo
-import com.sum.common.provider.LoginServiceProvider
 import com.sum.framework.toast.TipsToast
 import com.sum.network.callback.IApiErrorCallback
 import com.sum.network.flow.requestFlow
@@ -53,7 +52,7 @@ class MyCollectViewModel : BaseViewModel() {
      * @param id  文章id
      * @param originId 收藏之前的那篇文章本身的id
      */
-    fun collectArticle(context: Context, id: Int, originId: Int, showLoading: (Boolean) -> Unit): LiveData<Boolean?> {
+    fun collectArticle(id: Int, originId: Int, showLoading: (Boolean) -> Unit): LiveData<Boolean?> {
 //        launchUIWithResult(responseBlock = {
 //            ApiManager.api.cancelMyCollect(id, originId)
 //        }, errorCall = object : IApiErrorCallback {
@@ -81,8 +80,7 @@ class MyCollectViewModel : BaseViewModel() {
 
             override fun onLoginFail(code: Int?, error: String?) {
                 super.onLoginFail(code, error)
-                collectLiveData.value = null
-                LoginServiceProvider.login(context)
+                collectLiveData.value = false
             }
         }, requestCall = {
             ApiManager.api.cancelMyCollect(id, originId)

@@ -74,7 +74,7 @@ class MyCollectionActivity : BaseMvvmActivity<ActivityMyCollectListBinding, MyCo
     private fun cancelCollectArticle(position: Int) {
         val item = mAdapter.getItem(position)
         item?.let {
-            mViewModel.collectArticle(this, it.id, it.originId ?: -1) { showLoading ->
+            mViewModel.collectArticle(it.id, it.originId ?: -1) { showLoading ->
                 if (showLoading) {
                     showLoading()
                 } else {
@@ -84,6 +84,8 @@ class MyCollectionActivity : BaseMvvmActivity<ActivityMyCollectListBinding, MyCo
                 if (result == true) {
                     mAdapter.removeAt(position)
                     TipsToast.showTips(R.string.collect_cancel)
+                } else if (result == false) {
+                    LoginServiceProvider.login(this)
                 }
             }
         }

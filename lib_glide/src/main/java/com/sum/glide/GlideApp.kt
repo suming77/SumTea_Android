@@ -15,7 +15,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.sum.framework.manager.ActivityManager
-import com.sum.framework.utils.AppManager
+import com.sum.framework.manager.AppManager
 import com.sum.glide.transformation.BlurTransformation
 import com.sum.glide.transformation.CircleBorderTransform
 

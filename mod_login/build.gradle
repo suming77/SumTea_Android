@@ -3,6 +3,13 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
 }
+// 组件模式和基础模式切换
+//def root = rootProject.ext
+//if (root.isModule) {
+//    apply plugin: 'com.android.application'
+//} else {
+//    apply plugin: 'com.android.library'
+//}
 
 android {
     compileSdk rootProject.android.compileSdk
@@ -21,6 +28,20 @@ android {
             }
         }
     }
+//   组件化模式资源切换
+//    sourceSets {
+//        main {
+//            if (rootProject.ext.isModule) {
+//                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+//            } else {
+//                manifest.srcFile 'src/main/AndroidManifest.xml'
+//                //library模式下排除debug文件夹中的所有Java文件
+//                java {
+//                    exclude 'debug/**'
+//                }
+//            }
+//        }
+//    }
 
     buildTypes {
         release {

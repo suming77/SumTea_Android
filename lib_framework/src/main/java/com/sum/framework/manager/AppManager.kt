@@ -1,4 +1,4 @@
-package com.sum.framework.utils
+package com.sum.framework.manager
 
 import android.app.Application
 import android.content.Context
@@ -10,6 +10,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
 import com.sum.framework.log.LogUtil
+import com.sum.framework.utils.DeviceInfoUtils
 import kotlin.math.max
 import kotlin.math.min
 

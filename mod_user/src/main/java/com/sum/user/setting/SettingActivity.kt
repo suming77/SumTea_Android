@@ -10,7 +10,7 @@ import com.sum.common.provider.UserServiceProvider
 import com.sum.framework.base.BaseDataBindActivity
 import com.sum.framework.ext.onClick
 import com.sum.framework.toast.TipsToast
-import com.sum.framework.utils.AppManager
+import com.sum.framework.manager.AppManager
 import com.sum.framework.utils.ViewUtils
 import com.sum.framework.utils.dpToPx
 import com.sum.network.manager.CookiesManager

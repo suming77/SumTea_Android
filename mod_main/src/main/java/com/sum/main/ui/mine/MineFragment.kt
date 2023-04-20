@@ -30,6 +30,7 @@ import com.sum.main.databinding.FragmentMineBinding
 import com.sum.main.databinding.FragmentMineHeadBinding
 import com.sum.main.ui.mine.viewmodel.MineViewModel
 import com.sum.main.ui.system.adapter.ArticleAdapter
+import com.sum.network.error.ERROR
 
 /**
  * @author mingyan.su
@@ -217,13 +218,18 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
         data?.let { item ->
             showLoading()
             val collect = item.collect ?: false
-            mViewModel.collectArticle(requireContext(), item.id, collect).observe(this) {
+            mViewModel.collectArticle(item.id, collect).observe(this) {
                 dismissLoading()
                 it?.let {
-                    val tipsRes = if (collect) com.sum.common.R.string.collect_cancel else com.sum.common.R.string.collect_success
+                    val tipsRes =
+                        if (collect) com.sum.common.R.string.collect_cancel else com.sum.common.R.string.collect_success
                     TipsToast.showSuccessTips(tipsRes)
                     item.collect = !collect
                     mAdapter.updateItem(position, item)
+                }
+
+                if (it == ERROR.UNLOGIN.code) {
+                    LoginServiceProvider.login(requireContext())
                 }
             }
         }

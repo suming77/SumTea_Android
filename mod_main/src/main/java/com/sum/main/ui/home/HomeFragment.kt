@@ -20,6 +20,7 @@ import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.ext.gone
 import com.sum.framework.ext.onClick
 import com.sum.framework.ext.visible
+import com.sum.framework.utils.getStringFromResource
 import com.sum.main.R
 import com.sum.main.databinding.FragmentHomeBinding
 import com.sum.main.ui.home.viewmodel.HomeViewModel
@@ -35,7 +36,7 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
 
     private var mTabLayoutMediator: TabLayoutMediator? = null
     private var mFragmentAdapter: ViewPage2FragmentAdapter? = null
-    private var mProjectTabs: MutableList<ProjectTabItem>? = null
+    private var mProjectTabs: MutableList<ProjectTabItem> = mutableListOf()
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
         mBinding?.refreshLayout?.apply {
@@ -66,8 +67,10 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
         }
 
         mViewModel.getProjectTab().observe(this) { tabs ->
-            mProjectTabs = tabs
-            tabs?.forEachIndexed { index, _ ->
+            mProjectTabs =
+                mProjectTabs.filter { it.name == getStringFromResource(R.string.home_tab_video_title) }.toMutableList()
+            tabs?.forEachIndexed { index, item ->
+                mProjectTabs.add(item)
                 mArrayTabFragments.append(index + 1, HomeTabFragment.newInstance(tabs[index].id))
             }
             mFragmentAdapter?.setData(mArrayTabFragments)
@@ -77,6 +80,7 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
 
     private fun initTab() {
         mArrayTabFragments.append(0, HomeVideoFragment())
+        mProjectTabs.add(0, ProjectTabItem(id = 0, getStringFromResource(R.string.home_tab_video_title)))
         activity?.let {
             mFragmentAdapter = ViewPage2FragmentAdapter(it, mArrayTabFragments)
         }
@@ -89,11 +93,7 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
             it.viewPager.offscreenPageLimit = mArrayTabFragments.size()
 
             mTabLayoutMediator = TabLayoutMediator(it.tabHome, it.viewPager) { tab: TabLayout.Tab, position: Int ->
-                if (position == 0) {
-                    tab.setText(R.string.home_tab_video_title)
-                } else if (!mProjectTabs.isNullOrEmpty() && position > 1 && (position - 1 < mProjectTabs!!.size)) {
-                    tab.text = mProjectTabs!![position - 1].name
-                }
+                tab.text = mProjectTabs[position].name
             }
             //tabLayout和viewPager2关联起来
             mTabLayoutMediator?.attach()
