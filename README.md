@@ -22,6 +22,7 @@
 ![SumTea工程架构](https://user-images.githubusercontent.com/20841967/233055330-89e2bdd6-3111-4726-bf5a-e77aa2ebdc2a.png)
 
 项目使用**MVVM架构模式**，基本上遵循 Google 推荐的架构，对于 `Repository`，Google 认为 `ViewModel` 仅仅用来做数据的存储，数据加载应该由 `Repository` 来完成。通过 **Room** 数据库实现对数据的缓存，在无网络或者弱网的情况下优先展示缓存数据。
+![MVVM架构图](https://user-images.githubusercontent.com/20841967/233261753-86bc4cb6-3681-49a5-a127-34d87a46d268.jpg)
 
 ### 2. 收获
 
@@ -85,12 +86,3 @@
 如您有任何问题，也可以添加我的微信，进行学习上的交流。
 
 感谢您的阅读~
-
-## 赞赏
-
-如果这个库对您有很大帮助，您愿意支持这个项目的进一步开发和持续维护。您可以扫描下面的二维码，打赏我一颗糖果或者一杯咖啡，非常感谢您的捐赠。祝您百尺竿头更进一步！
-
-<div align="center">
-<img src="https://github.com/FollowExcellence/Android-Core-Realm/blob/main/alpay.jpg" width=20%>
-<img src="https://github.com/FollowExcellence/Android-Core-Realm/blob/main/wechatpay.jpg" width=20%>
-</div>
