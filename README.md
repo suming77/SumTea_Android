@@ -4,9 +4,11 @@
 
 |                             图片                             |                             图片                             |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![分类体系](https://user-images.githubusercontent.com/20841967/233252110-ebc4fdc0-132a-451a-8f27-29ea92052edf.gif) | ![分类体系](https://user-images.githubusercontent.com/20841967/233252110-ebc4fdc0-132a-451a-8f27-29ea92052edf.gif) |
-| ![搜索](https://user-images.githubusercontent.com/20841967/233252130-59da489b-0595-4e8d-87cc-c9c1805ece1b.gif) | ![登录](https://user-images.githubusercontent.com/20841967/233252123-18ed07a7-89bc-42f8-a57d-7a1d4e388b09.gif) |
+| ![分类体系](other/st_video.gif) | ![分类体系](other/st_category_system.gif) |
+| ![搜索](other/st_search.gif) | ![登录](other/st_login.gif) |
 
+| --- | --- | --- | --- |
+| ![](other/st_home.jpeg) | ![](other/st_category.jpeg) | ![](other/st_system.jpeg) | ![](other/st_mine.jpeg) |
 
 ## 一、 关于SumTea
 
@@ -48,12 +50,7 @@
 
 欢迎在 **Issue** 中提交对本仓库的改进建议~
 
-## 三、版权声明
-
-* 所有原创文章(未进行特殊标识的均属于原创) 的著作权属于 **Sumiya**。
-* 所有译文文章(标题注明`[译]`的所有文章) 的原文著作权属于原作者，译文著作权属于 **Sumiya**。
-
-#### 注意事项
+## 三、注意事项
 
 本项目API均来源于[**WanAndroid**](https://www.wanandroid.com)，禁止商用。
 
@@ -67,7 +64,7 @@
 
 - #### 微信：`SUM_817`
 - #### Email：`su_mingyan@163.com`
-- #### Blog：[https://blog.csdn.net/m0_37796683/](https://blog.csdn.net/m0_37796683/)
+- #### 掘金：[https://juejin.cn/user/1654096907477549](https://juejin.cn/user/1654096907477549)
 
 如您有任何问题，也可以添加我的微信，进行学习上的交流。
 

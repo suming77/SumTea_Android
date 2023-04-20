@@ -5,6 +5,20 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/dnsb1389/AndroidStudioProjects/SumTea_Android/SumTea.jks')
+            storePassword '123456'
+            keyAlias 'sumtea'
+            keyPassword '123456'
+        }
+        release {
+            storeFile file('/Users/dnsb1389/AndroidStudioProjects/SumTea_Android/SumTea.jks')
+            storePassword '123456'
+            keyAlias 'sumtea'
+            keyPassword '123456'
+        }
+    }
     compileSdk rootProject.android.compileSdk
 
     defaultConfig {
@@ -42,6 +56,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
