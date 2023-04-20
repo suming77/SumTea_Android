@@ -35,20 +35,6 @@
 5.  提供大量扩展函数，快速开发，提高效率。
 6.  无论是模块化或者组件化，它们本质思想都是一样的，都是化整为零，化繁为简，两者的目的都是为了重用和解耦，只是叫法不一样。
 
-### 3. 感谢
-
-**API：**  鸿洋提供的 [**WanAndroid API**](https://www.wanandroid.com/blog/show/2)
-
-**主要使用的开源框架:**
-
-*   [**Retrofit**](https://github.com/square/retrofit)
-*   [**OkHttp**](https://github.com/square/okhttp)
-*   [**Glide**](https://github.com/bumptech/glide)
-*   [**ARouter**](https://github.com/alibaba/ARouter)
-*   [**MMKV**](https://github.com/Tencent/MMKV)
-*   [**RxPermission**](https://github.com/tbruyelle/RxPermissions)
-*   [**SmartRefreshLayout**](https://github.com/scwang90/SmartRefreshLayout)
-
 ## 二、Kotlin 协程学习三部曲
 
 > [Kotlin 协程实战进阶(一、筑基篇)](https://juejin.cn/post/6987724340775108622)
@@ -86,3 +72,17 @@
 如您有任何问题，也可以添加我的微信，进行学习上的交流。
 
 感谢您的阅读~
+
+### 致谢
+
+**API：**  鸿洋提供的 [**WanAndroid API**](https://www.wanandroid.com/blog/show/2)
+
+**主要使用的开源框架:**
+
+*   [**Retrofit**](https://github.com/square/retrofit)
+*   [**OkHttp**](https://github.com/square/okhttp)
+*   [**Glide**](https://github.com/bumptech/glide)
+*   [**ARouter**](https://github.com/alibaba/ARouter)
+*   [**MMKV**](https://github.com/Tencent/MMKV)
+*   [**RxPermission**](https://github.com/tbruyelle/RxPermissions)
+*   [**SmartRefreshLayout**](https://github.com/scwang90/SmartRefreshLayout)
