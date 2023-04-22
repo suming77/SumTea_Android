@@ -5,7 +5,6 @@ import android.content.Context
 import android.text.TextUtils
 import com.sum.framework.loading.CenterLoadingView
 import com.sum.framework.R
-import com.sum.framework.log.LogUtil
 
 /**
  * 等待提示框
@@ -27,11 +26,9 @@ class LoadingUtils(private val mContext: Context) {
         if (!TextUtils.isEmpty(txt)) {
             loadView?.setTitle(txt as CharSequence)
         }
-        LogUtil.d("showLoading0", tag = "smy")
         if (mContext is Activity && mContext.isFinishing) {
             return
         }
-        LogUtil.d("showLoading", tag = "smy")
         loadView?.show()
     }
 

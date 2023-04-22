@@ -14,4 +14,6 @@
 
     <string name="collect_success">收藏成功</string>
     <string name="collect_cancel">取消收藏</string>
+
+    <string name="error_network">网络异常，请尝试刷新</string>
 </resources>

@@ -7,13 +7,13 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('/Users/dnsb1389/AndroidStudioProjects/SumTea_Android/SumTea.jks')
+            storeFile file('../SumTea.jks')
             storePassword '123456'
             keyAlias 'sumtea'
             keyPassword '123456'
         }
         release {
-            storeFile file('/Users/dnsb1389/AndroidStudioProjects/SumTea_Android/SumTea.jks')
+            storeFile file('../SumTea.jks')
             storePassword '123456'
             keyAlias 'sumtea'
             keyPassword '123456'
