@@ -89,9 +89,9 @@ class SearchHistoryView @JvmOverloads constructor(
      */
     fun setOnHistoryClearListener(callBack: () -> Unit) {
         mBinding.ivDelete.onClick {
+            callBack()
             mBinding.chipGroup.removeAllViews()
             mKeyWords.clear()
-            callBack()
         }
     }
 

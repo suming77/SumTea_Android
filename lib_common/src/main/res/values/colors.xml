@@ -30,4 +30,11 @@
     <color name="color_acb1b6">#acb1b6</color>
     <color name="color_dce0e4">#dce0e4</color>
     <color name="color_550165b8">#550165b8</color>
+
+    <color name="line_color">#dce0e4</color>
+
+    <color name="dialog_bg">#ffffff</color>
+    <color name="dialog_bg_press">#f0f0f0</color>
+    <color name="dialog_cancel">#323233</color>
+    <color name="dialog_confirm">#007ac9</color>
 </resources>

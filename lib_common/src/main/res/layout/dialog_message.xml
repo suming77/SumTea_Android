@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:layout_width="@dimen/dialog_message_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_ffffff_radius2"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dp_20">
+
+        <TextView
+                android:id="@+id/tv_dialog_message_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#333333"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold"
+                tools:text="" />
+
+        <TextView
+                android:id="@+id/tv_dialog_message_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_15"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:lineSpacingExtra="@dimen/dp_4"
+                android:textColor="#333333"
+                android:textSize="@dimen/text_size_14"
+                tools:text="" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/line_color" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_48"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/tv_dialog_message_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/dialog_message_left_button"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/default_cancel"
+                    android:textColor="@color/dialog_cancel"
+                    android:textSize="@dimen/text_size_14" />
+
+            <View
+                    android:id="@+id/v_dialog_message_line"
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/line_color" />
+
+            <TextView
+                    android:id="@+id/tv_dialog_message_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/dialog_message_right_button"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/default_confirm"
+                    android:textColor="@color/dialog_confirm"
+                    android:textSize="@dimen/text_size_14" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

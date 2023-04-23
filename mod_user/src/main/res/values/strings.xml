@@ -11,6 +11,8 @@
     <string name="setting_current_version">当前版本V%s</string>
     <string name="setting_logout">退出</string>
     <string name="setting_info_about">关于</string>
+    <string name="setting_confirm_logout">确认退出当前登录？</string>
+    <string name="setting_celar_cache">是否清除手机缓存？</string>
 
     <string name="user_info_head">头像</string>
     <string name="user_info_name">昵称</string>

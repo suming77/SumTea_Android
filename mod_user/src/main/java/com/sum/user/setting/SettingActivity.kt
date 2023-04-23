@@ -4,19 +4,25 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.sum.common.constant.USER_ACTIVITY_SETTING
+import com.sum.common.dialog.MessageDialog
 import com.sum.common.provider.LoginServiceProvider
 import com.sum.common.provider.SearchServiceProvider
 import com.sum.common.provider.UserServiceProvider
 import com.sum.framework.base.BaseDataBindActivity
+import com.sum.framework.ext.gone
 import com.sum.framework.ext.onClick
+import com.sum.framework.ext.visible
 import com.sum.framework.toast.TipsToast
 import com.sum.framework.manager.AppManager
 import com.sum.framework.utils.ViewUtils
 import com.sum.framework.utils.dpToPx
+import com.sum.framework.utils.getColorFromResource
+import com.sum.framework.utils.getStringFromResource
 import com.sum.network.manager.CookiesManager
 import com.sum.user.R
 import com.sum.user.about.AboutUsActivity
 import com.sum.user.databinding.ActivitySettingBinding
+import com.sum.user.dialog.LogoutTipsDialog
 import com.sum.user.info.UserInfoActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -36,6 +42,11 @@ class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
                 R.string.setting_current_version
             ), AppManager.getAppVersionName(this)
         )
+        if (UserServiceProvider.isLogin()) {
+            mBinding.tvLogout.visible()
+        } else {
+            mBinding.tvLogout.gone()
+        }
         initListener()
     }
 
@@ -50,24 +61,37 @@ class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
             TipsToast.showWarningTips(R.string.setting_newest_version)
         }
         mBinding.clClearCache.onClick {
-            showLoading("正在清理...")
-            lifecycleScope.launch {
-                delay(1000)
-                dismissLoading()
-                mBinding.tvCache.text = "0MB"
-            }
+            MessageDialog.Builder(this).setTitle(getStringFromResource(com.sum.common.R.string.dialog_tips_title))
+                    .setMessage(getStringFromResource(R.string.setting_celar_cache))
+                    .setConfirm(getStringFromResource(com.sum.common.R.string.default_confirm))
+                    .setConfirmTxtColor(getColorFromResource(com.sum.common.R.color.color_0165b8))
+                    .setCancel(getString(com.sum.common.R.string.default_cancel))
+                    .setonCancelListener {
+                        it?.dismiss()
+                    }
+                    .setonConfirmListener {
+                        showLoading("正在清理...")
+                        lifecycleScope.launch {
+                            delay(1000)
+                            dismissLoading()
+                            mBinding.tvCache.text = "0MB"
+                        }
+                        it?.dismiss()
+                    }.create().show()
         }
         mBinding.clAboutUs.onClick {
             AboutUsActivity.start(this)
         }
         mBinding.tvLogout.onClick {
-            showLoading()
-            LoginServiceProvider.logout(context = this, lifecycleOwner = this){
-                CookiesManager.clearCookies()
-                UserServiceProvider.clearUserInfo()
-                SearchServiceProvider.clearSearchHistoryCache()
-                dismissLoading()
-            }
+            LogoutTipsDialog.Builder(this, mButtonClickListener = {
+                showLoading()
+                LoginServiceProvider.logout(context = this, lifecycleOwner = this) {
+                    CookiesManager.clearCookies()
+                    UserServiceProvider.clearUserInfo()
+                    SearchServiceProvider.clearSearchHistoryCache()
+                    dismissLoading()
+                }
+            }).show()
         }
     }
 }

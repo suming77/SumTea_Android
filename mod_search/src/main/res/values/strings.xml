@@ -4,5 +4,6 @@
     <string name="search_name">搜索</string>
     <string name="search_history">搜索历史</string>
     <string name="search_recommend">搜索推荐</string>
+    <string name="search_clear_history">是否清除搜索历史记录？</string>
     <string name="search_no_data_tips">没有找到您要搜索的内容，换个关键词试试~</string>
 </resources>

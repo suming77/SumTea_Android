@@ -9,6 +9,8 @@
     <string name="default_loading">正在加载....</string>
     <string name="default_no_data">暂无数据</string>
     <string name="default_agree_permission">请授权相关权限后再使用</string>
+    <string name="default_cancel">取消</string>
+    <string name="default_confirm">确定</string>
 
     <string name="login_know_more_android">登录后了解更多Android技术</string>
 
@@ -16,4 +18,7 @@
     <string name="collect_cancel">取消收藏</string>
 
     <string name="error_network">网络异常，请尝试刷新</string>
+
+    <string name="dialog_tips_title">温馨提示</string>
+
 </resources>

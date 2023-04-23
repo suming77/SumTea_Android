@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
-import com.sum.common.R
 import com.sum.common.constant.SEARCH_ACTIVITY_SEARCH
+import com.sum.common.dialog.MessageDialog
 import com.sum.common.provider.LoginServiceProvider
 import com.sum.common.provider.MainServiceProvider
 import com.sum.framework.base.BaseMvvmActivity
@@ -20,11 +20,12 @@ import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.ViewUtils
 import com.sum.framework.utils.dpToPx
 import com.sum.framework.utils.getColorFromResource
+import com.sum.framework.utils.getStringFromResource
+import com.sum.search.R
 import com.sum.search.SearchResultAdapter
 import com.sum.search.viewmodel.SearchViewModel
 import com.sum.search.databinding.ActivitySearchBinding
 import com.sum.search.manager.SearchManager
-
 /**
  * @author mingyan.su
  * @date   2023/3/29 18:14
@@ -46,7 +47,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
     override fun initView(savedInstanceState: Bundle?) {
         initRecyclerView()
         initListener()
-        window.statusBarColor = getColorFromResource(R.color.color_f0f2f4)
+        window.statusBarColor = getColorFromResource(com.sum.common.R.color.color_f0f2f4)
         ViewUtils.setClipViewCornerRadius(mBinding.etSearch, dpToPx(6))
         ViewUtils.setClipViewCornerRadius(mBinding.tvSearch, dpToPx(4))
         ViewUtils.setClipViewCornerTopRadius(mBinding.clSearchResult, dpToPx(14))
@@ -83,10 +84,28 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
             return@setOnEditorActionListener false
         }
         mBinding.viewSearchHistory.setOnHistoryClearListener {
-            SearchManager.clearSearchHistory()
+            clearHistoryCache()
         }
         mBinding.viewSearchHistory.setOnCheckChangeListener(clickCallBack)
         mBinding.viewSearchRecommend.setOnCheckChangeListener(clickCallBack)
+    }
+
+    /**
+     * 清楚搜索历史
+     */
+    private fun clearHistoryCache() {
+        MessageDialog.Builder(this).setTitle(getStringFromResource(com.sum.common.R.string.dialog_tips_title))
+                .setMessage(getStringFromResource(R.string.search_clear_history))
+                .setConfirm(getStringFromResource(com.sum.common.R.string.default_confirm))
+                .setConfirmTxtColor(getColorFromResource(com.sum.common.R.color.color_0165b8))
+                .setCancel(getString(com.sum.common.R.string.default_cancel))
+                .setonCancelListener {
+                    it?.dismiss()
+                }
+                .setonConfirmListener {
+                    SearchManager.clearSearchHistory()
+                    it?.dismiss()
+                }.create().show()
     }
 
     private fun initRecyclerView() {
@@ -184,7 +203,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
             mViewModel.collectArticle(item.id, collect).observe(this) {
                 dismissLoading()
                 it?.let {
-                    val tipsRes = if (collect) R.string.collect_cancel else R.string.collect_success
+                    val tipsRes = if (collect) com.sum.common.R.string.collect_cancel else com.sum.common.R.string.collect_success
                     TipsToast.showSuccessTips(tipsRes)
                     item.collect = !collect
                     mAdapter.updateItem(position, item)
