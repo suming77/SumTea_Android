@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title">Kotlin+jetpack+协程+Flow+ARouter+组件化+模块化+Glide+OkHttp+Retrofit+</string>
+    <string name="title">Kotlin + MVVM + Android Jetpack + 协程 + Flow + 组件化 + 模块化 + 短视频</string>
     <string name="author_name">作者：%s</string>
 
     <string name="default_save">保存</string>

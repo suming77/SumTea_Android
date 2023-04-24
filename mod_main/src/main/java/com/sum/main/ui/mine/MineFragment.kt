@@ -58,6 +58,10 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
         }
     }
 
+    override fun onFragmentVisible(isVisibleToUser: Boolean) {
+        LogUtil.e("isVisibleToUser:$isVisibleToUser")
+    }
+
     /**
      * 设置用户信息
      */

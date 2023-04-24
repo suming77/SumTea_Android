@@ -5,24 +5,17 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import androidx.multidex.MultiDex
-import com.alibaba.android.arouter.launcher.ARouter
-import com.scwang.smart.refresh.footer.ClassicsFooter
-import com.scwang.smart.refresh.header.ClassicsHeader
-import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import com.sum.framework.helper.SumAppHelper
 import com.sum.framework.manager.AppFrontBack
 import com.sum.framework.manager.AppFrontBackListener
 import com.sum.framework.log.LogUtil
 import com.sum.framework.manager.ActivityManager
 import com.sum.framework.toast.TipsToast
-import com.sum.framework.manager.AppManager
 import com.sum.stater.dispatcher.TaskDispatcher
-import com.sum.stater.inittasks.InitGlideTask
-import com.sum.stater.inittasks.InitLanguageTask
-import com.sum.stater.inittasks.InitNetWorkTask
-import com.sum.stater.inittasks.InitShareManagerTask
-import com.tencent.mmkv.MMKV
-import com.tencent.mmkv.MMKVLogLevel
+import com.sum.tea.task.InitMmkvTask
+import com.sum.tea.task.InitAppManagerTask
+import com.sum.tea.task.InitRefreshLayoutTask
+import com.sum.tea.task.InitArouterTask
+import com.sum.tea.task.InitSumHelperTask
 
 /**
  * @author mingyan.su
@@ -31,12 +24,6 @@ import com.tencent.mmkv.MMKVLogLevel
  */
 class SumApplication : Application() {
 
-    companion object {
-        private lateinit var instance: SumApplication
-
-        fun getInstance() = instance
-    }
-
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         MultiDex.install(base)
@@ -44,73 +31,28 @@ class SumApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
-        SumAppHelper.init(this, BuildConfig.DEBUG)
-        initRouter()
+
         //注册APP前后台切换监听
         appFrontBackRegister()
         // App启动立即注册监听
         registerActivityLifecycle()
         TipsToast.init(this)
-        //TaskDispatcher初始化
+
+        //1.启动器：TaskDispatcher初始化
         TaskDispatcher.init(this)
-
-        val rootDir: String = MMKV.initialize(this)
-        MMKV.setLogLevel(
-            if (BuildConfig.DEBUG) {
-                MMKVLogLevel.LevelDebug
-            } else {
-                MMKVLogLevel.LevelError
-            }
-        )
-        LogUtil.d("mmkv root: $rootDir", tag = "MMKV")
-
-        AppManager.init(this)
-
-        //创建dispatcher实例
+        //2.创建dispatcher实例
         val dispatcher: TaskDispatcher = TaskDispatcher.createInstance()
 
-        //添加任务并且启动任务
-        dispatcher.addTask(InitGlideTask(this))
-                .addTask(InitLanguageTask(this))
-                .addTask(InitNetWorkTask(this))
-                .addTask(InitShareManagerTask(this))
+        //3.添加任务并且启动任务
+        dispatcher.addTask(InitSumHelperTask(this))
+                .addTask(InitMmkvTask())
+                .addTask(InitAppManagerTask())
+                .addTask(InitRefreshLayoutTask())
+                .addTask(InitArouterTask())
                 .start()
 
-        //等待，需要等待的方法执行完才可以往下执行
-//        dispatcher.await()
-        initRefreshLayout()
-    }
-
-    /**
-     * 初始化ARouter
-     */
-    private fun initRouter() {
-        // 这两行必须写在init之前，否则这些配置在init过程中将无效
-        if (BuildConfig.DEBUG) {
-            // 开启打印日志
-            ARouter.openLog()
-            // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
-            ARouter.openDebug()
-        }
-        ARouter.init(this)
-    }
-
-    /**
-     * 全局初始化SmartRefreshLayout
-     */
-    private fun initRefreshLayout() {
-        //设置全局的Header构建器
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
-            layout.setPrimaryColorsId(android.R.color.white)
-//            CustomRefreshHeader(context)
-            ClassicsHeader(context)
-        }
-        //设置全局的Footer构建器
-        SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout ->
-            //指定为经典Footer，默认是 BallPulseFooter
-            ClassicsFooter(context)
-        }
+        //4.等待，需要等待的方法执行完才可以往下执行
+        dispatcher.await()
     }
 
     /**

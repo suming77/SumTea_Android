@@ -18,8 +18,6 @@ import com.sum.framework.utils.StatusBarSettingHelper
 import com.sum.main.databinding.ActivityMainBinding
 import com.sum.main.navigator.SumFragmentNavigator
 import com.sum.stater.dispatcher.DelayInitDispatcher
-import com.sum.stater.inittasks.InitTaskA
-import com.sum.stater.inittasks.InitTaskB
 
 /**
  * @author mingyan.su
@@ -73,9 +71,9 @@ class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         //延迟执行启动器
-        DelayInitDispatcher().addTask(InitTaskA())
-                .addTask(InitTaskB())
-                .start()
+//        DelayInitDispatcher().addTask(InitTaskA())
+//                .addTask(InitTaskB())
+//                .start()
     }
 
     override fun onBackPressed() {

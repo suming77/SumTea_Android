@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity
 import com.sum.common.databinding.DialogMessageBinding
 import com.sum.framework.base.BaseDialogFragment
 import com.sum.framework.ext.onClick
+import com.sum.framework.manager.AppManager
 
 /**
  * 普通弹框
@@ -27,6 +28,7 @@ class MessageDialog {
 
         init {
             setContentView(mBinding.root)
+            setWidth((AppManager.getScreenWidthPx() * 0.8).toInt())
             setAnimStyle(TOAST)
             setGravity(Gravity.CENTER)
         }
