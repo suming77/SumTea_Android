@@ -260,12 +260,13 @@
                     app:layout_constraintBottom_toBottomOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/et_input_birthday"
+                    android:id="@+id/tv_birthday"
                     android:layout_width="@dimen/dp_100"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|end"
                     android:paddingTop="@dimen/dp_10"
                     android:paddingBottom="@dimen/dp_10"
+                    android:text="@{user.birthday}"
                     android:hint="@string/user_info_input_birthday"
                     android:textColor="@color/color_898e92"
                     android:textColorHint="@color/color_898e92"

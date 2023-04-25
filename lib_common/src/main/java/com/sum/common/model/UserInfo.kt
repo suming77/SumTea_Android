@@ -19,7 +19,7 @@ data class User(
     var password: String?,
     var signature: String?,
     var sex: String?,
-    var birthday: Long = 0
+    var birthday: String? = ""
 ) : Parcelable {
     fun getName(): String? {
         return if (!nickname.isNullOrEmpty()) {

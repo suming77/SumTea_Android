@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.sum.common.R
 import com.sum.common.constant.USER_ACTIVITY_INFO
 import com.sum.common.provider.LoginServiceProvider
 import com.sum.common.provider.UserServiceProvider
@@ -24,6 +25,7 @@ import com.sum.framework.utils.ViewUtils
 import com.sum.framework.utils.dpToPx
 import com.sum.glide.loadFile
 import com.sum.user.databinding.ActivityUserInfoBinding
+import com.sum.user.dialog.SelectBirthdayDialog
 import com.sum.user.dialog.ChoosePhotoDialog
 import com.sum.user.manager.FileManager
 import com.tbruyelle.rxpermissions3.RxPermissions
@@ -40,8 +42,10 @@ import java.io.File
 class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
     //相机拍照URI
     private var photoUri: Uri? = null
+
     //裁剪图片URI
     private var mUploadImageUri: Uri? = null
+
     //裁剪图片文件
     private var mUploadImageFile: File? = null
 
@@ -110,25 +114,43 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
             showChoosePhotoDialog()
         }
         mBinding.clBirthday.onClick {
+            showBirthdayDialog()
         }
         mBinding.tvSave.onClick {
-            val user = UserServiceProvider.getUserInfo()
-            user?.let {
-                user.icon = saveAvatarPath
-                user.nickname = mBinding.etName.text.toString()
-                user.sex = mBinding.tvSex.text.toString()
-                user.signature = mBinding.etSignature.text.toString()
-                showLoading()
-                lifecycleScope.launch {
-                    UserServiceProvider.saveUserInfo(user)
-                    delay(1000)
-                    dismissLoading()
-                    TipsToast.showTips(com.sum.common.R.string.default_save_success)
-                }
-            } ?: kotlin.run {
-                LoginServiceProvider.login(this)
-            }
+            saveUserInfo()
         }
+    }
+
+    /**
+     * 保存用户信息
+     */
+    private fun saveUserInfo() {
+        val user = UserServiceProvider.getUserInfo()
+        user?.let {
+            user.icon = saveAvatarPath
+            user.nickname = mBinding.etName.text.toString()
+            user.sex = mBinding.tvSex.text.toString()
+            user.signature = mBinding.etSignature.text.toString()
+            user.birthday = mBinding.tvBirthday.text.toString()
+            showLoading()
+            lifecycleScope.launch {
+                UserServiceProvider.saveUserInfo(user)
+                delay(1000)
+                dismissLoading()
+                TipsToast.showTips(R.string.default_save_success)
+            }
+        } ?: kotlin.run {
+            LoginServiceProvider.login(this)
+        }
+    }
+
+    /**
+     * 设置生日日期
+     */
+    private fun showBirthdayDialog() {
+        SelectBirthdayDialog.Builder(this).setBirthDayDateCall { date ->
+            mBinding.tvBirthday.text = date
+        }.show()
     }
 
     /**
