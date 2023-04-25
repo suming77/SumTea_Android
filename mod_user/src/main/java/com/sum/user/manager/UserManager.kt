@@ -45,6 +45,17 @@ object UserManager {
     }
 
     /**
+     * 保存用户本地头像
+     * @param path
+     */
+    fun saveUserPhoto(path: String?) {
+        val user = getUserInfo()
+        user?.icon = path
+        saveUserInfo(user)
+    }
+
+
+    /**
      * 获取用户信息
      * @return User
      */

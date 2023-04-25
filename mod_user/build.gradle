@@ -68,6 +68,11 @@ dependencies {
     compileOnly rootProject.depsLibs.aroutreApi
     kapt rootProject.depsLibs.arouterCompiler
 
+//    compileOnly rootProject.depsLibs.cameraX
+    compileOnly rootProject.depsLibs.rxPermission
+    compileOnly rootProject.depsLibs.rxjava
+    compileOnly rootProject.depsLibs.rxandroid
+
     compileOnly project(path: ':lib_framework')
     compileOnly project(path: ':lib_common')
     compileOnly project(path: ':lib_network')

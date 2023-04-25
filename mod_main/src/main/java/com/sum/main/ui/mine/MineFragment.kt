@@ -24,6 +24,7 @@ import com.sum.framework.log.LogUtil
 import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.dpToPx
 import com.sum.framework.utils.getStringFromResource
+import com.sum.glide.loadFile
 import com.sum.glide.setUrlCircle
 import com.sum.main.R
 import com.sum.main.databinding.FragmentMineBinding
@@ -31,6 +32,7 @@ import com.sum.main.databinding.FragmentMineHeadBinding
 import com.sum.main.ui.mine.viewmodel.MineViewModel
 import com.sum.main.ui.system.adapter.ArticleAdapter
 import com.sum.network.error.ERROR
+import java.io.File
 
 /**
  * @author mingyan.su
@@ -69,7 +71,7 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
         LogUtil.e("userdata:$user", tag = "smy")
         if (UserServiceProvider.isLogin()) {
             user?.let {
-                mHeadBinding.ivHead.setUrlCircle(it.icon ?: "")
+                mHeadBinding.ivHead.loadFile(File(it.icon ?: ""))
                 if (!it.nickname.isNullOrEmpty()) {
                     mHeadBinding.tvName.text = it.nickname
                 } else {

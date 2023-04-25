@@ -291,7 +291,6 @@ class BaseDialog @JvmOverloads constructor(
          */
         // 位置
         protected var gravity = Gravity.CENTER
-            private set
 
         // 宽度和高度
         private var mWidth = WRAP_CONTENT

@@ -122,6 +122,8 @@ dependencies {
     implementation rootProject.depsLibs.tbssdk
     implementation rootProject.depsLibs.exoPlayer
 
+//    implementation rootProject.depsLibs.cameraX
+
     implementation rootProject.depsLibs.rxPermission
     implementation rootProject.depsLibs.rxjava
     implementation rootProject.depsLibs.rxandroid

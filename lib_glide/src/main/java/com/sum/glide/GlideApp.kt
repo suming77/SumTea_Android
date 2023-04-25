@@ -18,6 +18,7 @@ import com.sum.framework.manager.ActivityManager
 import com.sum.framework.manager.AppManager
 import com.sum.glide.transformation.BlurTransformation
 import com.sum.glide.transformation.CircleBorderTransform
+import java.io.File
 
 /**
  * @author mingyan.su
@@ -42,6 +43,25 @@ fun ImageView.setUrl(url: String?) {
 }
 
 /**
+ * 加载图片，开启缓存
+ * @param url 图片地址
+ */
+fun ImageView.loadFile(file: File?) {
+    if (ActivityManager.isActivityDestroy(context)) {
+        return
+    }
+    //请求配置
+    val options = RequestOptions.circleCropTransform()
+    Glide.with(context).load(file)
+            .placeholder(R.mipmap.default_head) // 占位符，异常时显示的图片
+            .error(R.mipmap.default_head) // 错误时显示的图片
+            .skipMemoryCache(false) //启用内存缓存
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE) //磁盘缓存策略
+            .apply(options) // 圆形
+            .into(this)
+}
+
+/**
  * 设置图片，不开启缓存
  * @param url
  */
@@ -62,12 +82,14 @@ fun ImageView.setUrlNoCache(url: String?) {
  */
 fun ImageView.setUrlCircle(url: String?) {
     if (ActivityManager.isActivityDestroy(context)) return
+    //请求配置
+    val options = RequestOptions.circleCropTransform()
     Glide.with(context).load(url)
             .placeholder(R.mipmap.default_head)
             .error(R.mipmap.default_head)
             .skipMemoryCache(false) //启用内存缓存
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-            .transform(CenterCrop()) // 圆形
+            .apply(options)// 圆形
             .into(this)
 }
 

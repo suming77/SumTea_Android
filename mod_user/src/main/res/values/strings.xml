@@ -23,6 +23,8 @@
     <string name="user_info_input_birthday">点击设置生日</string>
     <string name="user_info_signature">签名</string>
     <string name="user_info_input_signature">请输入您的个性签名</string>
+    <string name="user_pictures">拍照</string>
+    <string name="user_album">我的相册</string>
 
     <string name="about_us">关于我们</string>
     <string name="about_main_link">我的主页</string>

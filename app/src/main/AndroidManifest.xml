@@ -3,9 +3,15 @@
         xmlns:tools="http://schemas.android.com/tools"
         package="com.sum.tea">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <!--检查网络权限-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <!--存储图像或者视频权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+            tools:ignore="ScopedStorage" />
     <!--allowBackup:应用数据是否能能够被备份或恢复-->
     <application
             android:name=".SumApplication"
@@ -34,8 +40,23 @@
                 android:launchMode="singleTask"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="adjustPan"
-                android:exported="true">
-        </activity>
+                android:exported="true"/>
+
+        <!--7.0需要做URI适配
+        authorities：相当于一个用于认证的暗号，在分享文件生成Uri时，会通过它的值生成对应的Uri。值是一个域名，一般格式为<包名>.fileprovider
+        name:表示FileProvider的绝对路径
+        grantUriPermissions:能授权接收端的app临时访问权限
+        -->
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="${applicationId}.fileProvider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <!--这里的name就在FileProvider源码里面,resource需要指定一个xml文件-->
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/data_extraction_rules" />
+        </provider>
     </application>
 
 </manifest>
