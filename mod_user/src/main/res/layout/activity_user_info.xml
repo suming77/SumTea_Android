@@ -316,7 +316,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.sum.framework.weights.ClearEditText
                     android:id="@+id/et_signature"
                     android:layout_width="0dp"
                     android:layout_height="0dp"

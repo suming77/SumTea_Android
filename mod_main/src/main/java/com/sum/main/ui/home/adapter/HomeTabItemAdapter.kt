@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import com.sum.common.model.ProjectSubInfo
 import com.sum.framework.adapter.BaseBindViewHolder
 import com.sum.framework.adapter.BaseRecyclerViewAdapter
+import com.sum.framework.ext.onClick
 import com.sum.framework.utils.ViewUtils
 import com.sum.framework.utils.dpToPx
 import com.sum.glide.setUrl
 import com.sum.main.databinding.LayoutHomeTabItemBinding
+import com.sum.main.ui.ImagePreviewActivity
 
 /**
  * @author mingyan.su
@@ -37,6 +39,9 @@ class HomeTabItemAdapter : BaseRecyclerViewAdapter<ProjectSubInfo, LayoutHomeTab
             tvSubTitle.text = item.desc
             tvAuthorName.text = item.author
             tvTime.text = item.niceDate
+            ivMainIcon.onClick {
+                ImagePreviewActivity.start(it.context, item.envelopePic)
+            }
             ViewUtils.setClipViewCornerRadius(holder.itemView, dpToPx(8))
         }
     }

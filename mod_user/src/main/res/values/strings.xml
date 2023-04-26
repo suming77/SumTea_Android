@@ -19,6 +19,8 @@
     <string name="user_info_phone">手机</string>
     <string name="user_info_input_name">输入用户名称</string>
     <string name="user_info_sex">性别</string>
+    <string name="user_sex_boy">男</string>
+    <string name="user_sex_girl">女</string>
     <string name="user_info_birthday">生日</string>
     <string name="user_info_input_birthday">点击设置生日</string>
     <string name="user_info_signature">签名</string>

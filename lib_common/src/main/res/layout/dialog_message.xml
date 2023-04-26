@@ -4,7 +4,7 @@
         android:layout_width="@dimen/dialog_message_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/shape_ffffff_radius2"
+        android:background="@drawable/shape_ffffff_radius10"
         android:orientation="vertical"
         android:paddingTop="@dimen/dp_20">
 

@@ -5,6 +5,7 @@
 
     <string name="default_save">保存</string>
     <string name="default_save_success">保存成功</string>
+    <string name="default_save_fail">保存失败</string>
     <string name="default_developing">正在开发中....</string>
     <string name="default_loading">正在加载....</string>
     <string name="default_no_data">暂无数据</string>

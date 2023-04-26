@@ -24,6 +24,8 @@ import com.sum.user.about.AboutUsActivity
 import com.sum.user.databinding.ActivitySettingBinding
 import com.sum.user.dialog.LogoutTipsDialog
 import com.sum.user.info.UserInfoActivity
+import com.sum.common.manager.FileManager
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -34,6 +36,7 @@ import kotlinx.coroutines.launch
  */
 @Route(path = USER_ACTIVITY_SETTING)
 class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
+    var allCacheDir = arrayOfNulls<String>(2)
 
     override fun initView(savedInstanceState: Bundle?) {
         ViewUtils.setClipViewCornerRadius(mBinding.tvLogout, dpToPx(8))
@@ -47,7 +50,21 @@ class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
         } else {
             mBinding.tvLogout.gone()
         }
+        val rootDir = FileManager.getAppRootDir()
+        val imageDir = FileManager.getImageDirectory(this)
+        allCacheDir = arrayOf(rootDir, imageDir.absolutePath)
+        lifecycleScope.launch(Dispatchers.IO) {
+            updateCacheSize()
+        }
         initListener()
+    }
+
+    /**
+     * 更新缓存大小
+     */
+    private fun updateCacheSize() {
+        val size = FileManager.getTotalCacheSize(this, *allCacheDir)
+        mBinding.tvCache.text = size
     }
 
     private fun initListener() {
@@ -61,23 +78,7 @@ class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
             TipsToast.showWarningTips(R.string.setting_newest_version)
         }
         mBinding.clClearCache.onClick {
-            MessageDialog.Builder(this).setTitle(getStringFromResource(com.sum.common.R.string.dialog_tips_title))
-                    .setMessage(getStringFromResource(R.string.setting_celar_cache))
-                    .setConfirm(getStringFromResource(com.sum.common.R.string.default_confirm))
-                    .setConfirmTxtColor(getColorFromResource(com.sum.common.R.color.color_0165b8))
-                    .setCancel(getString(com.sum.common.R.string.default_cancel))
-                    .setonCancelListener {
-                        it?.dismiss()
-                    }
-                    .setonConfirmListener {
-                        showLoading("正在清理...")
-                        lifecycleScope.launch {
-                            delay(1000)
-                            dismissLoading()
-                            mBinding.tvCache.text = "0MB"
-                        }
-                        it?.dismiss()
-                    }.create().show()
+            showClearCacheDialog()
         }
         mBinding.clAboutUs.onClick {
             AboutUsActivity.start(this)
@@ -92,6 +93,39 @@ class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
                     dismissLoading()
                 }
             }).show()
+        }
+    }
+
+    /**
+     * 清理缓存弹框
+     */
+    private fun showClearCacheDialog() {
+        MessageDialog.Builder(this).setTitle(getStringFromResource(com.sum.common.R.string.dialog_tips_title))
+                .setMessage(getStringFromResource(R.string.setting_celar_cache))
+                .setConfirm(getStringFromResource(com.sum.common.R.string.default_confirm))
+                .setConfirmTxtColor(getColorFromResource(com.sum.common.R.color.color_0165b8))
+                .setCancel(getString(com.sum.common.R.string.default_cancel))
+                .setonCancelListener {
+                    it?.dismiss()
+                }
+                .setonConfirmListener {
+                    clearCache()
+                    it?.dismiss()
+                }.create().show()
+    }
+
+    /**
+     * 清理缓存
+     */
+    private fun clearCache() {
+        showLoading("正在清理...")
+        lifecycleScope.launch {
+            allCacheDir.forEach { filesDir ->
+                filesDir?.let { FileManager.delAllFile(it) }
+            }
+            delay(500)
+            dismissLoading()
+            updateCacheSize()
         }
     }
 }
