@@ -28,6 +28,7 @@ import com.sum.framework.utils.getStringFromResource
 import com.sum.login.login.LoginViewModel
 import com.sum.login.R
 import com.sum.login.databinding.ActivityRegisterBinding
+import com.sum.login.policy.PrivacyPolicyActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flatMapLatest
@@ -148,6 +149,7 @@ class RegisterActivity : BaseMvvmActivity<ActivityRegisterBinding, LoginViewMode
                 object : ClickableSpan() {
                     override fun onClick(widget: View) {
                         (widget as TextView).highlightColor = getColorFromResource(com.sum.common.R.color.transparent)
+                        PrivacyPolicyActivity.start(this@RegisterActivity)
                     }
 
                     @RequiresApi(Build.VERSION_CODES.M)
@@ -166,6 +168,7 @@ class RegisterActivity : BaseMvvmActivity<ActivityRegisterBinding, LoginViewMode
                 object : ClickableSpan() {
                     override fun onClick(widget: View) {
                         (widget as TextView).highlightColor = getColorFromResource(com.sum.common.R.color.transparent)
+                        PrivacyPolicyActivity.start(this@RegisterActivity)
                     }
 
                     @RequiresApi(Build.VERSION_CODES.M)

@@ -1,6 +1,7 @@
 package com.sum.main.ui.system.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
@@ -9,7 +10,9 @@ import com.google.android.flexbox.JustifyContent
 import com.sum.common.model.SystemList
 import com.sum.framework.adapter.BaseBindViewHolder
 import com.sum.framework.adapter.BaseRecyclerViewAdapter
+import com.sum.framework.ext.toJson
 import com.sum.main.databinding.LayoutSystemItemBinding
+import com.sum.main.ui.system.ArticleTabActivity
 
 /**
  * @author mingyan.su
@@ -44,6 +47,12 @@ class SystemAdapter : BaseRecyclerViewAdapter<SystemList, LayoutSystemItemBindin
             val adapter = SystemSecondAdapter()
             recyclerViewItem.adapter = adapter
             adapter.setData(item.children)
+//            recyclerViewItem.setOnTouchListener { v, event ->
+//                root.onTouchEvent(event)
+//            }
+            adapter.onItemClickListener = { _: View, _: Int ->
+                ArticleTabActivity.startIntent(root.context, item?.toJson(true))
+            }
         }
     }
 

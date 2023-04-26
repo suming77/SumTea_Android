@@ -17,7 +17,6 @@ import com.sum.framework.utils.AppExit
 import com.sum.framework.utils.StatusBarSettingHelper
 import com.sum.main.databinding.ActivityMainBinding
 import com.sum.main.navigator.SumFragmentNavigator
-import com.sum.stater.dispatcher.DelayInitDispatcher
 
 /**
  * @author mingyan.su
@@ -52,7 +51,6 @@ class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
         navController.setGraph(R.navigation.mobile_navigation)
         //5.将NavController和BottomNavigationView绑定，形成联动效果
         navView.setupWithNavController(navController)
-
         StatusBarSettingHelper.setStatusBarTranslucent(this)
         StatusBarSettingHelper.statusBarLightMode(this@MainActivity, true)
     }

@@ -13,6 +13,7 @@ import com.sum.common.service.ILoginService
 import com.sum.framework.log.LogUtil
 import com.sum.framework.toast.TipsToast
 import com.sum.login.login.LoginActivity
+import com.sum.login.policy.PrivacyPolicyActivity
 import com.sum.network.manager.ApiManager
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -60,6 +61,14 @@ class LoginService : ILoginService {
             observer.onChanged(response?.isFailed() == true)
             login(context)
         }
+    }
+
+    /**
+     * 跳转隐私协议页
+     * @param context
+     */
+    override fun readPolicy(context: Context) {
+        context.startActivity(Intent(context, PrivacyPolicyActivity::class.java))
     }
 
     override fun init(context: Context?) {

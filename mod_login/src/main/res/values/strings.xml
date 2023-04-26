@@ -22,4 +22,6 @@
     <string name="register_new_account">注册新账号</string>
     <string name="register_hint_password">请输入确认密码</string>
 
+    <string name="user_privacy_policy">本项目的API大部分来自鸿洋提供的 WanAndroid API，仅供开源学习使用，禁止用于商业用途。\n\n项目中有部分代码和资源参考其他开源项目或者其他项目，视频资源来自抖音短视频和Android官网，如有侵权请联系作者删除。\n\n如有任何问题请联系作者本人，或者在github的 Issue 中提交对本项目的改进建议~</string>
+
 </resources>

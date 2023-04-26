@@ -17,5 +17,9 @@
                 android:launchMode="singleTop"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="adjustPan" />
+        <activity
+                android:name=".policy.PrivacyPolicyActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="adjustPan" />
     </application>
 </manifest>

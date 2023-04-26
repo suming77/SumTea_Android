@@ -26,6 +26,12 @@ interface ILoginService : IProvider {
     fun login(context: Context)
 
     /**
+     * 跳转隐私协议
+     * @param context
+     */
+    fun readPolicy(context: Context)
+
+    /**
      * 登出
      * @param context
      * @param lifecycleOwner

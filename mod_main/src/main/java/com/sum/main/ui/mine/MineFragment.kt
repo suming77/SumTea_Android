@@ -25,7 +25,6 @@ import com.sum.framework.toast.TipsToast
 import com.sum.framework.utils.dpToPx
 import com.sum.framework.utils.getStringFromResource
 import com.sum.glide.loadFile
-import com.sum.glide.setUrlCircle
 import com.sum.main.R
 import com.sum.main.databinding.FragmentMineBinding
 import com.sum.main.databinding.FragmentMineHeadBinding

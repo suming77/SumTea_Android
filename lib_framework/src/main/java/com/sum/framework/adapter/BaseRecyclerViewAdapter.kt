@@ -65,6 +65,7 @@ abstract class BaseRecyclerViewAdapter<T, B : ViewBinding> : RecyclerView.Adapte
             else -> {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 baseViewHolder = onCreateDefViewHolder(layoutInflater, parent, viewType)
+                bindViewClickListener(baseViewHolder)
             }
         }
         return baseViewHolder
@@ -74,12 +75,6 @@ abstract class BaseRecyclerViewAdapter<T, B : ViewBinding> : RecyclerView.Adapte
      * 子类可以选择重载该方法，如果有需要可重写[onBindDefViewHolder]，点击事件调用super即可
      */
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        holder.itemView.setOnClickListener {
-            onItemClickListener?.invoke(holder.itemView, position)
-        }
-        holder.itemView.setOnLongClickListener {
-            onItemLongClickListener.invoke(holder.itemView, position)
-        }
         when (holder.itemViewType) {
             HEADER_VIEW, FOOTER_VIEW -> {
                 return
@@ -94,6 +89,33 @@ abstract class BaseRecyclerViewAdapter<T, B : ViewBinding> : RecyclerView.Adapte
                         onBindDefViewHolder(holder, it, realPosition)
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * 点击绑定点击事件
+     * @param holder
+     */
+    protected open fun bindViewClickListener(holder: BaseViewHolder) {
+        onItemClickListener?.let {
+            holder.itemView.setOnClickListener { v ->
+                var position = holder.adapterPosition
+                if (position == RecyclerView.NO_POSITION) {
+                    return@setOnClickListener
+                }
+                position -= headerLayoutCount
+                it.invoke(holder.itemView, position)
+            }
+        }
+        onItemLongClickListener?.let {
+            holder.itemView.setOnLongClickListener { v ->
+                var position = holder.adapterPosition
+                if (position == RecyclerView.NO_POSITION) {
+                    return@setOnLongClickListener false
+                }
+                position -= headerLayoutCount
+                it.invoke(holder.itemView, position)
             }
         }
     }

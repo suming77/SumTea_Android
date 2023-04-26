@@ -21,5 +21,6 @@
     <string name="error_network">网络异常，请尝试刷新</string>
 
     <string name="dialog_tips_title">温馨提示</string>
+    <string name="setting_privacy_policy">隐私政策</string>
 
 </resources>

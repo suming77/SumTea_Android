@@ -16,10 +16,10 @@ package com.sum.common.constant
  */
 //登录页面
 const val LOGIN_ACTIVITY_LOGIN = "/login/activity/login"
-
 //注册页面
 const val LOGIN_ACTIVITY_REGISTER = "/login/activity/register"
-
+//隐私协议界面
+const val Login_ACTIVITY_POLICY = "/login/activity/policy"
 
 /**
  * 首页模块

@@ -134,7 +134,9 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
     private fun saveUserInfo() {
         val user = UserServiceProvider.getUserInfo()
         user?.let {
-            user.icon = saveAvatarPath
+            if (!saveAvatarPath.isNullOrEmpty()) {
+                user.icon = saveAvatarPath
+            }
             user.nickname = mBinding.etName.text.toString()
             user.sex = mBinding.tvSex.text.toString()
             user.signature = mBinding.etSignature.text.toString()

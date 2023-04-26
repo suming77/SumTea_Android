@@ -77,6 +77,9 @@ class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
         mBinding.clCurrentVersion.onClick {
             TipsToast.showWarningTips(R.string.setting_newest_version)
         }
+        mBinding.clPrivacyPolicy.onClick {
+            LoginServiceProvider.readPolicy(this)
+        }
         mBinding.clClearCache.onClick {
             showClearCacheDialog()
         }
@@ -101,7 +104,7 @@ class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
      */
     private fun showClearCacheDialog() {
         MessageDialog.Builder(this).setTitle(getStringFromResource(com.sum.common.R.string.dialog_tips_title))
-                .setMessage(getStringFromResource(R.string.setting_celar_cache))
+                .setMessage(getStringFromResource(R.string.setting_clear_cache_tips))
                 .setConfirm(getStringFromResource(com.sum.common.R.string.default_confirm))
                 .setConfirmTxtColor(getColorFromResource(com.sum.common.R.color.color_0165b8))
                 .setCancel(getString(com.sum.common.R.string.default_cancel))
