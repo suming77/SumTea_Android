@@ -47,6 +47,12 @@ const val SEARCH_ACTIVITY_SEARCH = "/search/activity/search"
  */
 const val VIDEO_ACTIVITY_PLAYER = "/video/activity/player"
 
+/**
+ * Demo模块
+ */
+//Navigation
+const val DEMO_ACTIVITY_NAVIGATION = "/demo/activity/navigation"
+
 //**********************服务相关**********************
 
 /**

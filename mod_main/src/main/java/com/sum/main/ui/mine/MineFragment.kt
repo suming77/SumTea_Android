@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
+import com.sum.common.constant.DEMO_ACTIVITY_NAVIGATION
 import com.sum.common.constant.USER_ACTIVITY_COLLECTION
 import com.sum.common.constant.USER_ACTIVITY_INFO
 import com.sum.common.constant.USER_ACTIVITY_SETTING
@@ -112,7 +113,7 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
                 }
             }
             tvNavigation.onClick {
-
+                ARouter.getInstance().build(DEMO_ACTIVITY_NAVIGATION).navigation()
             }
             tvLifeCycle.onClick {
 
