@@ -1,22 +1,22 @@
-plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
-}
 // 组件模式和基础模式切换
-//def root = rootProject.ext
-//if (root.isModule) {
-//    apply plugin: 'com.android.application'
-//} else {
-//    apply plugin: 'com.android.library'
-//}
+def root = rootProject.ext
+if (root.isModule) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdk rootProject.android.compileSdk
+    compileSdk root.android.compileSdk
 
     defaultConfig {
-        minSdk rootProject.android.minSdk
-        targetSdk rootProject.android.targetSdk
+        if (root.isModule) {
+            applicationId root.applicationId.login
+        }
+        minSdk root.android.minSdk
+        targetSdk root.android.targetSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -29,19 +29,19 @@ android {
         }
     }
 //   组件化模式资源切换
-//    sourceSets {
-//        main {
-//            if (rootProject.ext.isModule) {
-//                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-//            } else {
-//                manifest.srcFile 'src/main/AndroidManifest.xml'
-//                //library模式下排除debug文件夹中的所有Java文件
-//                java {
-//                    exclude 'debug/**'
-//                }
-//            }
-//        }
-//    }
+    sourceSets {
+        main {
+            if (root.isModule) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                //library模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude 'debug/**'
+                }
+            }
+        }
+    }
 
     buildTypes {
         release {
@@ -63,26 +63,50 @@ android {
 }
 
 dependencies {
+    if (root.isModule) {
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        implementation root.depsLibs.coreKtx
+        implementation root.depsLibs.appcompat
+        implementation root.depsLibs.material
+        implementation root.depsLibs.constraintlayout
+        implementation root.depsLibs.liveDataKtx
+        implementation root.depsLibs.viewModelKtx
 
-    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly rootProject.depsLibs.coreKtx
-    compileOnly rootProject.depsLibs.appcompat
-    compileOnly rootProject.depsLibs.material
-    compileOnly rootProject.depsLibs.constraintlayout
-    compileOnly rootProject.depsLibs.liveDataKtx
-    compileOnly rootProject.depsLibs.viewModelKtx
+        testCompileOnly root.depsLibs.junit
+        androidTestCompileOnly root.depsLibs.extJunit
+        androidTestCompileOnly root.depsLibs.espressoCore
 
-    testCompileOnly rootProject.depsLibs.junit
-    androidTestCompileOnly rootProject.depsLibs.extJunit
-    androidTestCompileOnly rootProject.depsLibs.espressoCore
+        implementation root.depsLibs.gson
+        implementation root.depsLibs.mmkv
 
-    compileOnly rootProject.depsLibs.gson
-    compileOnly rootProject.depsLibs.mmkv
+        implementation root.depsLibs.aroutreApi
+        kapt root.depsLibs.arouterCompiler
 
-    compileOnly rootProject.depsLibs.aroutreApi
-    kapt rootProject.depsLibs.arouterCompiler
+        implementation project(path: ':lib_framework')
+        implementation project(path: ':lib_common')
+        implementation project(path: ':lib_network')
+    } else {
+        compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+        compileOnly root.depsLibs.coreKtx
+        compileOnly root.depsLibs.appcompat
+        compileOnly root.depsLibs.material
+        compileOnly root.depsLibs.constraintlayout
+        compileOnly root.depsLibs.liveDataKtx
+        compileOnly root.depsLibs.viewModelKtx
 
-    compileOnly project(path: ':lib_framework')
-    compileOnly project(path: ':lib_common')
-    compileOnly project(path: ':lib_network')
+        testCompileOnly root.depsLibs.junit
+        androidTestCompileOnly root.depsLibs.extJunit
+        androidTestCompileOnly root.depsLibs.espressoCore
+
+        compileOnly root.depsLibs.gson
+        compileOnly root.depsLibs.mmkv
+
+        compileOnly root.depsLibs.aroutreApi
+        kapt root.depsLibs.arouterCompiler
+
+        compileOnly project(path: ':lib_framework')
+        compileOnly project(path: ':lib_common')
+        compileOnly project(path: ':lib_network')
+    }
+
 }

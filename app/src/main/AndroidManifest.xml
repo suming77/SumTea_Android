@@ -14,7 +14,7 @@
             tools:ignore="ScopedStorage" />
     <!--allowBackup:应用数据是否能能够被备份或恢复-->
     <application
-            android:name=".SumApplication"
+            android:name="com.sum.common.SumApplication"
             android:allowBackup="false"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"

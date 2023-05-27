@@ -1,4 +1,4 @@
-package com.sum.tea
+package com.sum.common
 
 import android.app.Activity
 import android.app.Application
@@ -11,11 +11,6 @@ import com.sum.framework.log.LogUtil
 import com.sum.framework.manager.ActivityManager
 import com.sum.framework.toast.TipsToast
 import com.sum.stater.dispatcher.TaskDispatcher
-import com.sum.tea.task.InitMmkvTask
-import com.sum.tea.task.InitAppManagerTask
-import com.sum.tea.task.InitRefreshLayoutTask
-import com.sum.tea.task.InitArouterTask
-import com.sum.tea.task.InitSumHelperTask
 
 /**
  * @author mingyan.su

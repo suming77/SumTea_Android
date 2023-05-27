@@ -1,4 +1,4 @@
-package com.sum.tea.task
+package com.sum.common
 
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
@@ -10,7 +10,6 @@ import com.sum.framework.log.LogUtil
 import com.sum.framework.manager.AppManager
 import com.sum.stater.task.Task
 import com.sum.stater.utils.DispatcherExecutor
-import com.sum.tea.BuildConfig
 import com.tencent.mmkv.MMKV
 import com.tencent.mmkv.MMKVLogLevel
 import java.util.concurrent.ExecutorService

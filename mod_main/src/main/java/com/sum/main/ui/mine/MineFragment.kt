@@ -113,7 +113,7 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
                 }
             }
             tvNavigation.onClick {
-                ARouter.getInstance().build(DEMO_ACTIVITY_NAVIGATION).navigation()
+//                ARouter.getInstance().build(DEMO_ACTIVITY_NAVIGATION).navigation()
             }
             tvLifeCycle.onClick {
 

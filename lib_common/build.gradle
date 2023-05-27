@@ -43,19 +43,46 @@ android {
 }
 
 dependencies {
-    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly rootProject.depsLibs.coreKtx
-    compileOnly rootProject.depsLibs.appcompat
-    compileOnly rootProject.depsLibs.material
-    compileOnly rootProject.depsLibs.constraintlayout
+    if (rootProject.ext.isModule) {
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        implementation rootProject.depsLibs.coreKtx
+        implementation rootProject.depsLibs.appcompat
+        implementation rootProject.depsLibs.material
+        implementation rootProject.depsLibs.constraintlayout
 
-    compileOnly rootProject.depsLibs.refreshLayout
-    compileOnly rootProject.depsLibs.refreshHeader
-    compileOnly rootProject.depsLibs.refreshFooter
+        implementation rootProject.depsLibs.multidex
+        implementation rootProject.depsLibs.mmkv
 
-    compileOnly rootProject.depsLibs.aroutreApi
-    kapt rootProject.depsLibs.arouterCompiler
+        implementation rootProject.depsLibs.refreshLayout
+        implementation rootProject.depsLibs.refreshHeader
+        implementation rootProject.depsLibs.refreshFooter
 
-    compileOnly project(path: ':lib_framework')
-    compileOnly project(path: ':lib_banner')
+        implementation rootProject.depsLibs.aroutreApi
+        kapt rootProject.depsLibs.arouterCompiler
+
+        implementation project(path: ':lib_framework')
+        implementation project(path: ':lib_banner')
+        implementation project(path: ':lib_stater')
+    } else {
+        compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+        compileOnly rootProject.depsLibs.coreKtx
+        compileOnly rootProject.depsLibs.appcompat
+        compileOnly rootProject.depsLibs.material
+        compileOnly rootProject.depsLibs.constraintlayout
+
+        compileOnly rootProject.depsLibs.refreshLayout
+        compileOnly rootProject.depsLibs.refreshHeader
+        compileOnly rootProject.depsLibs.refreshFooter
+
+        compileOnly rootProject.depsLibs.multidex
+        compileOnly rootProject.depsLibs.mmkv
+
+        compileOnly rootProject.depsLibs.aroutreApi
+        kapt rootProject.depsLibs.arouterCompiler
+
+        compileOnly project(path: ':lib_framework')
+        compileOnly project(path: ':lib_banner')
+        compileOnly project(path: ':lib_stater')
+    }
+
 }

@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!--检查网络权限-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <application android:allowBackup="false">
+    <application android:allowBackup="false"
+            android:theme="@style/AppTheme">
         <activity
                 android:name=".login.LoginActivity"
                 android:launchMode="singleTop"

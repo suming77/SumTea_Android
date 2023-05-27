@@ -1,4 +1,4 @@
-package com.sum.user.service
+package com.sum.common.service
 
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -6,7 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.sum.common.constant.USER_SERVICE_USER
 import com.sum.common.model.User
 import com.sum.common.service.IUserService
-import com.sum.user.manager.UserManager
+import com.sum.common.manager.UserManager
 
 /**
  * @author mingyan.su

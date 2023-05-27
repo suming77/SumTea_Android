@@ -14,14 +14,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
-        <item name="colorOnPrimary">@color/colorAccent</item>
-        <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimary</item>
-        <item name="windowActionBar">false</item>
-    </style>
-
     <style name="style_mine_service">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">@dimen/dp_58</item>

@@ -54,21 +54,22 @@ const val VIDEO_ACTIVITY_PLAYER = "/video/activity/player"
 const val DEMO_ACTIVITY_NAVIGATION = "/demo/activity/navigation"
 
 //**********************服务相关**********************
-
+//Type com.alibaba.android.arouter.routes.ARouter Group user is defined multiple times
+//ARouter 会为每一个 Module 生成相应的分组， 一级名字不能重复
 /**
  * 登录模块-登录服务
  */
-const val LOGIN_SERVICE_LOGIN = "/login/service/login"
+const val LOGIN_SERVICE_LOGIN = "/login2/service/login"
 
 /**
  * 用户模块-用户服务
  */
-const val USER_SERVICE_USER = "/user/service/user"
+const val USER_SERVICE_USER = "/user2/service/user"
 
 /**
  * 主页模块-主页
  */
-const val MAIN_SERVICE_HOME = "/main/service/home"
+const val MAIN_SERVICE_HOME = "/main2/service/home"
 
 /**
  * 搜索模块模块-搜索

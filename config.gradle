@@ -1,6 +1,8 @@
 ext {
     //是否单独运行某个module
-    isModule = true
+    //注意：不要在isModule = true时运行app主模块，只能单独运行子模块
+    //模块独立运行需要注意个共享资源的使用，库，以及部分在其他模块初始化的类的问题
+    isModule = false
 
     signingConfig = [
             storePassword: 'xxx',
@@ -9,7 +11,6 @@ ext {
     ]
 
     android = [
-            applicationId    : "com.sum.tea",
             //使用exoPlayer编译版本需要到33，而33中有bug,xml写代码没有代码提示
             compileSdk       : 33,
             buildToolsVersion: '32.0.0',
@@ -18,6 +19,17 @@ ext {
 
             versionCode      : 1,
             versionName      : "1.0.1",
+    ]
+
+    //为每个独立的应用设置指定的applicationId
+    applicationId = [
+            app   : "com.sum.tea",
+            main  : "com.sum.main",
+            search: "com.sum.search",
+            video : "com.sum.video",
+            user  : "com.sum.user",
+            login : "com.sum.login",
+            demo  : "com.sum.demo"
     ]
 
     dependVersion = [

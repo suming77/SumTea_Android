@@ -37,7 +37,7 @@ class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
+        setTheme(com.sum.common.R.style.AppTheme)
         val navView = mBinding.navView
         //1.寻找出路由控制器对象，它是路由跳转的唯一入口，找到宿主NavHostFragment
         navController = findNavController(R.id.nav_host_fragment_activity_main)

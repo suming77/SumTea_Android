@@ -30,21 +30,41 @@ android {
 }
 
 dependencies {
-    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly rootProject.depsLibs.coreKtx
-    compileOnly rootProject.depsLibs.appcompat
-    compileOnly rootProject.depsLibs.material
+    if (rootProject.ext.isModule) {
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        implementation rootProject.depsLibs.coreKtx
+        implementation rootProject.depsLibs.appcompat
+        implementation rootProject.depsLibs.material
 
-    compileOnly rootProject.depsLibs.retrofit2
-    compileOnly rootProject.depsLibs.retrofit2Gson
-    compileOnly rootProject.depsLibs.loggingInterceptor
+        implementation rootProject.depsLibs.retrofit2
+        implementation rootProject.depsLibs.retrofit2Gson
+        implementation rootProject.depsLibs.loggingInterceptor
 
-    compileOnly rootProject.depsLibs.mmkv
+        implementation rootProject.depsLibs.mmkv
 
-    compileOnly rootProject.depsLibs.gson
-    compileOnly rootProject.depsLibs.liveDataKtx
-    compileOnly rootProject.depsLibs.viewModelKtx
+        implementation rootProject.depsLibs.gson
+        implementation rootProject.depsLibs.liveDataKtx
+        implementation rootProject.depsLibs.viewModelKtx
 
-    compileOnly project(path: ':lib_framework')
-    compileOnly project(path: ':lib_common')
+        implementation project(path: ':lib_framework')
+        implementation project(path: ':lib_common')
+    } else {
+        compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+        compileOnly rootProject.depsLibs.coreKtx
+        compileOnly rootProject.depsLibs.appcompat
+        compileOnly rootProject.depsLibs.material
+
+        compileOnly rootProject.depsLibs.retrofit2
+        compileOnly rootProject.depsLibs.retrofit2Gson
+        compileOnly rootProject.depsLibs.loggingInterceptor
+
+        compileOnly rootProject.depsLibs.mmkv
+
+        compileOnly rootProject.depsLibs.gson
+        compileOnly rootProject.depsLibs.liveDataKtx
+        compileOnly rootProject.depsLibs.viewModelKtx
+
+        compileOnly project(path: ':lib_framework')
+        compileOnly project(path: ':lib_common')
+    }
 }

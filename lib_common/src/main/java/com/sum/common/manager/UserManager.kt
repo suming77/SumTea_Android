@@ -1,4 +1,4 @@
-package com.sum.user.manager
+package com.sum.common.manager
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

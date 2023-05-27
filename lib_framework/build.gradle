@@ -34,12 +34,23 @@ android {
 }
 
 dependencies {
-    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly rootProject.depsLibs.coreKtx
-    compileOnly rootProject.depsLibs.appcompat
-    compileOnly rootProject.depsLibs.material
-    compileOnly rootProject.depsLibs.gson
+    if (rootProject.ext.isModule) {
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        implementation rootProject.depsLibs.coreKtx
+        implementation rootProject.depsLibs.appcompat
+        implementation rootProject.depsLibs.material
+        implementation rootProject.depsLibs.gson
 
-    compileOnly rootProject.depsLibs.refreshLayout
-    compileOnly rootProject.depsLibs.tbssdk
+        implementation rootProject.depsLibs.refreshLayout
+        implementation rootProject.depsLibs.tbssdk
+    } else {
+        compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+        compileOnly rootProject.depsLibs.coreKtx
+        compileOnly rootProject.depsLibs.appcompat
+        compileOnly rootProject.depsLibs.material
+        compileOnly rootProject.depsLibs.gson
+
+        compileOnly rootProject.depsLibs.refreshLayout
+        compileOnly rootProject.depsLibs.tbssdk
+    }
 }
