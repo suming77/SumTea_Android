@@ -1,6 +1,6 @@
 ext {
     //是否单独运行某个module
-    isModule = true
+    isModule = false
 
     signingConfig = [
             storePassword: 'xxx',

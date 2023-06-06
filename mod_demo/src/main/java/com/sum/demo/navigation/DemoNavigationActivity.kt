@@ -1,13 +1,12 @@
-package com.sum.demo.jetpack.navigation
+package com.sum.demo.navigation
 
 import android.os.Bundle
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.sum.common.constant.DEMO_ACTIVITY_NAVIGATION
 import com.sum.demo.R
 import com.sum.demo.databinding.ActivityNavigationBinding
 import com.sum.framework.base.BaseDataBindActivity
-import com.sum.framework.ext.onClick
 
 /**
  * @author mingyan.su
@@ -16,13 +15,19 @@ import com.sum.framework.ext.onClick
  */
 @Route(path = DEMO_ACTIVITY_NAVIGATION)
 class DemoNavigationActivity : BaseDataBindActivity<ActivityNavigationBinding>() {
+
     override fun initView(savedInstanceState: Bundle?) {
-//        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-//        mBinding.tvHomeNav.onClick {
-//            navController.navigate(R.id.nav_home)
-//        }
-//        mBinding.tvMineNav.onClick {
-//            navController.navigate(R.id.navi_mine)
-//        }
+        // MainFragment 为首次加载的Fragment
+        val navController = findNavController(R.id.nav_host_fragment)
+
+        //进入页面
+//        navController.navigate(Uri.parse("www.baidu.com"))
+//
+//        //回退页面
+//        navController.navigateUp()
+//        navController.popBackStack(
+//            R.id.blankFragment,
+//            true
+//        )//回退到blankFragment页面，inclusive表示是否一同将blankFragment回退
     }
 }

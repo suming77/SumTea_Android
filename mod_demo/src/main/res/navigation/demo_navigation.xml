@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mobile_navigation"
+        app:startDestination="@+id/nav_main">
+
+    <fragment
+            android:id="@+id/nav_main"
+            android:name="com.sum.demo.navigation.MainFragment"
+            android:label="HomeNavFragment"
+            tools:layout="@layout/fragment_main" />
+
+    <activity
+            android:id="@+id/nav_activity"
+            android:name="com.sum.demo.navigation.NavActivity"
+            android:label="NavActivity"
+            tools:layout="@layout/activity_nav" />
+    <fragment
+            android:id="@+id/nav_fragment"
+            android:name="com.sum.demo.navigation.NavFragment"
+            android:label="FindNavFragment"
+            tools:layout="@layout/fragment_main" />
+
+    <dialog
+            android:id="@+id/nav_dialog"
+            android:name="com.sum.demo.navigation.NavDialog"
+            android:label="NavActivity"
+            tools:layout="@layout/activity_nav" />
+</navigation>

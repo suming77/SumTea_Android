@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         package="com.sum.demo">
+
     <application>
         <activity
-                android:name=".jetpack.navigation.DemoNavigationActivity"
-                android:screenOrientation="portrait"
-                android:windowSoftInputMode="adjustPan" />
+                android:name=".navigation.DemoNavigationActivity"
+                android:theme="@style/Theme.BaseTheme" />
         <activity
-                android:name=".jetpack.navigation.MineNavActivity"
-                android:screenOrientation="portrait"
-                android:windowSoftInputMode="adjustPan" />
+                android:name=".navigation.NavActivity"
+                android:theme="@style/Theme.BaseTheme" />
     </application>
 
 </manifest>

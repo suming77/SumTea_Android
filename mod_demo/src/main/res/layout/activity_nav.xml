@@ -5,15 +5,15 @@
         android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_mine_nav"
+            android:id="@+id/tv_nav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MineNavActivity"
-            android:padding="@dimen/dp_10"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="@color/color_898e92"
+            android:text="NavActivity"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/text_size_17"
+            android:textStyle="bold"
+            android:textSize="20sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
