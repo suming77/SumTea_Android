@@ -34,3 +34,6 @@
 
 # 如果使用了 单类注入，即不定义接口实现 IProvider，需添加下面规则，保护实现
 # -keep class * implements com.alibaba.android.arouter.facade.template.IProvider
+
+# https://github.com/suming77/SumTea_Android/issues/2
+-keep class org.webrtc.** { *; }
