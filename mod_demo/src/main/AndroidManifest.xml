@@ -10,6 +10,9 @@
         <activity
                 android:name=".navigation.NavActivity"
                 android:theme="@style/Theme.BaseTheme" />
+        <activity
+                android:name=".lifecycle.LifecycleActivity"
+                android:theme="@style/Theme.BaseTheme" />
     </application>
 
 </manifest>

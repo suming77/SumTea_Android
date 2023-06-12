@@ -75,6 +75,11 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
             }
             mFragmentAdapter?.setData(mArrayTabFragments)
             mFragmentAdapter?.notifyItemRangeChanged(1, mArrayTabFragments.size())
+
+            // 解决 TabLayout 刷新数据后滚动到错误位置
+            mBinding?.tabHome?.let {
+                it.post { it.getTabAt(0)?.select() }
+            }
         }
     }
 
@@ -100,7 +105,6 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
 
             //增加tab选择监听
             it.tabHome.addOnTabSelectedListener(tabSelectedCall)
-
             //设置第一个tab效果
             val tabFirst = it.tabHome.getTabAt(0)
             setTabTextSize(tabFirst)

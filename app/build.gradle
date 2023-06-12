@@ -87,6 +87,7 @@ dependencies {
     implementation rootProject.depsLibs.viewModelKtx
     implementation rootProject.depsLibs.navigationFragment
     implementation rootProject.depsLibs.navigationUI
+    implementation rootProject.depsLibs.lifecycleCommon
 
     implementation rootProject.depsLibs.roomKtx
     kapt rootProject.depsLibs.roomCompiler

@@ -52,6 +52,8 @@ const val VIDEO_ACTIVITY_PLAYER = "/video/activity/player"
  */
 //Navigation
 const val DEMO_ACTIVITY_NAVIGATION = "/demo/activity/navigation"
+//Lifecycle
+const val DEMO_ACTIVITY_LIFECYCLE = "/demo/activity/lifecycle"
 
 //**********************服务相关**********************
 

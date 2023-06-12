@@ -104,8 +104,10 @@
 
 ## 二、jetpack 相关组件学习
 
-> [【见微知著】Android Jetpack - Navigation的架构设计](https://juejin.cn/post/7241184271318515773)
+> [浅谈 Android Jetpack - Navigation的架构设计](https://juejin.cn/post/7241184271318515773)
 - Navigation的简单用法，架构设计，源码剖析
+> [Android架构灵魂组件Lifecycle的生命周期机制详解](https://juejin.cn/post/7243413934765195323)
+- Lifecycle的使用，架构设计，生命周期机制
 
 ## 三、Kotlin 协程学习三部曲
 
@@ -137,7 +139,9 @@
 - #### Email：`su_mingyan@163.com`
 - #### 掘金：[https://juejin.cn/user/1654096907477549](https://juejin.cn/user/1654096907477549)
 
-如您有任何问题，也可以添加我的微信，拉你进入SumTea_Android技术群，进行学习上的交流。
+如您有任何问题，也可以添加我的微信，拉你进入SumTea_Android技术群，进行技术和学习上的交流。
+
+![wechat](https://github.com/suming77/SumTea_Android/assets/20841967/d51d5c57-e692-45bd-a2b0-430ba558aa96)
 
 感谢您的阅读~
 

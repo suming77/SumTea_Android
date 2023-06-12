@@ -50,6 +50,7 @@ ext {
             viewModelKtx      : 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1',
             navigationFragment: 'androidx.navigation:navigation-fragment-ktx:2.3.5',
             navigationUI      : 'androidx.navigation:navigation-ui-ktx:2.3.5',
+            lifecycleCommon   : 'androidx.lifecycle:lifecycle-common:2.5.0-beta01',
 
             //room数据库
             roomKtx           : "androidx.room:room-ktx:${dependVersion["roomVersion"]}",

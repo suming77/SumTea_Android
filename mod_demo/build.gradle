@@ -51,6 +51,7 @@ dependencies {
     compileOnly rootProject.depsLibs.viewModelKtx
     compileOnly rootProject.depsLibs.navigationFragment
     compileOnly rootProject.depsLibs.navigationUI
+    implementation rootProject.depsLibs.lifecycleCommon
 
     compileOnly rootProject.depsLibs.aroutreApi
     kapt rootProject.depsLibs.arouterCompiler
