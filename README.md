@@ -108,6 +108,8 @@
 - Navigation的简单用法，架构设计，源码剖析
 > [Android架构灵魂组件Lifecycle的生命周期机制详解](https://juejin.cn/post/7243413934765195323)
 - Lifecycle的使用，架构设计，生命周期机制
+> [由浅入深，ViewModel配置变更复用原理详解](https://juejin.cn/post/7245980207316189242)
+- ViewModel因配置变更保存和复用机制
 
 ## 三、Kotlin 协程学习三部曲
 

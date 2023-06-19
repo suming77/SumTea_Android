@@ -12,7 +12,7 @@ import com.sum.framework.base.BaseDataBindActivity
  * @desc Lifecycle三种使用方式
  */
 @Route(path = DEMO_ACTIVITY_LIFECYCLE)
-class LifecycleActivity : BaseDataBindActivity<ActivityLifecycleBinding>() {
+class DemoLifecycleActivity : BaseDataBindActivity<ActivityLifecycleBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         //第一种.注册观察者，观察宿主生命周期状态变化
         val observer = MyLifecycleObserver()
