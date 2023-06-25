@@ -1,10 +1,13 @@
 package com.sum.demo.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewModelScope
+import com.sum.framework.toast.TipsToast
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -25,6 +28,31 @@ class MainViewModel : ViewModel() {
             viewModelScope.launch {
                 delay(1000)
                 userLiveData.postValue("苏火火 苏火火 苏火火 苏火火 苏火火")
+            }
+        }
+    }
+}
+
+//SavedStateHandle里面就是包装了一个HashMap,可以使用它去存储数据
+class MainSaveViewModel(val savedState: SavedStateHandle) : ViewModel() {
+    private val KEY_USER_INFO = "key_user_info"
+    val savedStateLiveData = MutableLiveData<String?>()
+
+    fun getUserInfo() {
+        if (savedStateLiveData.value != null) return
+        //1.从savedState中获取数据
+        val memoryData = savedState.get<String>(KEY_USER_INFO)
+        if (!memoryData.isNullOrEmpty()) {
+            savedStateLiveData.postValue("缓存数据-$memoryData")
+        } else {
+            //2.从网络获取数据
+            // 模拟请求接口返回数据
+            viewModelScope.launch {
+                delay(1000)
+                TipsToast.showTips("请求网络获取数据")
+                val data = "SavedStateHandle-苏火火 苏火火 苏火火 苏火火 苏火火"
+                savedState.set(KEY_USER_INFO, data)
+                savedStateLiveData.postValue(data)
             }
         }
     }

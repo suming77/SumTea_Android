@@ -102,7 +102,7 @@
 8.  异步任务启动器，优雅地处理 Application 中同步初始化任务问题，有效减少  APP启动耗时。
 9.  无论是模块化或者组件化，它们本质思想都是一样的，都是化整为零，化繁为简，两者的目的都是为了重用和解耦，只是叫法不一样。
 
-## 二、jetpack 相关组件学习
+## 二、Jetpack 相关组件学习
 
 > [浅谈 Android Jetpack - Navigation的架构设计](https://juejin.cn/post/7241184271318515773)
 - Navigation的简单用法，架构设计，源码剖析
@@ -110,6 +110,8 @@
 - Lifecycle的使用，架构设计，生命周期机制
 > [由浅入深，ViewModel配置变更复用原理详解](https://juejin.cn/post/7245980207316189242)
 - ViewModel因配置变更保存和复用机制
+> [ViewModel进阶 | 使用SavedState实现数据复用的另一种方式](https://juejin.cn/post/7248207744087916581)
+- 使用SavedState实现数据复用的另一种方式
 
 ## 三、Kotlin 协程学习三部曲
 

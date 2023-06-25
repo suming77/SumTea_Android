@@ -1,6 +1,5 @@
 package com.sum.demo.viewmodel
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -29,16 +28,21 @@ class DemoViewModelActivity : BaseDataBindActivity<ActivityViewmodelBinding>() {
             //接收到数据
             dismissLoading()
             mBinding.tvUserInfo.text = it
-//            mBinding.tvUserInfo.postDelayed({
-//                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-//            }, 2000)
-
         })
 
         mBinding.tvRequestUserInfo.onClick {
             // 请求数据
             showLoading()
             viewModel.getUserInfo()
+        }
+
+        // 获取 SavedState 保存的数据
+        val saveViewModel = ViewModelProvider(this).get(MainSaveViewModel::class.java)
+        saveViewModel.savedStateLiveData.observe(this) {
+            mBinding.tvUserInfo.text = it
+        }
+        mBinding.tvRequestSavedStateInfo.onClick {
+            saveViewModel.getUserInfo()
         }
     }
 

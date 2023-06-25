@@ -87,7 +87,8 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
         mArrayTabFragments.append(0, HomeVideoFragment())
         mProjectTabs.add(0, ProjectTabItem(id = 0, getStringFromResource(R.string.home_tab_video_title)))
         activity?.let {
-            mFragmentAdapter = ViewPage2FragmentAdapter(it, mArrayTabFragments)
+            mFragmentAdapter = ViewPage2FragmentAdapter(childFragmentManager, lifecycle, mArrayTabFragments)
+//            mFragmentAdapter = ViewPage2FragmentAdapter(it, mArrayTabFragments)
         }
         mBinding?.let {
             it.viewPager.adapter = mFragmentAdapter

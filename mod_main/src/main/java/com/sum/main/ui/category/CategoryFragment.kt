@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.SparseArray
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.sum.framework.adapter.ViewPage2FragmentAdapter
@@ -47,7 +48,8 @@ class CategoryFragment : BaseMvvmFragment<FragmentCategoryBinding, CategoryViewM
 
     private fun initViewPager2() {
         activity?.let {
-            mViewPagerAdapter = ViewPage2FragmentAdapter(it, fragments)
+            mViewPagerAdapter = ViewPage2FragmentAdapter(childFragmentManager, lifecycle, fragments)
+//            mViewPagerAdapter = ViewPage2FragmentAdapter(it, fragments)
         }
         mBinding?.viewPager2?.apply {
             offscreenPageLimit = ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT

@@ -61,7 +61,7 @@ class ArticleTabActivity : BaseDataBindActivity<ActivityArticleBinding>() {
     }
 
     private fun initTab() {
-        mFragmentAdapter = ViewPage2FragmentAdapter(this, mArrayTabFragments)
+        mFragmentAdapter = ViewPage2FragmentAdapter(supportFragmentManager, lifecycle, mArrayTabFragments)
         mBinding.let {
             it.viewPager.adapter = mFragmentAdapter
             //可左右滑动
