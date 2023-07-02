@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_user_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="数据显示"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_request_user_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_request_user_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="获取用户信息"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:background="#e7e7e7"
+            android:gravity="center"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_live_data1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_live_data1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="LiveData1发送数据"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:background="#e7e7e7"
+            android:gravity="center"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_request_user_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_live_data2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_live_data2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="LiveData2发送数据"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:background="#e7e7e7"
+            android:gravity="center"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_live_data1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_map_live_data" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_map_live_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="MapLiveData发送数据"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:background="#e7e7e7"
+            android:gravity="center"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_live_data2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

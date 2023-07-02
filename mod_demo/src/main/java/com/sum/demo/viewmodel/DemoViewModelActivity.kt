@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.sum.common.constant.DEMO_ACTIVITY_VIEWMODEL
 import com.sum.demo.databinding.ActivityViewmodelBinding
+import com.sum.demo.livedata.LiveDataBus
 import com.sum.framework.base.BaseDataBindActivity
 import com.sum.framework.ext.onClick
 import com.sum.framework.log.LogUtil
@@ -28,6 +29,8 @@ class DemoViewModelActivity : BaseDataBindActivity<ActivityViewmodelBinding>() {
             //接收到数据
             dismissLoading()
             mBinding.tvUserInfo.text = it
+            // 发送事件总线
+            LiveDataBus.with<String?>("eventName").setStickData(it)
         })
 
         mBinding.tvRequestUserInfo.onClick {

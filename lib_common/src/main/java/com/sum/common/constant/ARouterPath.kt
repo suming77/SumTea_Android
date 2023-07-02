@@ -56,6 +56,8 @@ const val DEMO_ACTIVITY_NAVIGATION = "/demo/activity/navigation"
 const val DEMO_ACTIVITY_LIFECYCLE = "/demo/activity/lifecycle"
 //ViewModel
 const val DEMO_ACTIVITY_VIEWMODEL = "/demo/activity/viewmodel"
+//LiveData
+const val DEMO_ACTIVITY_LIVEDATA = "/demo/activity/livedata"
 
 //**********************服务相关**********************
 

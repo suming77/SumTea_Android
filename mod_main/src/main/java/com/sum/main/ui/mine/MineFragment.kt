@@ -9,6 +9,7 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.sum.common.constant.DEMO_ACTIVITY_LIFECYCLE
+import com.sum.common.constant.DEMO_ACTIVITY_LIVEDATA
 import com.sum.common.constant.DEMO_ACTIVITY_NAVIGATION
 import com.sum.common.constant.DEMO_ACTIVITY_VIEWMODEL
 import com.sum.common.constant.USER_ACTIVITY_COLLECTION
@@ -124,7 +125,7 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
 
             }
             tvLivedata.onClick {
-
+                ARouter.getInstance().build(DEMO_ACTIVITY_LIVEDATA).navigation()
             }
             tvViewModel.onClick {
                 ARouter.getInstance().build(DEMO_ACTIVITY_VIEWMODEL).navigation()
