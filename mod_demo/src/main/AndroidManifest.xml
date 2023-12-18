@@ -19,6 +19,12 @@
         <activity
                 android:name=".livedata.DemoLiveDataActivity"
                 android:theme="@style/Theme.BaseTheme" />
+        <activity
+                android:name=".viewbinding.ViewBindingActivity"
+                android:theme="@style/Theme.BaseTheme" />
+        <activity
+                android:name=".viewbinding.DataBindingActivity"
+                android:theme="@style/Theme.BaseTheme" />
     </application>
 
 </manifest>

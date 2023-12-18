@@ -58,6 +58,10 @@ const val DEMO_ACTIVITY_LIFECYCLE = "/demo/activity/lifecycle"
 const val DEMO_ACTIVITY_VIEWMODEL = "/demo/activity/viewmodel"
 //LiveData
 const val DEMO_ACTIVITY_LIVEDATA = "/demo/activity/livedata"
+//ViewBinding
+const val DEMO_ACTIVITY_VIEWBINDING = "/demo/activity/viewbinding"
+//DataBinding
+const val DEMO_ACTIVITY_DATABINDING = "/demo/activity/databinding"
 
 //**********************服务相关**********************
 

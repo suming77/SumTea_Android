@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.chip.Chip
-import com.sum.common.model.HotSearch
-import com.sum.common.model.KeyWord
 import com.sum.framework.ext.onClick
 import com.sum.search.R
 import com.sum.search.databinding.LayoutHistorySearchBinding
@@ -87,11 +85,12 @@ class SearchHistoryView @JvmOverloads constructor(
     /**
      * 清除历史记录监听
      */
-    fun setOnHistoryClearListener(callBack: () -> Unit) {
+    fun setOnHistoryClearListener(callBack: (clearSuccess: () -> Unit) -> Unit) {
         mBinding.ivDelete.onClick {
-            callBack()
-            mBinding.chipGroup.removeAllViews()
-            mKeyWords.clear()
+            callBack {
+                mBinding.chipGroup.removeAllViews()
+                mKeyWords.clear()
+            }
         }
     }
 

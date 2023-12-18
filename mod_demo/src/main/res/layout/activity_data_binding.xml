@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <!--导入工具类-->
+        <import type="com.sum.framework.utils.DisplayUtil" />
+        <!--导入参数-->
+        <variable
+                name="student"
+                type="com.sum.common.model.Student" />
+
+        <variable
+                name="user"
+                type="com.sum.common.model.User" />
+
+        <variable
+                name="activity"
+                type="com.sum.demo.viewbinding.DataBindingActivity" />
+
+        <variable
+                name="isLeft"
+                type="boolean" />
+
+        <variable
+                name="vm"
+                type="com.sum.demo.viewmodel.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_4f5356"
+                android:text="@{student.stuName}"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+                android:id="@+id/tv_edit"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="@={student.stuName}"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:padding="@{DisplayUtil.dpToPx(10)}"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_update_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_update_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_update_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更新Name数据"
+                android:textColor="@android:color/black"
+                android:onClick="@{()->activity.updateStudentName()}"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:background="@color/color_b2d0e9"
+                android:padding="@{DisplayUtil.dpToPx(10)}"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                app:layout_constraintStart_toEndOf="@+id/tv_edit"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_head"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_120"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/bg_mine_head"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginEnd="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintTop_toBottomOf="@+id/tv_edit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:imageUrl="@{activity.getImageUrl()}"
+                app:radius="@{DisplayUtil.dpToPx(10)}" />
+
+        <Button
+                android:id="@+id/btn_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{"button"}'
+                android:layout_marginTop="@dimen/dp_20"
+                android:textColor="@color/color_222427"
+                android:background="@color/color_b2d0e9"
+                app:layout_constraintTop_toBottomOf="@+id/iv_head"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        <include
+                android:id="@+id/layout_binding_include"
+                layout="@layout/layout_binding_include"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                bind:student="@{student}"
+                app:layout_constraintTop_toBottomOf="@+id/btn_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        <ViewStub
+                android:id="@+id/layout_binding_viewstub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                bind:student="@{student}"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout="@layout/layout_binding_viewstub"
+                app:layout_constraintTop_toBottomOf="@+id/layout_binding_include"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_name_null"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{user.name}"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/color_222427"
+                android:background="@color/color_b2d0e9"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/layout_binding_viewstub"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_live_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vm.userLiveData}"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/color_222427"
+                android:background="@color/color_b2d0e9"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name_null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        <!--   资源引用
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@{isLeft ? @dimen/dp_20:@dimen/dp_12}"
+                android:textAllCaps="false" />-->
+
+        <!--  ??与三元表达式
+        <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="@{student.stuName ?? student.age}" />
+         // 等价于
+        <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="@{student.stuName != null ? student.stuName : student.age}" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

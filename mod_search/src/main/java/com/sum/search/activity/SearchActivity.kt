@@ -84,7 +84,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
             return@setOnEditorActionListener false
         }
         mBinding.viewSearchHistory.setOnHistoryClearListener {
-            clearHistoryCache()
+            clearHistoryCache(it)
         }
         mBinding.viewSearchHistory.setOnCheckChangeListener(clickCallBack)
         mBinding.viewSearchRecommend.setOnCheckChangeListener(clickCallBack)
@@ -93,7 +93,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
     /**
      * 清楚搜索历史
      */
-    private fun clearHistoryCache() {
+    private fun clearHistoryCache(clearSuccess: () -> Unit) {
         MessageDialog.Builder(this).setTitle(getStringFromResource(com.sum.common.R.string.dialog_tips_title))
                 .setMessage(getStringFromResource(R.string.search_clear_history))
                 .setConfirm(getStringFromResource(com.sum.common.R.string.default_confirm))
@@ -103,6 +103,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
                     it?.dismiss()
                 }
                 .setonConfirmListener {
+                    clearSuccess.invoke()
                     SearchManager.clearSearchHistory()
                     it?.dismiss()
                 }.create().show()

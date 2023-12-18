@@ -58,6 +58,7 @@ dependencies {
 
     compileOnly project(path: ':lib_framework')
     compileOnly project(path: ':lib_common')
+    implementation project(path: ':lib_glide')
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
 //    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
 }

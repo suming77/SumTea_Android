@@ -112,9 +112,11 @@
 - ViewModel因配置变更保存和复用机制
 > [4.ViewModel进阶 | 使用SavedState实现数据复用的另一种方式](https://juejin.cn/post/7248207744087916581)
 - 使用SavedState实现数据复用的另一种方式
-- [5.关于LiveData全面详解](https://juejin.cn/post/7251182449400414265)
+> [5.关于LiveData全面详解](https://juejin.cn/post/7251182449400414265)
 - LiveData解析，事件总线实现
-
+> [6.ViewBinding与DataBinding](https://juejin.cn/post/7313242113437040678)
+- 视图绑定与数据双向绑定
+  
 ## 三、Kotlin 协程学习三部曲
 
 > [Kotlin 协程实战进阶(一、筑基篇)](https://juejin.cn/post/6987724340775108622)
@@ -149,7 +151,7 @@
 
 ![wechat](https://github.com/suming77/SumTea_Android/assets/20841967/d51d5c57-e692-45bd-a2b0-430ba558aa96)
 
-感谢您的阅读~
+感谢您的阅读，`山水有相逢`，我们下篇文章见~
 
 ### 致谢
 
