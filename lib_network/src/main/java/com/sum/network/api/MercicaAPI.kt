@@ -7,5 +7,7 @@ import retrofit2.http.Url
 
 interface MercicaAPI {
     @GET
-    suspend fun getFeeds(@Url url: String?): BaseResponse<MutableList<MercariModel>?>?
+    suspend fun getFeeds(@Url url: String?): MutableList<MercariModel>?
+    @GET
+    suspend fun getFeedsWithBaseResponse(@Url url: String?): BaseResponse<MutableList<MercariModel>?>?
 }
