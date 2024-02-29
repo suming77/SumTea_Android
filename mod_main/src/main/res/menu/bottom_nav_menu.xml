@@ -21,4 +21,9 @@
             android:icon="@mipmap/ic_navi_mine_select"
             android:title="@string/tab_mine" />
 
+    <item
+        android:id="@+id/navi_mercari"
+        android:icon="@mipmap/ic_navi_mine_select"
+        android:title="@string/tab_mercari" />
+
 </menu>

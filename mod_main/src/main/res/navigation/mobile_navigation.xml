@@ -28,4 +28,10 @@
             android:name="com.sum.main.ui.mine.MineFragment"
             android:label="@string/tab_mine"
             tools:layout="@layout/fragment_mine" />
+
+    <sumFragment
+            android:id="@+id/navi_mercari"
+            android:name="com.sum.main.ui.mercari.MercariFragment"
+            android:label="@string/tab_mercari"
+            tools:layout="@layout/fragment_mercari" />
 </navigation>

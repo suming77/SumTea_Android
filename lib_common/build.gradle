@@ -56,6 +56,8 @@ dependencies {
     compileOnly rootProject.depsLibs.aroutreApi
     kapt rootProject.depsLibs.arouterCompiler
 
+    compileOnly rootProject.depsLibs.gson
+
     compileOnly project(path: ':lib_framework')
     compileOnly project(path: ':lib_banner')
 }
