@@ -24,7 +24,7 @@ class HomeBannerView @JvmOverloads constructor(
     /**
      * BannerAdapter
      */
-    private val mAdapter = HomeBannerAdapter()
+    val mAdapter = HomeBannerAdapter()
 
     init {
 //        ViewUtils.setClipViewCornerRadius(this, dpToPx(12))

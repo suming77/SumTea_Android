@@ -40,7 +40,6 @@ object ParseFileUtils {
                 bufferedReader.close()
 
                 val list = stringBuilder.toString().toBean<MutableList<VideoInfo>>()
-                LogUtil.e("Coroutine == ${list.size}", tag = "smy")
                 continuation.resumeWith(Result.success(list))
             } catch (e: Exception) {
                 e.printStackTrace()

@@ -97,7 +97,7 @@ class RegisterActivity : BaseMvvmActivity<ActivityRegisterBinding, LoginViewMode
                 //保存用户信息
                 UserServiceProvider.saveUserInfo(user)
                 UserServiceProvider.saveUserPhone(user.username)
-                LogUtil.e("user:$it", tag = "smy")
+                LogUtil.e("user:$it")
                 MainServiceProvider.toMain(context = this)
                 finish()
             } ?: kotlin.run {

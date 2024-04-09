@@ -29,7 +29,7 @@ class CookiesInterceptor : Interceptor {
             val cookies = response.headers(KEY_SET_COOKIE)
             val cookiesStr = CookiesManager.encodeCookie(cookies)
             CookiesManager.saveCookies(cookiesStr)
-            LogUtil.e("CookiesInterceptor:cookies:$cookies", tag = "smy")
+            LogUtil.e("CookiesInterceptor:cookies:$cookies")
         }
         return response
     }

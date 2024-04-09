@@ -12,7 +12,7 @@ import com.sum.framework.utils.DeviceInfoUtils
  *  API is the same to {@link android.util.Log}
  */
 object LogUtil {
-    private const val TAG = "LogUtil"
+    private const val TAG = "SumTea"
     var application: Application? = null
 
     private var isDebug = false
