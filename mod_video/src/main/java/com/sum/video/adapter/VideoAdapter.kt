@@ -45,6 +45,18 @@ class VideoAdapter : BaseRecyclerViewAdapter<VideoInfo, LayoutVideoItemBinding>(
         holder.binding.includeVideoAction.tvShare.onClick { showToast() }
     }
 
+    fun addTopData(infoData: VideoInfo) {
+        val position = 0;
+        getData().add(position, infoData)
+        notifyItemInserted(position)
+    }
+
+    fun addBottomData(infoData: VideoInfo) {
+        val position = getData().size;
+        getData().add(position, infoData)
+        notifyItemInserted(position)
+    }
+
     private fun showToast() {
         TipsToast.showTips(com.sum.common.R.string.default_developing)
     }

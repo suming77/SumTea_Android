@@ -1,13 +1,17 @@
 package com.sum.main.ui.home
 
 import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.util.SparseArray
 import android.util.TypedValue
+import android.view.Gravity
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.scwang.smart.refresh.layout.api.RefreshLayout
@@ -92,18 +96,28 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
         }
 
         mViewModel.getProjectTab().observe(this) { tabs ->
-            mProjectTabs =
-                mProjectTabs.filter { it.name == getStringFromResource(R.string.home_tab_video_title) }.toMutableList()
+            mProjectTabs = mProjectTabs.filter {
+                it.name == getStringFromResource(R.string.home_tab_video_title)
+            }.toMutableList()
+
             tabs?.forEachIndexed { index, item ->
                 mProjectTabs.add(item)
                 mArrayTabFragments.append(index + 1, HomeTabFragment.newInstance(tabs[index].id))
             }
+
             mFragmentAdapter?.setData(mArrayTabFragments)
             mFragmentAdapter?.notifyItemRangeChanged(1, mArrayTabFragments.size())
 
             // 解决 TabLayout 刷新数据后滚动到错误位置
             mBinding?.tabHome?.let {
-                it.post { it.getTabAt(0)?.select() }
+                val selectedTabPosition = it.selectedTabPosition
+                it.post {
+                    if (mProjectTabs.size -1 < selectedTabPosition){
+                        it.getTabAt(0)?.select()
+                    }else{
+                        it.getTabAt(selectedTabPosition)?.select()
+                    }
+                }
             }
         }
     }
@@ -138,6 +152,18 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
     }
 
     /**
+     * 隐藏长按显示文本
+     */
+    private fun hideToolTipText(tab: TabLayout.Tab) {
+        // 取消长按事件
+        tab.view.isLongClickable = false
+        // api 26 以上 设置空text
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
+            tab.view.tooltipText = ""
+        }
+    }
+
+    /**
      * tab选择回调
      */
     private val tabSelectedCall = object : TabLayout.OnTabSelectedListener {
@@ -146,8 +172,8 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
         }
 
         override fun onTabUnselected(tab: TabLayout.Tab?) {
-            //非选中效果在xml中设置
-            tab?.customView = null
+//            //非选中效果在xml中设置
+//            tab?.customView = null
         }
 
         override fun onTabReselected(tab: TabLayout.Tab?) {
@@ -162,9 +188,10 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
             typeface = Typeface.DEFAULT_BOLD
             setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15f)
             setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+            gravity = Gravity.CENTER_HORIZONTAL
+            background = null
         }.also {
             it.text = tabFirst?.text
-            tabFirst?.customView = it
         }
     }
 

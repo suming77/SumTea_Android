@@ -1,10 +1,12 @@
 package com.sum.main.ui.home
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
+import com.sum.common.constant.KEY_POSITION
 import com.sum.common.constant.KEY_VIDEO_PLAY_LIST
 import com.sum.common.constant.VIDEO_ACTIVITY_PLAYER
 import com.sum.framework.decoration.StaggeredItemDecoration
@@ -28,6 +30,8 @@ import java.util.ArrayList
  */
 class HomeVideoFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewModel>() {
     lateinit var videoAdapter: HomeVideoItemAdapter
+
+    @SuppressLint("CheckResult")
     override fun initView(view: View, savedInstanceState: Bundle?) {
 
         val spanCount = 2
@@ -39,15 +43,16 @@ class HomeVideoFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewMod
             adapter = videoAdapter
         }
 
-        videoAdapter.onItemClickListener = { view: View, position: Int ->
+        videoAdapter.onItemClickListener = { _, position ->
             RxPermissions(this).request(
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE
             ).subscribe { granted ->
                 if (granted) {
                     ARouter.getInstance().build(VIDEO_ACTIVITY_PLAYER)
-                            .withParcelableArrayList(KEY_VIDEO_PLAY_LIST, videoAdapter.getData() as ArrayList<VideoInfo>)
-                            .navigation()
+                        .withParcelableArrayList(KEY_VIDEO_PLAY_LIST, videoAdapter.getData() as ArrayList<VideoInfo>)
+                        .withInt(KEY_POSITION, position)
+                        .navigation()
                 } else {
                     TipsToast.showTips(com.sum.common.R.string.default_agree_permission)
                 }

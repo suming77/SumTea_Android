@@ -44,35 +44,35 @@ android {
 
 dependencies {
 
-    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly rootProject.depsLibs.coreKtx
-    compileOnly rootProject.depsLibs.appcompat
-    compileOnly rootProject.depsLibs.material
-    compileOnly rootProject.depsLibs.constraintlayout
-    compileOnly rootProject.depsLibs.liveDataKtx
-    compileOnly rootProject.depsLibs.viewModelKtx
-    compileOnly rootProject.depsLibs.navigationFragment
-    compileOnly rootProject.depsLibs.navigationUI
-
-    testCompileOnly rootProject.depsLibs.junit
-    androidTestCompileOnly rootProject.depsLibs.extJunit
-    androidTestCompileOnly rootProject.depsLibs.espressoCore
-
-    compileOnly rootProject.depsLibs.gson
-    compileOnly rootProject.depsLibs.flexbox
-    compileOnly rootProject.depsLibs.mmkv
-
-    compileOnly rootProject.depsLibs.refreshLayout
-    compileOnly rootProject.depsLibs.refreshHeader
-    compileOnly rootProject.depsLibs.refreshFooter
-
-    compileOnly rootProject.depsLibs.aroutreApi
-    kapt rootProject.depsLibs.arouterCompiler
-
-    compileOnly rootProject.depsLibs.tbssdk
-    compileOnly rootProject.depsLibs.rxPermission
-    compileOnly rootProject.depsLibs.rxjava
-    compileOnly rootProject.depsLibs.rxandroid
+//    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+//    compileOnly rootProject.depsLibs.coreKtx
+//    compileOnly rootProject.depsLibs.appcompat
+//    compileOnly rootProject.depsLibs.material
+//    compileOnly rootProject.depsLibs.constraintlayout
+//    compileOnly rootProject.depsLibs.liveDataKtx
+//    compileOnly rootProject.depsLibs.viewModelKtx
+//    compileOnly rootProject.depsLibs.navigationFragment
+//    compileOnly rootProject.depsLibs.navigationUI
+//
+//    testCompileOnly rootProject.depsLibs.junit
+//    androidTestCompileOnly rootProject.depsLibs.extJunit
+//    androidTestCompileOnly rootProject.depsLibs.espressoCore
+//
+//    compileOnly rootProject.depsLibs.gson
+//    compileOnly rootProject.depsLibs.flexbox
+//    compileOnly rootProject.depsLibs.mmkv
+//
+//    compileOnly rootProject.depsLibs.refreshLayout
+//    compileOnly rootProject.depsLibs.refreshHeader
+//    compileOnly rootProject.depsLibs.refreshFooter
+//
+//    compileOnly rootProject.depsLibs.aroutreApi
+//    kapt rootProject.depsLibs.arouterCompiler
+//
+//    compileOnly rootProject.depsLibs.tbssdk
+//    compileOnly rootProject.depsLibs.rxPermission
+//    compileOnly rootProject.depsLibs.rxjava
+//    compileOnly rootProject.depsLibs.rxandroid
 
     compileOnly project(path: ':lib_framework')
     compileOnly project(path: ':lib_common')
@@ -84,4 +84,34 @@ dependencies {
 
     // AOP 切面编程
     implementation 'org.aspectj:aspectjrt:1.9.5'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.depsLibs.coreKtx
+    implementation rootProject.depsLibs.appcompat
+    implementation rootProject.depsLibs.material
+    implementation rootProject.depsLibs.constraintlayout
+    implementation rootProject.depsLibs.liveDataKtx
+    implementation rootProject.depsLibs.viewModelKtx
+    implementation rootProject.depsLibs.navigationFragment
+    implementation rootProject.depsLibs.navigationUI
+
+    testImplementation rootProject.depsLibs.junit
+    androidTestImplementation rootProject.depsLibs.extJunit
+    androidTestImplementation rootProject.depsLibs.espressoCore
+
+    implementation rootProject.depsLibs.gson
+    implementation rootProject.depsLibs.flexbox
+    implementation rootProject.depsLibs.mmkv
+
+    implementation rootProject.depsLibs.refreshLayout
+    implementation rootProject.depsLibs.refreshHeader
+    implementation rootProject.depsLibs.refreshFooter
+
+    implementation rootProject.depsLibs.aroutreApi
+    kapt rootProject.depsLibs.arouterCompiler
+
+    implementation rootProject.depsLibs.tbssdk
+    implementation rootProject.depsLibs.rxPermission
+    implementation rootProject.depsLibs.rxjava
+    implementation rootProject.depsLibs.rxandroid
 }

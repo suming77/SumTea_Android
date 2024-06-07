@@ -27,11 +27,7 @@ import kotlinx.coroutines.withTimeout
  * @param showLoading 开启和关闭加载框
  * @return 请求结果
  */
-suspend fun <T> requestFlow(
-    errorBlock: ((Int?, String?) -> Unit)? = null,
-    requestCall: suspend () -> BaseResponse<T>?,
-    showLoading: ((Boolean) -> Unit)? = null
-): T? {
+suspend fun <T> requestFlow(errorBlock: ((Int?, String?) -> Unit)? = null, requestCall: suspend () -> BaseResponse<T>?, showLoading: ((Boolean) -> Unit)? = null): T? {
     var data: T? = null
     val flow = requestFlowResponse(errorBlock, requestCall, showLoading)
     //7.调用collect获取emit()回调的结果，就是请求最后的结果
@@ -66,21 +62,22 @@ suspend fun <T> requestFlowResponse(
         //2.发送网络请求结果回调
         emit(response)
         //3.指定运行的线程，flow {}执行的线程
-    }.flowOn(Dispatchers.IO)
-            .onStart {
-                //4.请求开始，展示加载框
-                showLoading?.invoke(true)
-            }
-            //5.捕获异常
-            .catch { e ->
-                e.printStackTrace()
-                LogUtil.e(e)
-                val exception = ExceptionHandler.handleException(e)
-                errorBlock?.invoke(exception.errCode, exception.errMsg)
-            }
-            //6.请求完成，包括成功和失败
-            .onCompletion {
-                showLoading?.invoke(false)
-            }
+    }
+        .flowOn(Dispatchers.IO)
+        .onStart {
+            //4.请求开始，展示加载框
+            showLoading?.invoke(true)
+        }
+        //5.捕获异常
+        .catch { e ->
+            e.printStackTrace()
+            LogUtil.e(e)
+            val exception = ExceptionHandler.handleException(e)
+            errorBlock?.invoke(exception.errCode, exception.errMsg)
+        }
+        //6.请求完成，包括成功和失败
+        .onCompletion {
+            showLoading?.invoke(false)
+        }
     return flow
 }

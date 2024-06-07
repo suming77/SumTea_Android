@@ -16,19 +16,11 @@ import com.sum.room.entity.VideoInfo
  */
 class HomeVideoItemAdapter(val context: Context) : BaseRecyclerViewAdapter<VideoInfo, LayoutHomeVideoItemBinding>() {
 
-    override fun getViewBinding(
-        layoutInflater: LayoutInflater,
-        parent: ViewGroup,
-        viewType: Int
-    ): LayoutHomeVideoItemBinding {
+    override fun getViewBinding(layoutInflater: LayoutInflater, parent: ViewGroup, viewType: Int): LayoutHomeVideoItemBinding {
         return LayoutHomeVideoItemBinding.inflate(layoutInflater, parent, false)
     }
 
-    override fun onBindDefViewHolder(
-        holder: BaseBindViewHolder<LayoutHomeVideoItemBinding>,
-        item: VideoInfo?,
-        position: Int
-    ) {
+    override fun onBindDefViewHolder(holder: BaseBindViewHolder<LayoutHomeVideoItemBinding>, item: VideoInfo?, position: Int) {
         item?.apply {
             holder.binding.tvTitle.text = title
             holder.binding.ivVideoCover.setUrl(imageUrl)

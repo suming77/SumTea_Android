@@ -1,13 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    &lt;!&ndash; 若不设置 gravity，则 Indicator 宽度会填满整个 item-->
+<!--    这里设置的背景颜色不会生效&ndash;&gt;-->
+<!--    <item android:gravity="center_horizontal">-->
+<!--        <shape>-->
+<!--            <corners android:radius="@dimen/dp_4" />-->
+<!--            <size-->
+<!--                    android:width="@dimen/dp_26"-->
+<!--                    android:height="@dimen/dp_4" />-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--</layer-list>-->
+<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    <item-->
+<!--        android:bottom="1dp"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:left="1dp"-->
+<!--        android:right="1dp"-->
+<!--        android:top="1dp">-->
+<!--        <shape>-->
+<!--            &lt;!&ndash; 上下边距合计1dp 高度减少1dp &ndash;&gt;-->
+<!--            <size android:height="25dp" />-->
+<!--            <corners android:radius="@dimen/dp_10" />-->
+<!--            <solid android:color="@color/white" />-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--</layer-list>-->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- 若不设置 gravity，则 Indicator 宽度会填满整个 item
-    这里设置的背景颜色不会生效-->
-    <item android:gravity="center_horizontal">
+    <item
+        android:bottom="5dp"
+        android:gravity="center"
+        android:top="5dp">
         <shape>
-            <corners android:radius="@dimen/dp_4" />
-            <size
-                    android:width="@dimen/dp_26"
-                    android:height="@dimen/dp_4" />
+            <!-- 上下边距合计1dp 高度减少1dp -->
+            <size android:height="26dp" />
+            <corners android:radius="999dp" />
+            <solid android:color="@color/white" />
         </shape>
     </item>
 </layer-list>
+

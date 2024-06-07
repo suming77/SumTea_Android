@@ -29,6 +29,8 @@ import com.google.android.exoplayer2.upstream.cache.CacheDataSink
 import com.google.android.exoplayer2.upstream.cache.CacheDataSource
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
+import com.google.android.material.tabs.TabLayout.TabGravity
+import com.sum.common.constant.KEY_POSITION
 import com.sum.common.constant.KEY_VIDEO_PLAY_LIST
 import com.sum.common.constant.VIDEO_ACTIVITY_PLAYER
 import com.sum.framework.base.BaseDataBindActivity
@@ -88,6 +90,10 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
     @JvmField
     var mData: ArrayList<VideoInfo>? = null
 
+    @Autowired(name = KEY_POSITION)
+    @JvmField
+    var mPosition: Int = 0;
+
     override fun initView(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this)
         StatusBarSettingHelper.setStatusBarTranslucent(this)
@@ -104,7 +110,8 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
 
     private fun initRecyclerView() {
         mAdapter = VideoAdapter()
-        val manager = PagerLayoutManager(this@VideoPlayActivity, LinearLayoutManager.VERTICAL, false)
+        mPlayingPosition = mPosition;
+        val manager = PagerLayoutManager(this@VideoPlayActivity, LinearLayoutManager.VERTICAL, false,mPosition)
         manager.setOnViewPagerListener(onScrollPagerListener)
         mBinding.recyclerView.apply {
             layoutManager = manager
@@ -121,10 +128,8 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
                 mBinding.ivVideoPause.gone()
             }
         }
-    }
 
-    override fun onStart() {
-        super.onStart()
+        isNeedLoadMoreData(mPosition)
     }
 
     override fun onResume() {
@@ -242,13 +247,12 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
      */
     private val onScrollPagerListener = object : OnViewPagerListener {
         override fun onInitComplete(view: View?) {
-            startPlay(0, view)
+            startPlay(mPlayingPosition, view)
         }
 
         override fun onPageRelease(isNext: Boolean, position: Int, view: View?) {
             LogUtil.i("onPageRelease===$isNext | $position", tag = TAG)
             //还应该暂停掉列表上正在播放的那个
-            //TODO
             val rotateNoteView = view?.findViewById<RotateNoteView>(R.id.rotate_note_view)
             rotateNoteView?.stopAnim()
 //            mExoPlayer?.removeListener(playerBackListener)
@@ -256,10 +260,50 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
 
         override fun onPageSelected(position: Int, isBottom: Boolean, view: View?) {
             LogUtil.i("onPageSelected===$position | $isBottom | ${mAdapter.itemCount}", tag = TAG)
-            if (position < 0 || position >= mAdapter.itemCount) return
+
+//            if (position < 0 || position >= mAdapter.itemCount) return
             if (position == mPlayingPosition) return
-            mPlayingPosition = position
-            startPlay(position, view)
+            isNeedLoadMoreData(position)
+            startPlay(mPlayingPosition, view)
+        }
+    }
+
+    fun isNeedLoadMoreData(position: Int){
+        mAdapter.apply {
+            when(position){
+                0 ->{
+                    LogUtil.i("顶部添加数据______", tag = TAG)
+                    val infoData = VideoInfo().apply {
+                        title = "测试顶部添加数据"
+                        desc = "额外扩展顶部数据"
+                        authorName = "Junker-Top"
+                        playUrl = "https://user-images.githubusercontent.com/20841967/233770686-99285e55-9caa-49ad-b1ac-59d7d6cc223f.mp4"
+                        imageUrl = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F11464763925%2F1000.jpg&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1661749867&t=024e12db91dff8d30febc6581b36407b"
+                        collectionCount = "99"
+                    }
+                    mPlayingPosition = 1
+                    addTopData(infoData)
+
+                    LogUtil.i("VideoList =${mAdapter.getData()}", tag = TAG)
+                }
+
+                itemCount-1 ->{
+                    LogUtil.i("底部添加数据______", tag = TAG)
+                    val infoData = VideoInfo().apply {
+                        title = "测试底部添加数据"
+                        desc = "额外扩展底部数据"
+                        authorName = "Junker-Bottom"
+                        playUrl = "https://user-images.githubusercontent.com/20841967/233770686-99285e55-9caa-49ad-b1ac-59d7d6cc223f.mp4"
+                        imageUrl = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F11464763925%2F1000.jpg&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1661749867&t=024e12db91dff8d30febc6581b36407b"
+                        collectionCount = "99"
+                    }
+                    mPlayingPosition = itemCount-1
+                    addBottomData(infoData)
+                }
+
+                else->
+                    mPlayingPosition = position
+            }
         }
     }
 
@@ -410,5 +454,4 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
         releasePlayer()
         super.onDestroy()
     }
-
 }

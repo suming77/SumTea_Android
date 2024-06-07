@@ -5,6 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.exoplayer2.text.span.TextAnnotation.Position
 import com.sum.framework.log.LogUtil
 import com.sum.video.listener.OnViewPagerListener
 
@@ -16,21 +17,17 @@ class PagerLayoutManager : LinearLayoutManager {
     private var mOnViewPagerListener: OnViewPagerListener? = null
     private var mRecyclerView: RecyclerView? = null
     private var mDrift = 0 //位移，用来判断移动方向
+    private var mPosition = 0;
 
     companion object {
         private const val TAG = "PagerLayoutManager"
     }
 
-    constructor(context: Context?, orientation: Int) : super(context, orientation, false) {
-        init()
-    }
+    constructor(context: Context?, orientation: Int) : this(context, orientation, false,0)
 
-    constructor(context: Context?, orientation: Int, reverseLayout: Boolean) : super(
-        context,
-        orientation,
-        reverseLayout
-    ) {
+    constructor(context: Context?, orientation: Int, reverseLayout: Boolean, position: Int) : super(context, orientation, reverseLayout) {
         init()
+        this.mPosition = position
     }
 
     private fun init() {
@@ -42,6 +39,7 @@ class PagerLayoutManager : LinearLayoutManager {
         mPagerSnapHelper?.attachToRecyclerView(view)
         this.mRecyclerView = view
         mRecyclerView?.addOnChildAttachStateChangeListener(mChildAttachStateChangeListener)
+        mRecyclerView?.scrollToPosition(mPosition)
     }
 
     override fun onLayoutChildren(recycler: RecyclerView.Recycler, state: RecyclerView.State) {

@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/mobile_navigation"
-        app:startDestination="@+id/navi_home">
+        app:startDestination="@+id/navi_category">
 
     <sumFragment
             android:id="@+id/navi_home"

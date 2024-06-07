@@ -2,6 +2,8 @@ package com.sum.main.ui.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
@@ -17,6 +19,13 @@ import com.sum.main.R
 import com.sum.main.databinding.FragmentHomeVideoBinding
 import com.sum.main.ui.home.adapter.HomeTabItemAdapter
 import com.sum.main.ui.home.viewmodel.HomeViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * @author mingyan.su
@@ -40,6 +49,7 @@ class HomeTabFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewModel
     }
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
+
         mBinding?.refreshLayout?.apply {
             autoRefresh()
             setEnableRefresh(true)
@@ -56,7 +66,7 @@ class HomeTabFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewModel
             addItemDecoration(StaggeredItemDecoration(dpToPx(10)))
             adapter = mAdapter
         }
-        mAdapter.onItemClickListener = { view, position ->
+        mAdapter.onItemClickListener = { _, position ->
             val item = mAdapter.getItem(position)
             if (item != null && !item.link.isNullOrEmpty()) {
                 MainServiceProvider.toArticleDetail(

@@ -93,13 +93,13 @@ class HomeViewModel : BaseViewModel() {
      * @param cid
      */
     fun getProjectList(page: Int, cid: Int): LiveData<MutableList<ProjectSubInfo>?> {
-        launchUI(errorBlock = { code, errorMsg ->
+        launchUI(errorBlock = { _, errorMsg ->
             TipsToast.showTips(errorMsg)
             projectItemLiveData.value = null
-        }) {
+        },{
             val data = homeRepository.getProjectList(page, cid)
             projectItemLiveData.value = data?.datas
-        }
+        })
         return projectItemLiveData
     }
 
@@ -108,7 +108,7 @@ class HomeViewModel : BaseViewModel() {
      */
     fun getVideoList(assetManager: AssetManager): LiveData<MutableList<VideoInfo>?> {
         return liveData {
-            val response = safeApiCall(errorBlock = { code, errorMsg ->
+            val response = safeApiCall(errorBlock = { _, errorMsg ->
                 TipsToast.showTips(errorMsg)
             }) {
                 var list = homeRepository.getVideoListCache()
@@ -119,7 +119,6 @@ class HomeViewModel : BaseViewModel() {
                 }
                 list
             }
-
             emit(response)
         }
     }
