@@ -124,7 +124,9 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
             it.viewPager.offscreenPageLimit = mArrayTabFragments.size()
 
             mTabLayoutMediator = TabLayoutMediator(it.tabHome, it.viewPager) { tab: TabLayout.Tab, position: Int ->
-                tab.text = mProjectTabs[position].name
+                if(position < mProjectTabs.size){//需进行判断，否则断网刷新后APP会闪退（索引越界异常）
+                    tab.text = mProjectTabs[position].name
+                }
             }
             //tabLayout和viewPager2关联起来
             mTabLayoutMediator?.attach()
