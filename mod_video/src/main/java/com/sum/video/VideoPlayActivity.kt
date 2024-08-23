@@ -30,6 +30,7 @@ import com.google.android.exoplayer2.upstream.cache.CacheDataSource
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.sum.common.constant.KEY_VIDEO_PLAY_LIST
+import com.sum.common.constant.KEY_VIDEO_POSITION
 import com.sum.common.constant.VIDEO_ACTIVITY_PLAYER
 import com.sum.framework.base.BaseDataBindActivity
 import com.sum.framework.ext.gone
@@ -88,6 +89,11 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
     @JvmField
     var mData: ArrayList<VideoInfo>? = null
 
+    //通过注解自动注入跳转传递的数据，当前点击的视频条目
+    @Autowired(name = KEY_VIDEO_POSITION)
+    @JvmField
+    var  mCurrentPosition :Int = 0
+
     override fun initView(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this)
         StatusBarSettingHelper.setStatusBarTranslucent(this)
@@ -121,6 +127,8 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
                 mBinding.ivVideoPause.gone()
             }
         }
+        //初始化将短视频列表滑动到点击的条目
+        mBinding.recyclerView.scrollToPosition(mCurrentPosition)
     }
 
     override fun onStart() {
@@ -242,7 +250,8 @@ class VideoPlayActivity : BaseDataBindActivity<ActivityVideoPlayBinding>() {
      */
     private val onScrollPagerListener = object : OnViewPagerListener {
         override fun onInitComplete(view: View?) {
-            startPlay(0, view)
+            //startPlay(0, view)
+            startPlay(mCurrentPosition, view)//条目的点击事件是从HomeVideoFragment传递过来的
         }
 
         override fun onPageRelease(isNext: Boolean, position: Int, view: View?) {

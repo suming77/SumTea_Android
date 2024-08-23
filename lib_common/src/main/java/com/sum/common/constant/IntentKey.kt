@@ -15,3 +15,5 @@ const val KEY_URL = "url"
 const val KEY_TITLE = "title"
 const val KEY_POSITION = "position"
 const val KEY_VIDEO_PLAY_LIST = "video_play_list"
+const val KEY_VIDEO_POSITION = "video_position"
+
