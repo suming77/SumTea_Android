@@ -31,7 +31,7 @@ class HeaderInterceptor : Interceptor {
                         || url.contains(ARTICLE_WEBSITE)
                         || url.contains(COIN_WEBSITE))) {
             val cookies = CookiesManager.getCookies()
-            LogUtil.e("HeaderInterceptor:cookies:$cookies", tag = "smy")
+            LogUtil.e("HeaderInterceptor:cookies:$cookies")
             if (!cookies.isNullOrEmpty()) {
                 newBuilder.addHeader(KEY_COOKIE, cookies)
             }

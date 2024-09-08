@@ -126,6 +126,9 @@ class UserInfoActivity : BaseDataBindActivity<ActivityUserInfoBinding>() {
         mBinding.tvSave.onClick {
             saveUserInfo()
         }
+        mBinding.clSex.onClick {
+            showSelectSexDialog()
+        }
     }
 
     /**

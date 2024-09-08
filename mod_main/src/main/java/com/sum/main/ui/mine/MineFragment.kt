@@ -74,7 +74,7 @@ class MineFragment : BaseMvvmFragment<FragmentMineBinding, MineViewModel>(), OnR
      * 设置用户信息
      */
     private fun setUserInfo(user: User?) {
-        LogUtil.e("userdata:$user", tag = "smy")
+        LogUtil.e("userdata:$user", tag = "SumTea")
         if (UserServiceProvider.isLogin()) {
             user?.let {
                 mHeadBinding.ivHead.loadFile(File(it.icon ?: ""))

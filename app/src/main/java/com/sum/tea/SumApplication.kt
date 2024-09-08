@@ -10,6 +10,7 @@ import com.sum.framework.manager.AppFrontBackListener
 import com.sum.framework.log.LogUtil
 import com.sum.framework.manager.ActivityManager
 import com.sum.framework.toast.TipsToast
+import com.sum.framework.utils.AppExecutors
 import com.sum.stater.dispatcher.TaskDispatcher
 import com.sum.tea.task.InitMmkvTask
 import com.sum.tea.task.InitAppManagerTask
@@ -26,8 +27,16 @@ class SumApplication : Application() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
-        MultiDex.install(base)
+//        SPUtils.getInstance("SumTea")
+        AppExecutors.cpuIO.execute(Runnable {
+            MultiDex.install(base)
+        })
     }
+
+    // 复写返回this
+//    override fun getApplicationContext(): Context {
+//        return this
+//    }
 
     override fun onCreate() {
         super.onCreate()
@@ -53,6 +62,16 @@ class SumApplication : Application() {
 
         //4.等待，需要等待的方法执行完才可以往下执行
         dispatcher.await()
+
+        // TraceView
+//        Debug.startMethodTracing() // 开始记录
+//        initSumHelper()
+//        Debug.stopMethodTracing() // 结束记录
+
+        // SysTrace
+//        Trace.beginSection("initMmkv") // 添加标识，方便查询
+//        initMmkv()
+//        Trace.endSection()
     }
 
     /**

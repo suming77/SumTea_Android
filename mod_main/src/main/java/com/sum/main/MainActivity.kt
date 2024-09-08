@@ -60,7 +60,7 @@ class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
         intent?.let {
             val index = intent.getIntExtra(KEY_INDEX, 0)
 //            navController.navigate(R.id.navi_home)
-            LogUtil.e("onNewIntent:index:$index", tag = "smy")
+            LogUtil.e("onNewIntent:index:$index", tag = "SumTea")
         }
     }
 

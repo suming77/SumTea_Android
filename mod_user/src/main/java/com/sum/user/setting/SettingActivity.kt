@@ -93,6 +93,7 @@ class SettingActivity : BaseDataBindActivity<ActivitySettingBinding>() {
                     CookiesManager.clearCookies()
                     UserServiceProvider.clearUserInfo()
                     SearchServiceProvider.clearSearchHistoryCache()
+                    mBinding.tvLogout.gone()
                     dismissLoading()
                 }
             }).show()

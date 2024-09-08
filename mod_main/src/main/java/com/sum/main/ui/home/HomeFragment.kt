@@ -19,10 +19,14 @@ import com.sum.framework.base.BaseMvvmFragment
 import com.sum.framework.ext.gone
 import com.sum.framework.ext.onClick
 import com.sum.framework.ext.visible
+import com.sum.framework.utils.AppExecutors
 import com.sum.framework.utils.getStringFromResource
 import com.sum.main.R
+import com.sum.main.banner.HomeBannerAdapter
 import com.sum.main.databinding.FragmentHomeBinding
 import com.sum.main.ui.home.viewmodel.HomeViewModel
+import com.sum.stater.dispatcher.DelayInitDispatcher
+import com.sum.stater.task.Task
 
 /**
  * @author mingyan.su
@@ -48,6 +52,26 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
             SearchServiceProvider.toSearch(requireContext())
         }
         initTab()
+        // 首帧回调
+        onFirstFrameTime()
+    }
+
+    /**
+     * 首帧时间注册回调
+     */
+    private fun onFirstFrameTime() {
+        if (mBinding?.bannerHome?.getAdapter() is HomeBannerAdapter) {
+            val homeBannerAdapter = mBinding?.bannerHome?.getAdapter() as HomeBannerAdapter
+            homeBannerAdapter.onFirstFrameTimeCall = {
+//                AppExecutors.mainThread.executeDelay(Runnable {
+//                    // 任务延迟3s执行
+//                    initToastTask()
+//                }, 3000)
+
+                //延迟执行启动器
+                DelayInitDispatcher().addTask(InitToastTask()).start()
+            }
+        }
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
@@ -56,6 +80,8 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
 
     private fun refresh() {
         mViewModel.getBannerList().observe(this) { banners ->
+            // 异步请求-启动计时
+            // activity?.reportFullyDrawn()
             banners?.let {
                 mBinding?.bannerHome?.visible()
                 mBinding?.bannerHome?.setData(it)
@@ -140,6 +166,16 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>(), OnR
             it.text = tabFirst?.text
             tabFirst?.customView = it
         }
+    }
+
+    inner class InitToastTask : Task() {
+        override fun run() {
+            // 延迟任务执行逻辑
+        }
+    }
+
+    private fun initToastTask() {
+        // 初始化任务
     }
 
     override fun onDestroy() {

@@ -181,13 +181,13 @@
                     tools:text="13800138000" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!--android:onClick="@{(view)->activity.showSelectSexDialog()}"-->
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_sex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10"
                 android:foreground="?attr/selectableItemBackground"
-                android:onClick="@{(view)->activity.showSelectSexDialog()}"
                 android:paddingStart="@dimen/dp_14"
                 android:paddingEnd="@dimen/dp_8"
                 android:background="@color/white">

@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
 }
+//apply plugin: 'android-aspectjx'
 
 android {
     compileSdk rootProject.android.compileSdk
@@ -81,4 +82,6 @@ dependencies {
     compileOnly project(path: ':lib_glide')
     compileOnly project(path: ':lib_room')
 
+    // AOP 切面编程
+    implementation 'org.aspectj:aspectjrt:1.9.5'
 }

@@ -57,7 +57,7 @@ class LoginService : ILoginService {
                 TipsToast.showTips(response.errorMsg)
                 return@launch
             }
-            LogUtil.e("logout${response?.data}", tag = "smy")
+            LogUtil.e("logout${response?.data}", tag = "SumTea")
             observer.onChanged(response?.isFailed() == true)
             login(context)
         }
