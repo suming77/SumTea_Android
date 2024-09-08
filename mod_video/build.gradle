@@ -38,6 +38,7 @@ android {
         dataBinding = true
         viewBinding = true
     }
+    namespace 'com.sum.video'
 }
 
 dependencies {

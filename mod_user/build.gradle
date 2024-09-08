@@ -39,6 +39,7 @@ android {
         dataBinding = true
         viewBinding = true
     }
+    namespace 'com.sum.user'
 }
 
 dependencies {
