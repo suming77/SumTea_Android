@@ -1,0 +1,14 @@
+[
+    {
+      "name" : "All",
+      "data" : "https://s3-ap-northeast-1.amazonaws.com/m-et/Android/json/all.json"
+    },
+    {
+      "name" : "Men",
+      "data" : "https://s3-ap-northeast-1.amazonaws.com/m-et/Android/json/men.json"
+    },
+    {
+      "name" : "Women",
+      "data" : "https://s3-ap-northeast-1.amazonaws.com/m-et/Android/json/women.json"
+    }
+]

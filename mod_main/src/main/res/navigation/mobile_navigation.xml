@@ -31,7 +31,7 @@
 
     <sumFragment
             android:id="@+id/navi_mercari"
-            android:name="com.sum.main.ui.mercari.MercariFragment"
+            android:name="com.sum.main.ui.mercari.MericariFragment"
             android:label="@string/tab_mercari"
             tools:layout="@layout/fragment_mercari" />
 </navigation>
