@@ -67,7 +67,6 @@ open class BaseViewModel : ViewModel() {
             successBlock(result)
         }
     }
-
     /**
      * 不依赖BaseRepository，需要在作用域中运行
      * @param errorCall 错误回调

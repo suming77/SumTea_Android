@@ -70,11 +70,14 @@ android {
         dataBinding = true
         viewBinding = true
     }
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/atomicfu.kotlin_module']
+        }
+    }
 
     //Room官方建议：在`android`块中添加以下代码块，以从软件包中排除原子函数模块并防止出现警告
-    packagingOptions {
-        exclude 'META-INF/atomicfu.kotlin_module'
-    }
+    namespace 'com.sum.tea'
 }
 
 dependencies {

@@ -60,6 +60,7 @@ android {
         dataBinding = true
         viewBinding = true
     }
+    namespace 'com.sum.login'
 }
 
 dependencies {

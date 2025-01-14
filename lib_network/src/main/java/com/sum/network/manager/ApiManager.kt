@@ -1,6 +1,7 @@
 package com.sum.network.manager
 
 import com.sum.network.api.ApiInterface
+import com.sum.network.api.MercicaAPI
 
 /**
  * @author mingyan.su
@@ -9,4 +10,5 @@ import com.sum.network.api.ApiInterface
  */
 object ApiManager {
     val api by lazy { HttpManager.create(ApiInterface::class.java) }
+    val apiMercica by lazy { HttpManager.create(MercicaAPI::class.java) }
 }

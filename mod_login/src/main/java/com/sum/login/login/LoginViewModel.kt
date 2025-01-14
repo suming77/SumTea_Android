@@ -2,7 +2,6 @@ package com.sum.login.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
 import com.sum.common.model.User
 import com.sum.framework.toast.TipsToast
 import com.sum.network.viewmodel.BaseViewModel

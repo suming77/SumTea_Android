@@ -4,6 +4,7 @@
     <string name="tab_categories">分类</string>
     <string name="tab_system">体系</string>
     <string name="tab_mine">我的</string>
+    <string name="tab_mercari">Mercari</string>
     <string name="splash_time">跳过 %ss</string>
     <string name="home_tab_video_title">短视频</string>
 
