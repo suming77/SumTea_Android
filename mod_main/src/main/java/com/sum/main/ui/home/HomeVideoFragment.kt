@@ -6,6 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
 import com.sum.common.constant.KEY_VIDEO_PLAY_LIST
+import com.sum.common.constant.KEY_VIDEO_POSITION
 import com.sum.common.constant.VIDEO_ACTIVITY_PLAYER
 import com.sum.framework.decoration.StaggeredItemDecoration
 import com.sum.framework.base.BaseMvvmFragment
@@ -47,6 +48,7 @@ class HomeVideoFragment : BaseMvvmFragment<FragmentHomeVideoBinding, HomeViewMod
                 if (granted) {
                     ARouter.getInstance().build(VIDEO_ACTIVITY_PLAYER)
                             .withParcelableArrayList(KEY_VIDEO_PLAY_LIST, videoAdapter.getData() as ArrayList<VideoInfo>)
+                            .withInt(KEY_VIDEO_POSITION, position)//将当前点击的条目位置传递过去
                             .navigation()
                 } else {
                     TipsToast.showTips(com.sum.common.R.string.default_agree_permission)
